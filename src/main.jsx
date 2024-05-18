@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import App from './app.jsx'
 import { GetProviderStore } from "./store/routerStore.jsx";
 import "./styles/main.scss"
 import "./styles/components/secondaryBtn.scss"
