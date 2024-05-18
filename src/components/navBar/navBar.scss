@@ -1,9 +1,27 @@
+@import "../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .nav-bar-two{
+                background-color: map-get($ColorApp, 'backgroudColor');
+            } 
+
+        }
+    }
+}
+
 .nav-bar-two{
     position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background-color: #1A1A1A ;
+    
     height: 60px;
     align-items: center;
     gap: 20px; 

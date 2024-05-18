@@ -15,30 +15,30 @@ const NavBar = () => {
   const dispatch = useDispatch()
 
 
-  // useEffect ( () => {
+  useEffect ( () => {
 
-  //   if (userInfo.isConnect){
-  //     dispatch(getIsAdmin())
-  //     .unwrap()
-  //     .then(response => {
-  //       setIsAdmin(response.data)
-  //     })
-  //     .catch(error => {
-  //       setIsAdmin(false)
-  //     }  
-  //     )
-  //   } else {
-  //     setIsAdmin(false)
-  //   }
-  // },[userInfo.isConnect]
-  // )
-  // useEffect(() => {
-  //   const activePage =  headerChoice.filter(page => page.path ==  window.location.pathname )
-  //   if (activePage[0]){
-  //     dispatch(updateActivePage(activePage[0].name))
-  //   }
+    if (userInfo.isConnect){
+      dispatch(getIsAdmin())
+      .unwrap()
+      .then(response => {
+        setIsAdmin(response.data)
+      })
+      .catch(error => {
+        setIsAdmin(false)
+      }  
+      )
+    } else {
+      setIsAdmin(false)
+    }
+  },[userInfo.isConnect]
+  )
+  useEffect(() => {
+    const activePage =  headerChoice.filter(page => page.path ==  window.location.pathname )
+    if (activePage[0]){
+      dispatch(updateActivePage(activePage[0].name))
+    }
     
-  // })
+  })
   return (
     <nav className="nav-bar-two">
     <NavLogo />
