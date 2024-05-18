@@ -34,20 +34,20 @@ const NavConnect = () => {
     });
   }
 
-  useEffect ( () => {
+  // useEffect ( () => {
 
  
-      dispatch(getIsAuthUser())
-      .unwrap()
-      .then(response => {
-        setIsAdmin(response.data)
-      })
-      .catch(error => {
-        setIsAdmin(false)
-      }  
-      )
+  //     dispatch(getIsAuthUser())
+  //     .unwrap()
+  //     .then(response => {
+  //       setIsAdmin(response.data)
+  //     })
+  //     .catch(error => {
+  //       setIsAdmin(false)
+  //     }  
+  //     )
 
-  },[])
+  // },[])
 
   return (
     <div className="nav-connect">
