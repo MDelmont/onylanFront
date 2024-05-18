@@ -1,0 +1,14 @@
+.nav-menu{
+    display: none;
+}
+
+
+@media (min-width: 768px) {
+    .nav-menu{
+        display: flex;
+        justify-content: flex-start;
+        gap: 30px;  
+        flex-grow: 1;  
+    }
+}
+    

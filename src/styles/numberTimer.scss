@@ -1,0 +1,30 @@
+
+
+
+.number-timer-cont {
+  position: relative;
+  width: 60px;
+  height: 100px;
+  font-size: 5rem;
+overflow: hidden;
+  .none {
+    display: none;
+    top: -100%;
+  }
+  .number {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0%;
+    transition: 0.5s;
+  }
+  .next {
+    top: -100%;
+  }
+  .active {
+    top: 0%;
+  }
+  .desactive {
+    top: 100%;
+  }
+}

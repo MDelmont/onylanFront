@@ -1,0 +1,49 @@
+@import "../themes/themes.scss";
+
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+  
+    .#{$themeName} {
+        .verif-form{
+             border: 1px solid  map-get($ColorApp, 'borderSeparatorEight'); 
+            p{
+                background-color: map-get($ColorApp, 'backgroundOne');
+            }
+        }
+    }
+}
+.verif-form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+    padding-top: 20px;
+    width: 100%;
+    .valid-svg{
+        fill:green;
+    }
+    .invalid-svg{
+        fill:rgb(246, 0, 0);
+    }
+    p{
+        font-size: 1rem;
+        position: absolute;
+        left: 10px;
+        top:-8px;
+        padding: 0;
+        margin: 0;
+
+    }
+    .condition-verif-cont{
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        .condition-verif{
+            font-size: 12px;
+        }
+    }
+}
+

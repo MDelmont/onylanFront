@@ -1,0 +1,12 @@
+.btn-Nav {
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+
+    &.active{
+        color: #ff7345; 
+    }
+    &:hover {
+        color: #ff7345; 
+    }
+}

@@ -1,0 +1,24 @@
+// Import des thèmes en tant que modules
+
+@use "dark" as dark;
+@use "light" as light;
+
+// Fusionne toutes les variables de couleur de chaque thème dans une liste
+$allThemes: (
+
+  (themeName: dark.$themeName, ColorApp: dark.$ColorApp),
+  (themeName: light.$themeName, ColorApp: light.$ColorApp),
+);
+
+// EXEMPLE
+.moncposantClass {
+    @each $theme in $allThemes {
+      $themeName: map-get($theme, 'themeName'); 
+      $ColorApp: map-get($theme, 'ColorApp');  
+      
+      &.#{$themeName} {
+        color: map-get($ColorApp, 'fontColor');
+        background-color: map-get($ColorApp, 'bg');
+      }
+    }
+  }

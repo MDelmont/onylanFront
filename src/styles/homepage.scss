@@ -1,0 +1,31 @@
+.home-Page{
+    display:flex;
+    
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap:30px;
+ 
+
+
+    .teaser{
+        height: 38vw;
+
+        aspect-ratio: 16/9;
+    }
+    .info-cont{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    label{
+        width:35%;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+

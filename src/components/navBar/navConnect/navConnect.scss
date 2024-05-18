@@ -1,0 +1,16 @@
+.nav-connect{
+    margin-right: 15px;
+    .disconnect-btn{
+        display: none;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .nav-connect{
+        .disconnect-btn{
+            display:inline-block;
+        }
+    }
+    
+}

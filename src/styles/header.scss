@@ -1,0 +1,56 @@
+@import "./themes/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+
+    #root {
+      &.#{$themeName} {
+
+        .nav-bar{
+       
+          background-color:  map-get($ColorApp, 'backgroundGrayOne');
+          
+    
+
+        }
+      
+        }
+  }
+}
+
+.nav-btn{
+  cursor: pointer;
+}
+#logo-nav{
+             
+  width: 80px;
+}
+.nav-bar{
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  .connect-nav{
+    display: flex;
+    padding-right: 10px;
+  }
+  .nav{
+    justify-self: start;
+    display: flex;
+    justify-content:  flex-start;
+    align-items: center;
+    gap: 25px;
+    padding-left: 10px;
+    .logo-nav{
+     
+      width: 60px;
+    }
+
+  }
+  
+}
