@@ -9,7 +9,13 @@
         &.#{$themeName} {
 
             .nav-bar-two{
+                color:map-get($ColorApp, 'fisrtFontColor');
                 background-color: map-get($ColorApp, 'backgroudColor');
+                
+                &::before{
+        
+                    border-bottom: 1px solid map-get($ColorApp, 'secondeFontColor');
+                }
             } 
 
         }
@@ -25,4 +31,14 @@
     height: 60px;
     align-items: center;
     gap: 20px; 
+
+    &::before {
+        content: ''; /* Ajout de content */
+        position: absolute;
+       
+        transform: scaleY(0.3);
+        bottom: -2px ;
+        width: 100%;
+        height: 1px; 
+    }
 }

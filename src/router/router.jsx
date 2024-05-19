@@ -14,6 +14,7 @@ import NavBar from "../components/navBar/navBar";
 import GamePage from "../pages/game";
 import EventPage from "../pages/event";
 import Background from "../components/background/background";
+import '../styles/root.scss'
 /**
  * creat template of page with nav and content
  * @returns Template of page
@@ -21,12 +22,14 @@ import Background from "../components/background/background";
 const Root = () => {
   return (
     <div id="root" className="dark">
-      <Background />
-      <NavBar />
+      
+      
       <main >
         
         <Outlet />
       </main>
+      <NavBar />
+      <Background />
       {/* <Footer /> */}
     
     </div>
@@ -55,7 +58,7 @@ export const router = createBrowserRouter([
         element: <InviteListPage />,
       },
       {
-        path: "profil",
+        path: "profile",
         element: <ProfilPage />,
       },
       {

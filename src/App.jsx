@@ -1,4 +1,5 @@
 './styles/app.scss'
+import './styles/font/lato.scss'
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router";
 function App() {

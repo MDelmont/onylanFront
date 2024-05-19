@@ -1,0 +1,48 @@
+
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+
+    #root {
+      &.#{$themeName} {
+        .number-timer-cont {
+          color:  map-get($ColorApp, 'fisrtFontColor');
+        }
+      }
+  }
+}
+
+.number-timer-cont {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 6/10;
+  font-size: 1.8em;
+  overflow: hidden;
+  width: 32%;
+  .none {
+    display: none;
+    top: -50%;
+  }
+  .number {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 0%;
+    transition: 0.5s;
+  }
+  .next {
+    top: -50%;
+  }
+  .active {
+    top: 50%;
+  }
+  .desactive {
+    top: 150%;
+  }
+}

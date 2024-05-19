@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/numberTimer.scss";
+import "./numberTimer.scss";
 function NumberTimer({ numberActive, maxValue }) {
   const numbers = [];
   for (let i = 0; i <= maxValue; i++) {

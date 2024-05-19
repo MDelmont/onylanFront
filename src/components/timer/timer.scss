@@ -1,0 +1,66 @@
+@import "../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+
+    #root {
+      &.#{$themeName} {
+        .timer-part{
+            color:map-get($ColorApp, 'fisrtFontColor');
+            background-color:  map-get($ColorApp, 'backgroundtransparentTimerColor');
+          }
+        }
+  }
+}
+.time-cont{
+  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    gap:4%;
+    width: 95%;
+    max-width: 700px;
+    flex-grow: 1;
+    .timer-part{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        aspect-ratio: 8/9;
+        padding: 3px;
+        gap: 10%;
+        .timer-numbers{
+            position: relative;
+            display: flex;
+          
+            text-align: center;
+            justify-content: center;
+            width: 100%;
+            height: 60%;
+        }
+        p{
+          font-size: 0.8em;
+          margin: 0;
+        }
+    }
+}
+
+@media (min-width: 320px) {
+  .time-cont{
+    font-size: 15px; 
+  }
+}
+@media (min-width: 425px) {
+  .time-cont{
+    font-size: 20px; 
+  }
+}
+@media (min-width: 500px) {
+  .time-cont{
+    font-size: 30px; 
+  }
+}

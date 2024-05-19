@@ -1,31 +1,186 @@
-.home-Page{
-    display:flex;
-    
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    gap:30px;
- 
+@import "./font/Inter.scss";
 
 
-    .teaser{
-        height: 38vw;
+@import "./themesTwo/themes.scss";
 
-        aspect-ratio: 16/9;
-    }
-    .info-cont{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    label{
-        width:35%;
-        display: flex;
-        justify-content: space-between;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+
+    #root {
+      &.#{$themeName} {
+        
+            .home-Page{
+                
+            
+                .cont-title{
+                    color:  map-get($ColorApp, 'testcolor2');
+                    text-shadow: 
+                        0 0 5px map-get($ColorApp, 'testcolor'),
+                        0 0 10px map-get($ColorApp, 'testcolor'),
+                        0 0 15px map-get($ColorApp, 'testcolor'),
+                        0 0 20px map-get($ColorApp, 'testcolor'),
+                        0 0 25px map-get($ColorApp, 'testcolor'),
+                        0 0 30px map-get($ColorApp, 'testcolor'),
+                        0 0 35px map-get($ColorApp, 'testcolor');
+                }
+                .teaser{
+                
+                }
+                
+                
+                .info-cont{
+                    color:  map-get($ColorApp, 'secondeFontColor');
+                    
+                    .orange-barre {
+                        background-color:  map-get($ColorApp, 'fisrtFontColor');
+                    }
+                }
+                
+                label{
+                
+                }
+            }
+        }
+  }
 }
 
 
+
+
+.home-Page{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    gap: 2vh;
+    flex-grow: 1;
+    height: 100%;
+    font-size:50px;
+    .cont-title{
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+   
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        margin-bottom: 10px;
+        
+        font-size: 1em;
+        z-index: 0;
+        .title{
+            font-size: 1em;
+        }
+        .date{
+            font-size: 0.7em;
+        }
+    }
+    .teaser{
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+    
+
+    .info-cont{
+        position: relative;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 75%;
+        font-size: 0.2em;
+        
+        .orange-barre{
+        
+            width: 100%;
+            height: 1px;
+           
+        }
+        
+    }
+    
+
+    .cont-timer{
+        width: 100%;
+        .timer{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+@media (min-width: 375px) {
+    .home-Page{
+        .teaser{
+            width: 90%;
+        }
+    }
+
+
+  }
+
+  @media (min-width: 768px) {
+    .home-Page{
+        display: grid;
+        grid-template-columns: 2fr 4fr;
+        grid-template-rows: minmax(15vw,30%) minmax(15vw,30%) minmax(15vw,20%);
+      
+        grid-template-areas:
+          "cont-title teaser"
+          "info-cont teaser"
+          "cont-timer cont-timer";
+        gap: 10px;
+        padding: 20px;
+        font-size:55px;
+        .teaser{
+            justify-self: center;
+            grid-row: span 2;
+            width: 90%;
+        }
+        .cont-timer{
+            align-self: self-start;
+            grid-column: span 2;
+        }
+        .info-cont{
+            display: flex;
+            flex-direction: column-reverse;
+            align-self: self-start;
+            justify-self: center;
+        }
+        .cont-title{
+            align-self: self-end;
+
+        }
+    }
+
+
+  }
+
+  @media (min-width: 1024px) {
+    .home-Page{
+
+       
+        grid-template-rows: minmax(15vw,30%) minmax(15vw,30%) minmax(15vw,20%);
+        gap: 30px;
+        font-size: 70px;
+        .teaser{
+         
+        }
+        .cont-timer{
+           
+        }
+        .info-cont{
+            
+        }
+        .cont-title{
+           
+
+        }
+    }
+
+
+  }

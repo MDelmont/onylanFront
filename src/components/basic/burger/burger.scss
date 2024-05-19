@@ -1,3 +1,39 @@
+
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .cont-burger-nav{
+                .burger-cont {
+                    color:map-get($ColorApp, 'fisrtFontColor');
+                    border: 0.5px solid map-get($ColorApp, 'fisrtFontColor');
+                    background-color:  map-get($ColorApp, 'backgroudColor');
+           
+                    .nav-item{
+                        &.active,&:hover{
+                            *{
+                                color: map-get($ColorApp, 'activeNavBurgerColor') !important;
+                            }
+                            .barre{
+                            
+                                background-color: map-get($ColorApp, 'activeNavBurgerColor');
+                            }
+                        }
+                        .barre{                         
+                            background-color:  map-get($ColorApp, 'fisrtFontColor');;
+                        }
+                    }
+                }  
+            }
+        }
+    }
+}
 .cont-burger-nav{
     margin-left: 15px;
     position: relative;

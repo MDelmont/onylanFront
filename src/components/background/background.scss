@@ -1,3 +1,22 @@
+@import "../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .background{
+                background-color: map-get($ColorApp, 'backgroudColor');
+                
+            } 
+
+        }
+    }
+}
+
 .background{
     position: fixed;
     top: 0;

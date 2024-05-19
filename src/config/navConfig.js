@@ -1,8 +1,8 @@
 
 export const headerChoice = [
     {
-        name : 'Profile',
-        path:'/profil',
+        name : 'Profil',
+        path:'/profile',
         isAdmin : false,
     },
     {

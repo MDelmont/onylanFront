@@ -1,3 +1,27 @@
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .btn-Primary {
+                background :linear-gradient(to right,  map-get($ColorApp, 'firtGradrienColor'), map-get($ColorApp, 'secondeGradienColor'), map-get($ColorApp, 'thirdGradienColor')  );
+                color:  map-get($ColorApp, 'secondeFontColor');
+
+                &:disabled{
+                    background :linear-gradient(to right, map-get($ColorApp, 'firtGradrienGray'),map-get($ColorApp, 'secondeGradienGray'),map-get($ColorApp, 'thirdGradienGray') );
+                    color:  map-get($ColorApp, 'fontGray') !important;
+
+                }
+            }
+        }
+    }
+}
+
 .btn-Primary {
     border-radius: 10px;
     background :linear-gradient(to right, #900C1C,#C70C00,#F94C10 );
