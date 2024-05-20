@@ -1,6 +1,7 @@
 @import "./font/Inter.scss";
-
-
+@import "./font/Yeti.scss";
+@import "./font/Orbitron.scss";
+@import "./font/Audiowide.scss";
 @import "./themesTwo/themes.scss";
 
 @each $theme in $allThemes {
@@ -14,20 +15,16 @@
                 
             
                 .cont-title{
-                    color:  map-get($ColorApp, 'testcolor2');
+                    color:  map-get($ColorApp, 'fontTitle');
                     text-shadow: 
-                        0 0 5px map-get($ColorApp, 'testcolor'),
-                        0 0 10px map-get($ColorApp, 'testcolor'),
-                        0 0 15px map-get($ColorApp, 'testcolor'),
-                        0 0 20px map-get($ColorApp, 'testcolor'),
-                        0 0 25px map-get($ColorApp, 'testcolor'),
-                        0 0 30px map-get($ColorApp, 'testcolor'),
-                        0 0 35px map-get($ColorApp, 'testcolor');
+                        0 0 5px map-get($ColorApp, 'shadowTitle'),
+                        0 0 10px map-get($ColorApp, 'shadowTitle'),
+                        0 0 15px map-get($ColorApp, 'shadowTitle'),
+                        0 0 20px map-get($ColorApp, 'shadowTitle'),
+                        0 0 25px map-get($ColorApp, 'shadowTitle'),
+                        0 0 30px map-get($ColorApp, 'shadowTitle'),
+                        0 0 35px map-get($ColorApp, 'shadowTitle');
                 }
-                .teaser{
-                
-                }
-                
                 
                 .info-cont{
                     color:  map-get($ColorApp, 'secondeFontColor');
@@ -36,17 +33,14 @@
                         background-color:  map-get($ColorApp, 'fisrtFontColor');
                     }
                 }
-                
-                label{
-                
-                }
+
             }
         }
   }
 }
 
 
-
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
 .home-Page{
     display: flex;
@@ -71,7 +65,9 @@
         font-size: 1em;
         z-index: 0;
         .title{
+            
             font-size: 1em;
+   
         }
         .date{
             font-size: 0.7em;

@@ -3,22 +3,19 @@ import "../styles/inviteListPage.scss";;
 import { IsAdmin } from "../components/auth/isAdmin";
 import { useNavigate } from "react-router-dom";
 import {appConfig} from "../config/config"
-import { useDispatch  } from 'react-redux';
-import { getAllInvitations,deleteInvitation } from '../store/userSlice'; 
+import { deleteInvitation,allInvitation } from "../service/api/user/initationApi";
+
 const InviteListPage = () => {
   IsAdmin()
   const [invitations, setInviations] = useState(null)
   const navigate = useNavigate();
-  const dispatch =useDispatch()
 
   useEffect (() => {
     console.log('Start get invitation')
-    dispatch(getAllInvitations())
-      .unwrap()
+    allInvitation()
       .then(response => {
-
         console.log(response.data.invitation)
-        setInviations(response.data.invitation)
+        setInviations(response.data.data.invitation)
       })
       .catch(error => {
         console.log(error)
@@ -27,17 +24,12 @@ const InviteListPage = () => {
 
   const handleRemoveInvit = (e) => {
     const id = e.currentTarget.id
-    dispatch(deleteInvitation(id))
-      .unwrap()
+
+    deleteInvitation(id)
       .then(response => {
-
-
-        dispatch(getAllInvitations())
-        .unwrap()
+        allInvitation()
         .then(response => {
-
-          console.log(response.data.invitation)
-          setInviations(response.data.invitation)
+          setInviations(response.data.data.invitation)
         })
       .catch(error => {
         console.log(error)

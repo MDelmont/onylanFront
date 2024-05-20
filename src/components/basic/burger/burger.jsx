@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./burger.scss"
 import BtnNavTwo from "../btnNavTwo/btnNavTwo";
 
-const Burger = ({listMenu,handledisconnect,activePage}) => {
+const Burger = ({listMenu,handledisconnect,activePage,isAdmin}) => {
   const [isActive, setIsActive] = useState(false)
   const handleClickActive = (e) => {
     setIsActive((isActive) => !isActive)
@@ -19,7 +19,12 @@ const Burger = ({listMenu,handledisconnect,activePage}) => {
 
           <div className="menu">
             
-            {listMenu.map((navItem,index) => ( <div className={`nav-item ${activePage ==navItem.name ? 'active' : ''}` } ><BtnNavTwo path={navItem.path} title={navItem.name} />  <div className="barre" /> </div>))}
+            {listMenu.map((navItem,index) => {
+              if(navItem.isAdmin && isAdmin || !navItem.isAdmin){
+                return <div key={index} className={`nav-item ${activePage ==navItem.name ? 'active' : ''}` } ><BtnNavTwo path={navItem.path} title={navItem.name} />  <div className="barre" /> </div>
+              }
+
+            } )}
 
              <p onClick={handledisconnect}>DÉCONNEXION</p>
           </div>

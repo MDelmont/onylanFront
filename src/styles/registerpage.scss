@@ -3,6 +3,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     form{
         width: 40%;
@@ -10,6 +13,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 10px;
         .cont-input{
             width: 80%;
             display: flex;

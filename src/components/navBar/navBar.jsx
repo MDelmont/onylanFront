@@ -4,26 +4,26 @@ import NavLogo from './navLogo/navLogo'
 import NavConnect from './navConnect/navConnect'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsAdmin} from '../../store/userSlice'; 
+import { isAdminApi } from '../../service/api/user/userApi';
 import { updateActivePage} from '../../store/navStatusSlice'; 
 import {headerChoice} from '../../config/navConfig'
+import { getIsAuthUser } from '../../store/userSlice';
 const NavBar = () => {
   
 
   const userInfo = useSelector((state) => state.userSliceReducer); 
   const [isAdmin,setIsAdmin] =  useState()
   const dispatch = useDispatch()
-
-
+  
   useEffect ( () => {
 
     if (userInfo.isConnect){
-      dispatch(getIsAdmin())
-      .unwrap()
+      isAdminApi()
       .then(response => {
-        setIsAdmin(response.data)
+        setIsAdmin(response.data.data)
       })
       .catch(error => {
+        console.log(error)
         setIsAdmin(false)
       }  
       )
@@ -37,13 +37,12 @@ const NavBar = () => {
     if (activePage[0]){
       dispatch(updateActivePage(activePage[0].name))
     }
-    
-  })
+  },[])
   return (
     <nav className="nav-bar-two">
     <NavLogo />
     {<NavMenu isAdmin={isAdmin} />}
-    <NavConnect />
+    <NavConnect setIsAdmin={setIsAdmin} isAdmin={isAdmin} />
 </nav>
   );
 };

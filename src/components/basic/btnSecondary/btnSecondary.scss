@@ -1,0 +1,40 @@
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .btn-Secondary {
+                background-color :map-get($ColorApp, 'backgroundBtnSecondary');
+                border: 1px solid  map-get($ColorApp, 'fisrtFontColor');;
+                color:  map-get($ColorApp, 'fisrtFontColor');
+            }
+        }
+    }
+}
+
+.btn-Secondary {
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    
+    &:hover{
+        cursor: pointer !important;
+    }
+    &:disabled{
+        background :linear-gradient(to right, #9D9D9D,#D4D4D4,#FFFFFF );
+        color: #333333 !important;
+        cursor: default !important;
+    }
+    &:active {
+        transform: scale(0.95);
+        &:disabled{
+            transform: scale(1);
+        }
+    }
+    
+}

@@ -8,10 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import {headerChoice} from '../../../config/navConfig'
 import { logoutUser} from '../../../store/userSlice'; 
 import {  getIsAuthUser} from '../../../store/userSlice';
-const NavConnect = () => {
-  
-  const listNav= ['Profil','Evenement','Jeux','Equipes']
-  
+const NavConnect = ({setIsAdmin,isAdmin}) => {
+    
   const userInfo = useSelector((state) => state.userSliceReducer); 
   const navInfo = useSelector((state) => state.navStatusSliceReducer); 
 
@@ -36,7 +34,6 @@ const NavConnect = () => {
 
   useEffect ( () => {
 
- 
       dispatch(getIsAuthUser())
       .unwrap()
       .then(response => {
@@ -52,7 +49,7 @@ const NavConnect = () => {
   return (
     <div className="nav-connect">
       
-      {userInfo.isConnect && <Burger listMenu={headerChoice} handledisconnect={handledisconnect} activePage={navInfo.activePage}/>}
+      {userInfo.isConnect && <Burger isAdmin={isAdmin} listMenu={headerChoice} handledisconnect={handledisconnect} activePage={navInfo.activePage}/>}
       {!userInfo.isConnect && <BtnPrimary title={'CONNEXION'} handleClick={handleConnect} disabled={false}/>}
       {userInfo.isConnect &&  <p className='disconnect-btn' onClick={handledisconnect}>DÉCONNEXION</p>}
   </div>

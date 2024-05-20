@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import utilsFunction from '../utils/utilsFunction'
+import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -212,9 +213,9 @@ const RegisterPage = () => {
        {errorMessage && <p>{errorMessage}</p>}
        
         <VerifForm conditions={conditions} />
+        <BtnPrimary title={'INSCRIPTION'} type={"submit"} disabled={!conditions.every(item => !item.condition)} />
        
-        <button type="submit" className="btn-submit" disabled={!conditions.every(item => !item.condition)}>Inscription</button>
-      </form>
+      </form> 
     </div>
   );
 };

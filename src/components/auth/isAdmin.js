@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { getIsAdmin } from "../../store/userSlice";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { isAuthApi } from "../../service/api/user/userApi";
 
 export const IsAdmin = () => {
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
   useEffect(() => {
-    dispatch(getIsAdmin())
-      .unwrap()
-      .then((response) => {
-        if(response.data != true) {
-          navigate('/dashbord')
-        }
+    isAuthApi().then(response => {
 
-      })
-      .catch((error) => {
-
+      if(response.data.data  != true) {
         navigate('/dashbord')
-      });
-  }, [dispatch]);
-
-};
+      }
+    
+    }).catch(error => {
+      navigate('/dashbord')
+    })
+  },[])
+}
 

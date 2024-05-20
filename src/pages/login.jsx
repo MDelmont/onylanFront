@@ -36,9 +36,11 @@ const LoginPage = () => {
       dispatch(loginUser(formData))
       .unwrap()
       .then((response) => {
+        console.log()
         navigate(pathRedirect)
       })
       .catch((error) => {
+        console.log(error)
         // Erreur de connexion
         
           setErrorMessage('Email ou mot de passe invalide');

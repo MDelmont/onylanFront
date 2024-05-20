@@ -1,0 +1,42 @@
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .input-label {
+
+            }
+        }
+    }
+}
+
+.input-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: start;
+    width: 100%;
+    & > :nth-child(2) {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .input-label {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2px;
+        align-items: start;
+        width: 100%;
+        & > :nth-child(2) {
+            width: 80%;
+        }
+    }
+    
+}

@@ -3,6 +3,8 @@
 import '../styles/testPage.scss'
 import NavBar from '../components/navBar/navBar';
 import Timer from '../components/timer/timer';
+import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
+import InputLabel from '../components/formulaire/inputLabel/inputLabel';
 
 
 
@@ -10,7 +12,11 @@ const TestPage = () => {
  
   return (
     <div className="test-Page">
-      <Timer numberDays={99} numberHours={24} numberMinutes={59} numberSecondes={59} />
+      <InputLabel input={<button>test</button>} title={'test'} />
+      <InputLabel input={<button>test</button>} title={'test'} />
+      <InputLabel input={<button>test</button>} title={'test'} />
+      <InputLabel input={<button>test</button>} title={'test'} />
+      <InputLabel input={<button>test</button>} title={'test'} />
     </div>
   );
 };
