@@ -1,4 +1,6 @@
+import {IsAuth} from "../components/auth/isAuth"
 const  TeamPage = ()  => {
+  IsAuth()
   return (
     <div className="team-Page">
         <h1>

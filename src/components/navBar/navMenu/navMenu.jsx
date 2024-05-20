@@ -13,7 +13,6 @@ const NavMenu = ({isAdmin}) => {
   const navInfo = useSelector((state) => state.navStatusSliceReducer); 
   const userInfo = useSelector((state) => state.userSliceReducer); 
   
-  console.log(navInfo.activePage)
   return (
     <div className="nav-menu">
       {userInfo.isConnect && headerChoice.map((navItem,index)=> {

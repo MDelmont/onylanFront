@@ -6,7 +6,7 @@ import NumberTimer from "./numberTimer/numberTimer";
 
 function Timer( {numberDays, numberHours, numberMinutes, numberSecondes}) {
   
-   console.log({numberDays, numberHours, numberMinutes, numberSecondes})
+
     function digitsToArray(number) {
         
         if(number || number ==0){

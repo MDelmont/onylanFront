@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { isAuthApi } from "../../service/api/user/userApi";
-
+import { isAdminApi } from "../../service/api/user/userApi";
+import { useDispatch } from "react-redux";
+import {updateActivePage} from "../../store/navStatusSlice"
 export const IsAdmin = () => {
-
+  console.log("IsAdmin")
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    isAuthApi().then(response => {
-
+    isAdminApi().then(response => {
       if(response.data.data  != true) {
-        navigate('/dashbord')
+        dispatch(updateActivePage('Tableau de bord'))
+        navigate('/dashboard')
       }
     
     }).catch(error => {
-      navigate('/dashbord')
+      dispatch(updateActivePage('Tableau de bord'))
+      navigate('/dashboard')
     })
   },[])
 }

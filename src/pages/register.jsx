@@ -43,7 +43,7 @@ const RegisterPage = () => {
 ];
 
   useEffect(() => {
-    console.log('token : ' , idToken)
+
     setFormData({...formData,token:idToken})
 
 

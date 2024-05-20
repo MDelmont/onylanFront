@@ -108,6 +108,9 @@
             align-items: center;
         }
     }
+    .description{
+        font-size: 0.5em;
+    }
 }
 @media (min-width: 375px) {
     .home-Page{
@@ -140,12 +143,15 @@
         .cont-timer{
             align-self: self-start;
             grid-column: span 2;
+            
         }
         .info-cont{
             display: flex;
             flex-direction: column-reverse;
             align-self: self-start;
             justify-self: center;
+            width: 95%;
+            max-width: 600px;
         }
         .cont-title{
             align-self: self-end;

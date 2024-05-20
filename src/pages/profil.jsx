@@ -1,8 +1,8 @@
 
-
+import {IsAuth} from "../components/auth/isAuth"
 
 const  ProfilPage = ()  => {
-
+  IsAuth()
   return (
     <div className="profil-Page">
         <h1>

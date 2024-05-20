@@ -1,6 +1,7 @@
+import { useEffect } from "react";
+import {IsAuth} from "../components/auth/isAuth"
 const  EquipePage = ()  => {
-
-
+  IsAuth();
 
   return (
     <div className="equipe-Page">

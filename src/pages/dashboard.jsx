@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-
-
+import {IsAuth} from "../components/auth/isAuth"
 const  DashbordPage = ()  => {
-  useEffect( ()=> {
-    
-  },[])
+  IsAuth()
+
 
 
   return (

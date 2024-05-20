@@ -6,7 +6,6 @@ import '../styles/homepage.scss'
 const  HomePage = ()  => {
   const [numberDays, numberHours, numberMinutes,numberSecondes] = useCustomTimer(new Date(2024, 5, 16))
   
-  console.log(numberDays, numberHours, numberMinutes,numberSecondes)
 
   return (
     <div className="home-Page">
@@ -17,20 +16,23 @@ const  HomePage = ()  => {
 
         <div className="info-cont">
             <p>
-              Bienvenu à la Onylan 2024, Suite au franc succes de la OnyLan 2023. 
-              Cette nouvelle edition à pour but de réitérer l'experience !
-              Cette evenement peu se rejoindre que par invitation. Si vous etes l'un des chanceux 
-              Dans cette edition, quelque achat de jeux seront necessaire. 
+            Bienvenue sur le site officiel de la Onylan.
+          En vue des événements, prochains et passés, nous avons mis au point ce site pour nous organiser au mieux lors de la préparation des Onylans et ainsi pallier les problèmes rencontrés lors du premier événement.
+          Ce site est en construction, donc pour l'instant vous n'aurez pas accès à toutes les fonctionnalités. Cependant, ceux ayant reçu une invitation peuvent d'ores et déjà s'inscrire pour participer à la Onylan Erebus (Onylan 2024).
             </p>
             <div className="orange-barre"></div>
         </div>
        
         <div className="cont-timer">
-              <div className="timer">
-              
-                <Timer numberDays={numberDays} numberHours={numberHours} numberMinutes={numberMinutes} numberSecondes={numberSecondes} />
-              </div>
-          </div>
+            <div className="timer">
+            
+              <Timer numberDays={numberDays} numberHours={numberHours} numberMinutes={numberMinutes} numberSecondes={numberSecondes} />
+            </div>
+        </div>
+        <div className="description">
+          <h2>description</h2>
+
+        </div>
     </div>
   );
 }

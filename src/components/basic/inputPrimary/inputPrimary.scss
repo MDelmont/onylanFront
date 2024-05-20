@@ -8,16 +8,21 @@
     #root {
         &.#{$themeName} {
 
-            .btn-Secondary {
+            .input-primary {
                 background-color :map-get($ColorApp, 'backgroundBtnSecondary');
-                border: 1px solid  map-get($ColorApp, 'fisrtFontColor');;
+                border: 1px solid  map-get($ColorApp, 'fisrtFontColor');
                 color:  map-get($ColorApp, 'fisrtFontColor');
+                &:focus{
+                    outline:0;
+                    border: 2px solid  map-get($ColorApp, 'fisrtFontColor');
+                }
+             
             }
         }
     }
 }
 
-.btn-Secondary {
+.input-primary {
     border-radius: 10px;
     padding: 10px;
 
@@ -30,11 +35,6 @@
         color: #333333 !important;
         cursor: default !important;
     }
-    &:active {
-        transform: scale(0.95);
-        &:disabled{
-            transform: scale(1);
-        }
-    }
+   
     
 }
