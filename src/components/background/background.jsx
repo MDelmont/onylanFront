@@ -3,8 +3,9 @@ const Background = () => {
     return <div className="background">
 
 <div className="cont-logo">
-    
-    <img src="./logo_onylan.png" alt="logo" className='logo'/>
+        <div className="img">
+
+        </div>
     </div>
     </div>
 

@@ -34,8 +34,10 @@
         gap: 2px;
         align-items: start;
         width: 100%;
+        & > :nth-child(1) {
+            width: 25%        }
         & > :nth-child(2) {
-            width: 80%;
+            width: 75%;
         }
     }
     

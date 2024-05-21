@@ -9,7 +9,6 @@ const navStatusSlice = createSlice({
   initialState,
   reducers: {
     updateActivePage: (state, action) => {
-      console.log("action",action)
       state.activePage = action.payload;
     },
   },

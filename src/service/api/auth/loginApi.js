@@ -11,6 +11,7 @@ export const login = async (formData) => {
         console.log(response)
         return response
     } catch (err) {
+        console.log('err',err)
         throw err
     }
 };

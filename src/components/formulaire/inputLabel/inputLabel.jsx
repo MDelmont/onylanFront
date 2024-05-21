@@ -1,8 +1,8 @@
 
 import "./inputLabel.scss"
-const InputLabel = ({title,input}) => {
+const InputLabel = ({title,input, htmlFor}) => {
 
-  return <label className="input-label">
+  return <label htmlFor={htmlFor} className="input-label">
     <span >{title}</span>
 
     {input}

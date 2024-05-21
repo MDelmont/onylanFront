@@ -1,9 +1,9 @@
 
 import "./btnPrimary.scss"
-const BtnPrimary = ({title,handleClick,disabled,type}) => {
+const BtnPrimary = ({title,onClick,disabled,type}) => {
 
   return (
-    <button type={type} className={`btn-Primary`} onClick={handleClick} disabled={disabled}>{title}</button>
+    <button type={type} className={`btn-Primary`} onClick={onClick} disabled={disabled}>{title}</button>
   );
 };
 export default BtnPrimary;

@@ -31,8 +31,10 @@
         width: 100%;
         height: 100%;
     
-        .logo{
+        .img{
             position: absolute;
+            background-image: url("/logo_onylan.png");
+            background-size: cover;
             transform: translateX(-45%);
             height: 120vw;
             max-height: 70%;
@@ -41,6 +43,7 @@
             opacity: 20%;
             transform-origin: 5% 50%;          
             animation : rotating 30s linear infinite;
+            
         }
         @keyframes rotating {
             0%{
