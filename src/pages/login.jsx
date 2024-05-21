@@ -27,7 +27,6 @@ const LoginPage = () => {
   )
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    console.log(value)
     setError({
       ...errors,
       [name]: '',

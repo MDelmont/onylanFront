@@ -12,7 +12,7 @@
     text-align: center;
     font-size: 1.2em;
    }
-   .login-form{
+   .register-form{
     width: 90%;
     font-size: 0.6em;
     display: flex;
@@ -20,7 +20,21 @@
     align-items: center;
     gap:30px;
     max-width: 500px;
+    .cont-img-input{
+       
+        button{
+            width: 100%;
+            
+        }
+        .img-del{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
 
+    }
     .cont-input{
         display: flex;
         flex-direction: column;
@@ -30,6 +44,13 @@
     button{
         font-size: 0.8em;
         width: 70%;
+    }
+    .budget-form{
+        width: 100%;
+        .budget-choise{
+            display: flex;
+            flex-wrap: wrap;
+        }
     }
    }
 }

@@ -1,20 +1,3 @@
-@import "../../../styles/themesTwo/themes.scss";
-
-@each $theme in $allThemes {
-    $themeName: map-get($theme, 'themeName'); 
-    $ColorApp: map-get($theme, 'ColorApp');  
-    
- 
-    #root {
-        &.#{$themeName} {
-
-            .input-label {
-
-            }
-        }
-    }
-}
-
 .input-label {
     display: flex;
     flex-direction: column;

@@ -1,6 +1,6 @@
 
 import "./inputPrimary.scss"
-const InputPrimary = ({onClick,onChange,disabled,type,id,messageError,infoInput,value,name}) => {
+const InputPrimary = ({onClick,onChange,disabled,type,id,messageError,infoInput,value,name,onBlur}) => {
 
   return <div className={`cont-input-primary ${messageError? "invalid":""} `}>
         {infoInput &&<div className="input-info">
@@ -8,7 +8,7 @@ const InputPrimary = ({onClick,onChange,disabled,type,id,messageError,infoInput,
                 </path></svg>
               <div className="info-text">{infoInput}</div>
         </div>}
-        <input id={id} type={type} className={`input-primary ${infoInput ? "svgLogo":""}`} onClick={onClick} disabled={disabled}  onChange={onChange} value={value} name={name} />
+        <input onBlur={onBlur} id={id} type={type} className={`input-primary ${infoInput ? "svgLogo":""}`} onClick={onClick} disabled={disabled}  onChange={onChange} value={value} name={name} />
         
         {messageError && <p className="input-primary-error">{messageError}</p>}
     </div>
