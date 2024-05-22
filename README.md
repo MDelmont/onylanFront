@@ -25,7 +25,7 @@ nvm list
 
 
 ```bash
-git clone https://github.com/Papunski/OnyLan.git
+git clone https://github.com/MDelmont/onylanFront.git
 ```
 
 ### Installation de l'environnement frontend 
