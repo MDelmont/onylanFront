@@ -29,10 +29,6 @@ const  HomePage = ()  => {
               <Timer numberDays={numberDays} numberHours={numberHours} numberMinutes={numberMinutes} numberSecondes={numberSecondes} />
             </div>
         </div>
-        <div className="description">
-          <h2>description</h2>
-
-        </div>
     </div>
   );
 }
