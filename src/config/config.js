@@ -14,14 +14,17 @@ export const messageErrors = {
     confirmPassword : "Le mot de passe n'est pas identique."
 };
 
+
 export const appConfig = {
     urlFront : "http://localhost:5173"
 };
 
 
 export const messageErrorsReturnApi = {
-    errorEmailAlreadyExists: "Cette email n'est pas disponible." ,
-    errorPseudoAlreadyExists: "Ce pseudo n'est pas disponible.",
+    errorEmailAlreadyExists: { target:'email', message:"Cette email n'est pas disponible." },
+    errorPseudoAlreadyExists: { target:'pseudo',message:"Ce pseudo n'est pas disponible."},
+    badEmailError:{target:'email',message:"Email invalide."},
+    badPasswordError:{target:'password',message:"Password invalide."},
 };
 
 export const rulesMessage = {

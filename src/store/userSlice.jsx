@@ -9,6 +9,7 @@ export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (formData) => {
     const response = await login(formData)
+
     return response.data;
   }
 );

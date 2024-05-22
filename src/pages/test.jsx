@@ -216,7 +216,7 @@ const TestPage = () => {
            
           />
           
-           {!formData.file && <BtnSecondary title={"Choisir un fichier"} onClick={() => {
+           {!formData.file && <BtnSecondary type={"button"} title={"Choisir un fichier"} onClick={() => {
             resetPhoto()
             document.getElementById('file').click()}}/>}
            {formData.file && (

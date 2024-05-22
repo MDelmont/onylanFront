@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../styles/registerpage.scss";
-import { constFormulaire, messageErrors } from "../config/config"; 
+import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
+import InputLabel from '../components/formulaire/inputLabel/inputLabel';
+import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
+import { constFormulaire, messageErrors,rulesMessage ,messageErrorsReturnApi} from "../config/config";
+
+
 import VerifForm from "../components/formulaire/verifForm";
 import Checkbox from "../components/basic/checkBox/checkBox";
 import axios from "axios";
@@ -8,8 +13,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import utilsFunction from '../utils/utilsFunction'
 import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
+import { invitationByToken } from "../service/api/user/initationApi";
+import { registerApi } from "../service/api/auth/registerApi";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     lastName: '',
@@ -22,32 +30,26 @@ const RegisterPage = () => {
     token:'',
   });
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errors, setError] = useState({
+    email: '',
+    lastName: '',
+    firstName: '',
+    pseudo: '',
+    password:'',
+    confirmPassword: '',
+    file: '',
+    budget:'',
+    token:'',
+    }
+  )
+  const [globalError , setGlobalError] = useState('')
   const { idToken } = useParams();
-  const requireField = ['email','lastName','firstName','pseudo','password','confirmPassword','budget']
-
-  const conditions =  [
-
-    { key: 'regexEmail', message: messageErrors.regexEmail, condition: !constFormulaire.regexEmail.test(formData.email) },
-    { key: 'passwordSize', message: messageErrors.passwordSize, condition: formData.password.length < constFormulaire.passwordSize },
-    { key: 'majRegex', message: messageErrors.majRegex, condition: !constFormulaire.majRegex.test(formData.password) },
-    { key: 'minRegex', message: messageErrors.minRegex, condition: !constFormulaire.minRegex.test(formData.password) },
-    { key: 'digitRegex', message: messageErrors.digitRegex, condition: !constFormulaire.digitRegex.test(formData.password) },
-    { key: 'specialCharRegex', message: messageErrors.specialCharRegex, condition: !constFormulaire.specialCharRegex.test(formData.password) },
-    { key: 'samePassword', message: messageErrors.samePassword, condition: !(formData.password == formData.confirmPassword && formData.password.length >0 && formData.confirmPassword.length >0)},
-    { key: 'allFieldFilled', message: messageErrors.allFieldFilled, condition:  !requireField.every(field => {const value = formData[field]; return value !== null && value !== undefined && value.trim() !== ''})},
-    
-
-];
-
+  // request fo get user with token
   useEffect(() => {
 
     setFormData({...formData,token:idToken})
 
-
-    axios.get(`http://localhost:5000/user/invit/${idToken}`,formData).then( resp => {
+    invitationByToken(idToken).then( resp => {
  
       if(!resp.data.data.invitation){
     
@@ -67,60 +69,150 @@ const RegisterPage = () => {
     })
   },[])
 
+
   const handleChange = (e) => {
-    const { name, value, files } = e.currentTarget;
+    const { name, value, files } = e.target;
     const newValue = name === "file" ? files[0] ? files[0]: formData.file: value;
-    setErrorMessage(null)
+    setGlobalError("")
+    setError({
+      ...errors,
+      [name]: '',
+
+    })
     setFormData({
       ...formData,
       [name]: newValue,
     });
   };
-
   const resetPhoto = (e) => {
-    e.preventDefault()
+    document.getElementById('file').value = '';
+
     setFormData({
       ...formData,
       file: null,
     });
   }
+  const handleBlur = (e) => {
+    const { name, value, files } = e.target;
+    let msgError='';
+    if (name=="email" && !constFormulaire.regexEmail.test(value) && value) {
+  
+   
+        msgError = messageErrors.regexEmail
+      
+    }
+    
 
+    if (name=="password" 
+     && (constFormulaire.passwordSize > value.length
+     || !constFormulaire.majRegex.test(value)
+     || !constFormulaire.minRegex.test(value) 
+     || !constFormulaire.digitRegex.test(value)
+     || !constFormulaire.specialCharRegex.test(value))
+     ) {
+
+      console.log('invalid password ')
+      msgError = messageErrors.password
+    
+  }
+
+  if (value  && name=="confirmPassword" 
+      && formData.password != value ) {
+        
+      console.log('invalid confirmPassword ')
+      msgError = messageErrors.confirmPassword
+    
+  }
+
+    setError({
+      ...errors,
+      [name]: msgError,
+    });
+   
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('submit')
+    const errorstemp = {
+      email: '',
+      lastName: '',
+      firstName: '',
+      pseudo: '',
+      password:'',
+      confirmPassword: '',
+      file: '',
+      budget:'',
+      token:'',
+      };
+    let haveError= false;
+    if (!constFormulaire.regexEmail.test( formData.password.email) && formData.password.email) {
+      haveError = true
+      errorstemp['email'] = messageErrors.regexEmail
+    
+  }
 
-    axios.post(`http://localhost:5000/auth/register/${formData.token}`, formData, {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'multipart/form-data', // Assurez-vous de définir le type de contenu comme 'multipart/form-data'
-        }
-      }).then((response) => {
-     
+  
+  if (!constFormulaire.passwordSize > formData.password.length
+    || !constFormulaire.majRegex.test( formData.password)
+    || !constFormulaire.minRegex.test( formData.password) 
+    || !constFormulaire.digitRegex.test( formData.password)
+    || !constFormulaire.specialCharRegex.test( formData.password)
+    ) {
+      haveError = true
+      errorstemp['password'] = messageErrors.password
+    }
+
+  if (formData.confirmPassword != formData.password ) {
+      haveError = true
+      errorstemp['confirmPassword'] = messageErrors.confirmPassword
+ 
+  }
+
+  Object.keys(errors).map((key,index) => {
+    if(!['token','file'].includes(key) & !isNaN(formData[key])){
+      haveError = true
+      errorstemp[key] = "Champs obligatoire.";
+    }
+  })
+  if (haveError){
+    setError(errorstemp)
+    return false
+  }
+  registerApi(formData.token,formData).then((response) => {
         navigate("/login")
-
       })
       .catch((error) => {
         // Erreur de connexion
-        const errors = error?.response?.data?.data?.errors
-        if (errors) {
-          console.log(errors)  
-          console.log(utilsFunction.createErrorMessage(errors))
-          setErrorMessage(utilsFunction.createErrorMessage(errors));
+        const {message,data} = error.response.data
+        console.log(message,data)
+        if (message == "Invalid data for register"){
+          console.log('is invalid data register')
+          const errorsApi = data.errors
+          const errorsTemp = {...errors}
+          errorsApi.forEach(error => {
+            if(Object.keys(messageErrorsReturnApi).includes(error)){
+              const {target,message} =messageErrorsReturnApi[error]
+              errorsTemp[target] = message
+            }
+
+          })
+          setError(errorsTemp)
+        } else {
+          setGlobalError("Une erreur c'est produite")
         }
-       
-  
+        console.log(error.response.data.data.errors) 
 
       });
 
   };
-
   const dataInput = [
 
-    {htmlFor:"email",title:"Email *",type:"email",id:"email",name:"email",value:formData.email, onChange:handleChange},
-    {htmlFor:"lastName",title:"Nom *",type:"text",id:"lastName",name:"lastName",value:formData.lastName,disabled:true, onChange:handleChange},
-    {htmlFor:"firstName",title:"Prénom *",type:"text",id:"firstName",name:"firstName",disabled:true,value:formData.firstName, onChange:handleChange},
-    {htmlFor:"pseudo",title:"Pseudo *",type:"text",id:"pseudo",name:"pseudo",value:formData.pseudo, onChange:handleChange},
-    {htmlFor:"password",title:"Mot de passe *",type:"password",id:"password",name:"password",value:formData.password, onChange:handleChange},
-    {htmlFor:"confirmPassword",title:"Confirmer *",type:"password",id:"confirmPassword",name:"confirmPassword",value:formData.confirmPassword, onChange:handleChange},
+    {htmlFor:"email",title:"Email *",type:"email",id:"email",name:"email",value:formData.email, onChange:handleChange,error:errors.email,onBlur:handleBlur},
+    {htmlFor:"lastName",title:"Nom *",type:"text",id:"lastName",name:"lastName",value:formData.lastName,disabled:true, onChange:handleChange,error:errors.lastName,onBlur:handleBlur},
+    {htmlFor:"firstName",title:"Prénom *",type:"text",id:"firstName",name:"firstName",disabled:true,value:formData.firstName, onChange:handleChange,error:errors.firstName,onBlur:handleBlur},
+    {htmlFor:"pseudo",title:"Pseudo *",type:"text",id:"pseudo",name:"pseudo",value:formData.pseudo, onChange:handleChange,error:errors.pseudo,onBlur:handleBlur},
+    {htmlFor:"password",title:"Mot de passe *",type:"password",id:"password",name:"password",value:formData.password, onChange:handleChange,error:errors.password,onBlur:handleBlur},
+    {htmlFor:"confirmPassword",title:"Confirmer *",type:"password",id:"confirmPassword",name:"confirmPassword",value:formData.confirmPassword, onChange:handleChange,error:errors.confirmPassword,onBlur:handleBlur},
    
    
   ]
@@ -131,16 +223,16 @@ const RegisterPage = () => {
     {htmlFor:"budget4",title:"80€ - 100€",type:"radio",id:"budget4",name:"budget",value:"80-100", placeholder:"80€ - 100€", onChange:handleChange},
   ]
 
+
   return (
     <div className="register-Page">
-      <h1>Formulaire d'inscription</h1>
-      <form onSubmit={handleSubmit}>
-
+      <h1 className='title'>Formulaire d'inscription</h1>
+      
+      <form className='register-form' onSubmit={handleSubmit}>
       <div className="cont-input">
 
-
-        <label htmlFor="photo">
-          <span>Photo</span>
+      <InputLabel  htmlFor={"photo"}  title={"Photo"} input={
+      <div className='cont-img-input'>
           <input
             type="file"
             id="file"
@@ -150,49 +242,41 @@ const RegisterPage = () => {
             onChange={handleChange}
            
           />
-           {!formData.file && <button onClick={() => document.getElementById('file').click()}>Choisir un fichier</button>}
-           {formData.file && (
-          <div> 
-            <img
-            src={URL.createObjectURL(formData.file)}
-            alt="Uploaded"
-            style={{ maxWidth: "100px", maxHeight: "100px" }}
-          />  
-          {formData.file &&<button onClick={resetPhoto}>Supprimer la photo</button>}
-            
-          </div>
           
+           {!formData.file && <BtnSecondary type={"button"} title={"Choisir un fichier"} onClick={() => {
+            resetPhoto()
+            document.getElementById('file').click()}}/>}
+           {formData.file && (
+            <div className='img-del'> 
+          
+                <img
+                src={URL.createObjectURL(formData.file)}
+                alt="Uploaded"
+                style={{ maxWidth: "100px", maxHeight: "100px" }}
+              />  
+              {formData.file && <BtnSecondary title={"Supprimer la photo"} onClick={resetPhoto} />}
+              
+            </div>
          
         )}
-        </label>
-        
-        
-       
+        </div>
+        } />
 
-       {
-          dataInput.map(({htmlFor,title,type,id,name,value,onChange,placeholder,disabled},index) => {
-            return  <label key={index} htmlFor={htmlFor}>
-                <span>{title}</span>
-                <input
-                  type={type}
-                  id={id}
-                  name={name}
-                  value={value}
-                  onChange={onChange}
-                  placeholder={title}
-                  disabled={disabled}
-                />
+      {dataInput.map(({htmlFor,title,type,id,name,value,onChange,error,onBlur},index) => {
+        console.log("name",name)
+        console.log(['lastname','firstname'].includes(name))
+        return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
+          <InputPrimary infoInput={name=="password" ? rulesMessage[name]:null} type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={['lastName','firstName'].includes(name)} />
+        }/> 
+      })}
+
+      <div className="budget-form" >
+      <InputLabel   title={"Budget"} input={
         
-          </label>
-          })
-        }
-        <br />
-        <span>Budget</span>
-        <br />
-        <div className="budget-form" >
-        {
-          dataBudget.map(({htmlFor,title,type,id,name,value,onChange,placeholder},index) => {
+        <div className='budget-choise'>
+          {dataBudget.map(({htmlFor,title,type,id,name,value,onChange,placeholder},index) => {
             return  <label key={index} htmlFor={htmlFor}>
+              
                 <Checkbox isCheck={formData.budget == value} onClick={() => document.getElementById(id).click()} />
                 <input
                   type={type}
@@ -203,19 +287,17 @@ const RegisterPage = () => {
                   placeholder={id =="budget" ? placeholder:title}
                   style={{display:"none"}}
                 />
-                <label key={index} htmlFor={htmlFor}>{title} </label>
+                <span key={index} htmlFor={htmlFor}>{title} </span>
           </label>
-          })
-        }
+          })}
+                </div>
+      } />
         </div>
-       </div>
-        
-       {errorMessage && <p>{errorMessage}</p>}
-       
-        <VerifForm conditions={conditions} />
-        <BtnPrimary title={'INSCRIPTION'} type={"submit"} disabled={!conditions.every(item => !item.condition)} />
-       
-      </form> 
+     
+        {globalError && <p>{globalError}</p>}
+      </div>
+      <BtnPrimary title={'Se connecter'} type={'submit'} onClick={handleSubmit} />
+      </form>
     </div>
   );
 };

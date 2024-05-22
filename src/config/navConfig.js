@@ -28,11 +28,11 @@ export const headerChoice = [
         path :'/dashboard',
         isAdmin : false,
     },
-    {
-        name : 'test',
-        path :'/test',
-        isAdmin : false,
-    },
+    // {
+    //     name : 'test',
+    //     path :'/test',
+    //     isAdmin : false,
+    // },
     {
         name : 'Invitations',
         path :'/invite/list',

@@ -80,7 +80,7 @@ const InvitePage = () => {
     
        </div>
 
-        <VerifForm conditions={conditions} />
+        
        
         <button type="submit" className="btn-submit" disabled={!conditions.every(item => !item.condition)}>Invitation</button>
       </form>

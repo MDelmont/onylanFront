@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const register = async (idToken,formData) => {
+export const registerApi = async (idToken,formData) => {
     try {
         const response = await axios.post(`${BASE_URL}/auth/register/${idToken}`,formData, {
             withCredentials: true,
