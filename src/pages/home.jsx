@@ -17,9 +17,9 @@ const HomePage = () => {
 
             <div className="info-cont">
                 <p>
-                    Bienvenue sur le site officiel de la Onylan. <br />
-                    En vue des événements, prochains et passés, nous avons mis au point ce site pour nous organiser au mieux lors de la préparation des Onylans et ainsi pallier les problèmes rencontrés lors du premier événement. <br />
-                    Ce site est en construction, donc pour l'instant vous n'aurez pas accès à toutes les fonctionnalités. Cependant, ceux ayant reçu une invitation peuvent d'ores et déjà s'inscrire pour participer à la Onylan Erebus (Onylan 2024).
+                    Bienvenue sur le site officiel de la Onylan. <br /> Organisez-vous et préparez-vous pour des événements mémorables. <br />Inscrivez-vous dès maintenant pour la Onylan Erebus (Onylan 2024).
+                
+                   
                 </p>
                 <div className="orange-barre"></div>
             </div>
@@ -33,8 +33,19 @@ const HomePage = () => {
             </div>
             </div>
             <div className="description">
+            <div className="start-text">
+                        <h3>Prémices</h3>
+                        <p>
+                        En vue des événements à venir et passés,
+                        nous avons créé ce site pour améliorer notre organisation lors des Onylans et résoudre les problèmes rencontrés lors du premier événement. <br />
+                        Le site est encore en construction, donc certaines fonctionnalités ne sont pas encore disponibles.<br />
+                        Cependant, si vous avez reçu une invitation, vous pouvez dès à présent vous inscrire pour participer à la Onylan Erebus (Onylan 2024).<br />
+                        </p>
+                    </div>
+                    
                 <h3>En ce qui concerne le déroulement de la LAN</h3>
 
+                 
                 <div className="desc-content">
                     <div className="desc-left">
                         <h4>Ce qui ne change pas</h4>

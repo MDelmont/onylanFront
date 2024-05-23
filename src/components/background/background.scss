@@ -35,22 +35,23 @@
             position: absolute;
             background-image: url("/logo_onylan.png");
             background-size: cover;
-            transform: translateX(-45%);
+            transform: translateX(-45%) translateY(-50%);
             height: 120vw;
             max-height: 70%;
-            top:20%;
+            top:50%;
+
             aspect-ratio: 1/1;   
             opacity: 20%;
-            transform-origin: 5% 50%;          
+            transform-origin: 5% 0%;          
             animation : rotating 30s linear infinite;
             
         }
         @keyframes rotating {
             0%{
-                transform: rotate(0deg) translateX(-50%);
+                transform: rotate(0deg) translateX(-50%) translateY(-50%);
             }
             100%{
-                transform: rotate(-360deg) translateX(-50%);;
+                transform: rotate(-360deg) translateX(-50%) translateY(-50%);
             }
             
         }
@@ -63,10 +64,35 @@
     .background{
     
         .cont-logo{
+            
           
-            left :10%;
+            left :0%;
+            .img{
+                max-height: 75%;
+            
+
+            }
 
         }
        
     }
 }
+
+@media (min-width: 1024px) {
+    .background{
+    
+        .cont-logo{
+            
+          
+            left :0%;
+            .img{
+                max-height: 80%;
+             
+
+            }
+
+        }
+       
+    }
+}
+
