@@ -5,7 +5,7 @@ import VerifForm from "../components/formulaire/verifForm";
 import axios from 'axios';
 import { IsAdmin } from "../components/auth/isAdmin";
 import { useNavigate } from "react-router-dom";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_FRONT_URL;
 const InvitePage = () => {
   IsAdmin()
   const navigate = useNavigate();

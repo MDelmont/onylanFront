@@ -4,7 +4,7 @@ import { IsAdmin } from "../components/auth/isAdmin";
 import { useNavigate } from "react-router-dom";
 import {appConfig} from "../config/config"
 import { deleteInvitation,allInvitation } from "../service/api/user/initationApi";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_FRONT_URL;
 const InviteListPage = () => {
   IsAdmin()
   const [invitations, setInviations] = useState(null)
