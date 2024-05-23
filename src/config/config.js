@@ -28,5 +28,5 @@ export const messageErrorsReturnApi = {
 };
 
 export const rulesMessage = {
-    password: "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre, au moins un caractère spéciaux dans @$!%*?& et avoir au moins 6 caractère.",
+    password: "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre, au moins un caractère spéciaux dans @$!%*?& et avoir au moins 6 caractères.",
 };

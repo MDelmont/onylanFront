@@ -5,18 +5,18 @@
 @import "./themesTwo/themes.scss";
 
 @each $theme in $allThemes {
-    $themeName: map-get($theme, 'themeName'); 
-    $ColorApp: map-get($theme, 'ColorApp');  
+    $themeName: map-get($theme, 'themeName');
+    $ColorApp: map-get($theme, 'ColorApp');
 
     #root {
-      &.#{$themeName} {
-        
-            .home-Page{
-                
-            
-                .cont-title{
-                    color:  map-get($ColorApp, 'fontTitle');
-                    text-shadow: 
+        &.#{$themeName} {
+
+            .home-Page {
+
+
+                .cont-title {
+                    color: map-get($ColorApp, 'fontTitle');
+                    text-shadow:
                         0 0 5px map-get($ColorApp, 'shadowTitle'),
                         0 0 10px map-get($ColorApp, 'shadowTitle'),
                         0 0 15px map-get($ColorApp, 'shadowTitle'),
@@ -25,24 +25,34 @@
                         0 0 30px map-get($ColorApp, 'shadowTitle'),
                         0 0 35px map-get($ColorApp, 'shadowTitle');
                 }
-                
-                .info-cont{
-                    color:  map-get($ColorApp, 'secondeFontColor');
-                    
+                .description {
+                    h3 {
+                        color: map-get($ColorApp, 'fisrtFontColor');
+                    }
+                    h4 {
+                        color: map-get($ColorApp, 'fontTitle');
+                    }
+
+                    color: map-get($ColorApp, 'secondeFontColor');
+                }
+
+                .info-cont {
+                    color: map-get($ColorApp, 'secondeFontColor');
+
                     .orange-barre {
-                        background-color:  map-get($ColorApp, 'fisrtFontColor');
+                        background-color: map-get($ColorApp, 'fisrtFontColor');
                     }
                 }
 
             }
         }
-  }
+    }
 }
 
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
-.home-Page{
+.home-Page {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -52,34 +62,48 @@
     gap: 2vh;
     flex-grow: 1;
     height: 100%;
-    font-size:50px;
-    .cont-title{
+    font-size: 50px;
+    margin-top:30px;
+    .content-grid{
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        gap: 2vh;
+        flex-grow: 1;
+        height: 100%;
+        font-size: 50px;
+    
+    .cont-title {
         font-family: "Inter", sans-serif;
         font-weight: 400;
-   
+
         display: flex;
         flex-direction: column;
         margin: 0;
         margin-bottom: 10px;
-        
+
         font-size: 1em;
         z-index: 0;
-        .title{
-            
+
+        .title {
+
             font-size: 1em;
-   
+
         }
-        .date{
+
+        .date {
             font-size: 0.7em;
         }
     }
-    .teaser{
+    .teaser {
         width: 100%;
         aspect-ratio: 16/9;
     }
-    
 
-    .info-cont{
+    .info-cont {
         position: relative;
         padding: 15px;
         display: flex;
@@ -87,102 +111,227 @@
         justify-content: space-around;
         align-items: center;
         width: 75%;
-        font-size: 0.2em;
-        
-        .orange-barre{
-        
+        font-size: 0.28em;
+
+        .orange-barre {
+
             width: 100%;
             height: 1px;
-           
-        }
-        
-    }
-    
 
-    .cont-timer{
+        }
+
+    }
+
+
+    .cont-timer {
         width: 100%;
-        .timer{
+        h2{
+            font-size: 0.5em;
+            margin-bottom: 15px;
+            margin-top: 0px;
+
+        }
+        .timer {
             display: flex;
             width: 100%;
             flex-direction: column;
             align-items: center;
         }
     }
-    .description{
-        font-size: 0.5em;
+}
+    .description {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        line-height:2;
+        font-size: 0.3em;
+        ul {
+            list-style: none;
+            padding: 0px;
+        }
+        .desc-middle-large {
+            width: 90%;
+        }
+        .desc-content {
+            width: 90%;
+
+            .desc-left {
+                
+            }
+
+            .desc-middle {
+         
+            }
+
+            .desc-right {
+                
+            }
+        }
     }
 }
+
 @media (min-width: 375px) {
-    .home-Page{
-        .teaser{
+    .home-Page {
+        .content-grid{
+        .teaser {
             width: 90%;
         }
     }
+    }
 
 
-  }
+}
 
-  @media (min-width: 768px) {
-    .home-Page{
+@media (min-width: 768px) {
+    .home-Page {
+        .content-grid{
         display: grid;
         grid-template-columns: 2fr 4fr;
-        grid-template-rows: minmax(15vw,30%) minmax(15vw,30%) minmax(15vw,20%);
-      
+        grid-template-rows: minmax(15vw, 25%) minmax(15vw, 40%) minmax(15vw, 25%);
+
         grid-template-areas:
-          "cont-title teaser"
-          "info-cont teaser"
-          "cont-timer cont-timer";
+            "cont-title teaser"
+            "info-cont teaser"
+            "cont-timer cont-timer"
+            "description description";
         gap: 10px;
         padding: 20px;
-        font-size:55px;
-        .teaser{
+        font-size: 55px;
+
+        .teaser {
             justify-self: center;
             grid-row: span 2;
             width: 80%;
         }
-        .cont-timer{
+
+        .cont-timer {
             align-self: self-start;
             grid-column: span 2;
-            
+            margin-top: 30px;
+       
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            h2{
+                font-size: 0.3em;
+                margin-bottom: 15px;
+                margin-top: 0px;
+
+            }
         }
-        .info-cont{
+
+
+
+        .info-cont {
             display: flex;
             flex-direction: column-reverse;
             align-self: self-start;
             justify-self: center;
             width: 95%;
             max-width: 600px;
+            font-size: 0.23em;
         }
-        .cont-title{
+
+        .cont-title {
             align-self: self-end;
+            font-size: 0.7em;
 
         }
     }
-
-
-  }
-
-  @media (min-width: 1024px) {
-    .home-Page{
-
+    .description {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        line-height:2;
+        font-size: 0.3em;
+        align-self: self-start;
+        grid-column: span 2;
+        width: 100%;
+        ul {
+            list-style: none;
+            padding: 0px;
+        }
+        .desc-middle-large {
+            width: 60%;
+        }
+        .desc-content {
+            display: flex;
        
-        grid-template-rows: minmax(15vw,30%) minmax(15vw,30%) minmax(15vw,20%);
-        gap: 30px;
-        font-size: 70px;
-        .teaser{
-         
-        }
-        .cont-timer{
-           
-        }
-        .info-cont{
-            
-        }
-        .cont-title{
-           
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 90%;
 
+            .desc-left {
+                width: 30%;
+            }
+
+            .desc-middle {
+                width: 30%;
+            }
+
+            .desc-right {
+                width: 30%;
+            }
         }
+    }
     }
 
 
-  }
+}
+
+@media (min-width: 1400px) {
+    .home-Page {
+        .content-grid{
+    
+        font-size: 65px;
+
+        .teaser {
+
+        }
+
+        .cont-timer {
+
+            h2{
+
+            }
+        }
+
+
+
+        .info-cont {
+
+        }
+
+        .cont-title {
+
+
+        }
+    }
+    .description {
+
+        ul {
+ 
+        }
+        .desc-middle-large {
+      
+        }
+        .desc-content {
+
+            .desc-left {
+            }
+
+            .desc-middle {
+            }
+
+            .desc-right {
+            }
+        }
+    }
+    }
+
+
+}

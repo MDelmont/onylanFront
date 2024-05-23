@@ -75,7 +75,7 @@ const LoginPage = () => {
 
 
   return (
-    <div className="test-Page">
+    <div className="login-Page">
       <h1 className='title'>Formulaire de connexion</h1>
       
       <form className='login-form' onSubmit={handleSubmit}>
