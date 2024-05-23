@@ -5,7 +5,7 @@ import VerifForm from "../components/formulaire/verifForm";
 import axios from 'axios';
 import { IsAdmin } from "../components/auth/isAdmin";
 import { useNavigate } from "react-router-dom";
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const InvitePage = () => {
   IsAdmin()
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const InvitePage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:5000/user/invit",formData,{withCredentials:true})
+    axios.post(`${BASE_URL}/user/invit`,formData,{withCredentials:true})
     .then(response => {
 
       navigate('/invite/list')
