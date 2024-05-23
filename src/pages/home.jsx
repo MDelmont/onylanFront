@@ -4,7 +4,7 @@ import '../styles/homepage.scss'
 
 
 const HomePage = () => {
-    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 5, 16))
+    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 5, 8))
 
 
     return (
