@@ -63,7 +63,7 @@ const InviteListPage = () => {
             <td>{invitation.user.name}</td>
             <td>{invitation.user.firstName}</td>
             <td>
-              <a href={`${BASE_URL}/register/${invitation.token}`}>{appConfig.urlFront}/register/{invitation.token}</a>
+              <a href={`${BASE_URL}/register/${invitation.token}`}>{BASE_URL}/register/{invitation.token}</a>
             </td>
             <td>
               <button onClick={handleRemoveInvit} id={invitation.id}>Annuler l'invitation</button>
