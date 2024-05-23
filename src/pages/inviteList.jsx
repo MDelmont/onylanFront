@@ -4,7 +4,7 @@ import { IsAdmin } from "../components/auth/isAdmin";
 import { useNavigate } from "react-router-dom";
 import {appConfig} from "../config/config"
 import { deleteInvitation,allInvitation } from "../service/api/user/initationApi";
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const InviteListPage = () => {
   IsAdmin()
   const [invitations, setInviations] = useState(null)
@@ -63,7 +63,7 @@ const InviteListPage = () => {
             <td>{invitation.user.name}</td>
             <td>{invitation.user.firstName}</td>
             <td>
-              <a href={`${appConfig.urlFront}/register/${invitation.token}`}>{appConfig.urlFront}/register/{invitation.token}</a>
+              <a href={`${BASE_URL}/register/${invitation.token}`}>{appConfig.urlFront}/register/{invitation.token}</a>
             </td>
             <td>
               <button onClick={handleRemoveInvit} id={invitation.id}>Annuler l'invitation</button>
