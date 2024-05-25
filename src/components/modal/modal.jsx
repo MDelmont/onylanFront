@@ -1,12 +1,12 @@
 import { useState } from "react";
-import "../styles/modal.scss";
+import "./modal.scss";
 
 /**
  * Permet de géré la création de modal personnalisé dans l'application
  * @param {*} param0 { btnName, children } btnName : Nom du bouton, children : enfant
  * @returns JSX
  */
-const Modal = ({ btnName, children }) => {
+const Modal = ({ btnUse, children }) => {
   const [modal, setModal] = useState(false);
 
   /**
@@ -28,10 +28,10 @@ const Modal = ({ btnName, children }) => {
 
   return (
     <>
-      <button onClick={toggleModal} className={`btn-modal btn-${btnName.split(' ')[0]}`}>
-        {btnName}
-      </button>
-
+    <label onClick={toggleModal} htmlFor="">
+    {btnUse}
+    </label>
+      
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>

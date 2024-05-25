@@ -20,7 +20,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
-    lastName: '',
+    name: '',
     firstName: '',
     pseudo: '',
     password:'',
@@ -32,7 +32,7 @@ const RegisterPage = () => {
 
   const [errors, setError] = useState({
     email: '',
-    lastName: '',
+    name: '',
     firstName: '',
     pseudo: '',
     password:'',
@@ -135,7 +135,7 @@ const RegisterPage = () => {
     console.log('submit')
     const errorstemp = {
       email: '',
-      lastName: '',
+      name: '',
       firstName: '',
       pseudo: '',
       password:'',
@@ -208,7 +208,7 @@ const RegisterPage = () => {
   const dataInput = [
 
     {htmlFor:"email",title:"Email *",type:"email",id:"email",name:"email",value:formData.email, onChange:handleChange,error:errors.email,onBlur:handleBlur},
-    {htmlFor:"lastName",title:"Nom *",type:"text",id:"lastName",name:"lastName",value:formData.lastName,disabled:true, onChange:handleChange,error:errors.lastName,onBlur:handleBlur},
+    {htmlFor:"name",title:"Nom *",type:"text",id:"name",name:"name",value:formData.name,disabled:true, onChange:handleChange,error:errors.name,onBlur:handleBlur},
     {htmlFor:"firstName",title:"Prénom *",type:"text",id:"firstName",name:"firstName",disabled:true,value:formData.firstName, onChange:handleChange,error:errors.firstName,onBlur:handleBlur},
     {htmlFor:"pseudo",title:"Pseudo *",type:"text",id:"pseudo",name:"pseudo",value:formData.pseudo, onChange:handleChange,error:errors.pseudo,onBlur:handleBlur},
     {htmlFor:"password",title:"Mot de passe *",type:"password",id:"password",name:"password",value:formData.password, onChange:handleChange,error:errors.password,onBlur:handleBlur},
@@ -232,7 +232,7 @@ const RegisterPage = () => {
       <div className="cont-input">
 
       <InputLabel  htmlFor={"photo"}  title={"Photo"} input={
-      <div className='cont-img-input'>
+        <div className='cont-img-input'>
           <input
             type="file"
             id="file"
@@ -258,15 +258,15 @@ const RegisterPage = () => {
               
             </div>
          
-        )}
+        )}  
         </div>
         } />
 
       {dataInput.map(({htmlFor,title,type,id,name,value,onChange,error,onBlur},index) => {
         console.log("name",name)
-        console.log(['lastname','firstname'].includes(name))
+        console.log(['name','firstname'].includes(name))
         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
-          <InputPrimary infoInput={name=="password" ? rulesMessage[name]:null} type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={['lastName','firstName'].includes(name)} />
+          <InputPrimary infoInput={name=="password" ? rulesMessage[name]:null} type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={['name','firstName'].includes(name)} />
         }/> 
       })}
 

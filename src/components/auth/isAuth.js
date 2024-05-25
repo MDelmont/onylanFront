@@ -10,7 +10,7 @@ export const  IsAuth = () => {
     dispatch(getIsAuthUser())
       .unwrap()
       .then((response) => {
-        console.log(response.data)
+
         if(response.data != true) {
           dispatch(updateActivePage('Accueil'))
           navigate('/home')

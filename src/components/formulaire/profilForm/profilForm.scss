@@ -1,0 +1,84 @@
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .profil-form{
+          
+                
+                .form-data{
+            
+                    display: flex;
+                   
+                    .cont-img-input{
+                        .img-del{
+                            img{
+
+                                border: 1px solid  map-get($ColorApp, 'fisrtFontColor');
+                            }
+                        }
+                    }
+                    .from-info{
+                      
+                    }
+                    .budget-form{
+                        
+                        .budget-choise{
+   
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
+.profil-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap :20px;
+    width: 100%;
+    
+    .form-data{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+       
+        gap: 20px;
+        .cont-img-input{
+            .img-del{
+                img{
+                    width: 60%;
+                    border-radius: 10px;
+      
+                }
+            }
+        }
+        .from-info{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+             max-width: 600px;
+        }
+        .budget-form{
+            width: 100%;
+            max-width: 600px;
+            .budget-choise{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+        }
+    }
+    
+}

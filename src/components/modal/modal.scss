@@ -1,0 +1,91 @@
+@import "../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+          .modal{
+
+          
+            .overlay {
+
+            }
+            .modal-content {
+              border: 1px solid map-get($ColorApp, 'fisrtFontColor');
+
+              background: map-get($ColorApp, 'backgroudColor');
+              overflow: scroll;
+              .close-modal {
+                color : map-get($ColorApp, 'fisrtFontColor');
+                background-color: map-get($ColorApp, 'backgroudColor');
+                border:0px solid transparent;
+              }
+            }
+          }
+        }
+    }
+}
+
+
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.btn-modal {
+  padding: 4px;
+  display: block;
+  font-size: 20px;
+}
+
+.modal{
+  position: absolute;
+ 
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .overlay {
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+  }
+  .modal-content {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    left: 50%;
+    top:50%;
+    width: 90%;
+    height: 90%;
+    transform: translateX(-50%) translateY(-50%);
+    line-height: 1.4;
+    overflow: scroll;
+    .close-modal {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      padding: 5px;
+      font-size: 20px;
+      font-weight:bold;
+    
+    }
+  }
+}
+
+
+
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+
+

@@ -33,6 +33,12 @@
                         outline:0;
                         border: 2px solid  map-get($ColorApp, 'fisrtFontColor');
                     }
+                    &:disabled{
+                        background-color :map-get($ColorApp, 'backgroundBtnSecondaryDesabled');
+                        border: 1px solid  map-get($ColorApp, 'fisrtFontColorDesabled');
+                        color:  map-get($ColorApp, 'fisrtFontColorDesabled');
+
+                    }
                 }
                 &.invalid{
                     .input-primary-error{
@@ -112,6 +118,7 @@
         padding-left: 5%;
         padding-right: 5%;
         width: 90%;
+
         &.svgLogo{
             padding-left: 5%;
             padding-right: 15%;
