@@ -9,9 +9,7 @@ import "./modal.scss";
 const Modal = ({ btnUse, children }) => {
   const [modal, setModal] = useState(false);
 
-  /**
-   * Permet de géré l'affichage du modal
-   */
+
   const toggleModal = () => {
     try {
       setModal(!modal);

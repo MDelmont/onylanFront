@@ -1,0 +1,54 @@
+@import "../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+            .personnal-Information{
+          
+                
+                .img-profil{
+                    border: 1px solid  map-get($ColorApp, 'fisrtFontColor');
+                }
+            }           
+        }
+    }
+}
+.personnal-Information{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    .img-profil{
+        width: 70%;
+        border-radius: 10px;
+    }
+    .content-text{
+        width: 80%;
+    }
+}
+@media (min-width: 600px) {
+    .personnal-Information{
+
+        .content-text{
+            font-size: 30px;
+        }
+    }
+    
+  }
+  @media (min-width: 1000px) {
+    .personnal-Information{
+
+        .content-text{
+            font-size: 20px;
+        }
+    }
+    
+  }
+  

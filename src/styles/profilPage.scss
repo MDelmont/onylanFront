@@ -8,6 +8,11 @@
     gap:20px;
     justify-content: flex-start;
     margin-bottom: 30px;
+    .form-content{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
     .nav-in-page{
         text-decoration: underline;
         font-weight: 600;

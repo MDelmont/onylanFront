@@ -36,3 +36,16 @@ export const userAuth = async () => {
     throw err
 }
 }
+
+export const getUserById = async (id) => {
+    try {
+        console.log('id',id)
+      const response = await axios.get(`${BASE_URL}/user/${id}`, {
+          withCredentials: true,
+      });
+      console.log(response)
+      return response
+  } catch (err) {
+      throw err
+  }
+  }

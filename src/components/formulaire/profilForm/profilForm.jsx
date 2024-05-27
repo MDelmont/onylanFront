@@ -5,6 +5,7 @@ import BtnPrimary from "../../basic/btnPrimary/btnPrimary";
 import Checkbox from "../../basic/checkBox/checkBox";
 import { useEffect, useState } from "react";
 import { userAuth } from '../../../service/api/user/userApi';
+import { constFormulaire, messageErrors } from '../../../config/config';
 const ProfilForm = ({}) => {
 
   const [formData, setFormData] = useState({
@@ -35,9 +36,9 @@ const ProfilForm = ({}) => {
 
   
   useEffect(() => {
-    console.log('userAuth')
+
     userAuth().then( resp => {
-      console.log(resp.data.data)
+
       if(resp.data.data){
         
         setFormData({...formData,...resp.data.data})
@@ -78,13 +79,22 @@ const ProfilForm = ({}) => {
     }
   };
   const handleBlur = (e) => {
-   
+    const { name, value, files } = e.target;
+    let msgError='';
+    console.log( !constFormulaire.regexEmail.test(value))
+    if (name=="email" && !constFormulaire.regexEmail.test(value) && value) {
+        msgError = messageErrors.regexEmail
+    }
+    
+    setError({
+      ...errors,
+      [name]: msgError,
+    });
    
   };
 
   const handleSubmit  = (e) => {
     e.preventDefault()
-    console.log(formData)
   }
   const dataInput = [
 
@@ -139,15 +149,12 @@ const ProfilForm = ({}) => {
     
         
         {dataInput.map(({htmlFor,title,type,id,name,value,onChange,error,onBlur},index) => {
-        console.log("name",name)
-        console.log(['name','firstname'].includes(name))
+
         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
           <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={['name','firstName'].includes(name)} />
         }/> 
       })}
-    </div>
-    
-    <div className="budget-form" >
+       <div className="budget-form" >
     <InputLabel   title={"Budget"} input={
     
     <div className='budget-choise'>
@@ -170,6 +177,9 @@ const ProfilForm = ({}) => {
             </div>
     } />
     </div>
+    </div>
+    
+   
       </div>
       
       <BtnPrimary title={'Modifier'} type={'submit'} onClick={handleSubmit} />

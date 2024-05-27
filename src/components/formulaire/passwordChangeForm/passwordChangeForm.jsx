@@ -5,7 +5,7 @@ import BtnPrimary from "../../basic/btnPrimary/btnPrimary";
 import Checkbox from "../../basic/checkBox/checkBox";
 import { useEffect, useState } from "react";
 import { userAuth } from '../../../service/api/user/userApi';
-import { rulesMessage } from '../../../config/config';
+import { constFormulaire, messageErrors, rulesMessage } from '../../../config/config';
 const PasswordChangeForm = ({}) => {
 
   const [formData, setFormData] = useState({
@@ -39,10 +39,39 @@ const PasswordChangeForm = ({}) => {
       }));
     }
   
-  const handleBlur = (e) => {
-   
-   
-  };
+    const handleBlur = (e) => {
+      const { name, value, files } = e.target;
+      let msgError='';
+      
+
+      
+      if (name=="newPassword" 
+       && (constFormulaire.passwordSize > value.length
+       || !constFormulaire.majRegex.test(value)
+       || !constFormulaire.minRegex.test(value) 
+       || !constFormulaire.digitRegex.test(value)
+       || !constFormulaire.specialCharRegex.test(value))
+       ) {
+  
+        console.log('invalid password ')
+        msgError = messageErrors.password
+      
+    }
+  
+    if (value  && name=="confirmPassword" 
+        && formData.newPassword != value ) {
+          
+        console.log('invalid confirmPassword ')
+        msgError = messageErrors.confirmPassword
+      
+    }
+    
+      setError({
+        ...errors,
+        [name]: msgError,
+      });
+     
+    };
 
   const handleSubmit  = (e) => {
     e.preventDefault()
@@ -65,8 +94,7 @@ const PasswordChangeForm = ({}) => {
     
         
         {dataInput.map(({htmlFor,title,type,id,name,value,onChange,error,onBlur},index) => {
-        console.log("name",name)
-        console.log(['name','firstname'].includes(name))
+
         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
           <InputPrimary infoInput={name=="password" || name=="newPassword"? rulesMessage.password:null} type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={['name','firstName'].includes(name)} />
         }/> 

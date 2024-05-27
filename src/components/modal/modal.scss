@@ -10,18 +10,16 @@
 
           .modal{
 
-          
             .overlay {
-
+              background: map-get($ColorApp, 'overlayColor');
             }
+            
             .modal-content {
               border: 1px solid map-get($ColorApp, 'fisrtFontColor');
-
-              background: map-get($ColorApp, 'backgroudColor');
-              overflow: scroll;
+              background: map-get($ColorApp, 'modalBackgroudColor');
               .close-modal {
                 color : map-get($ColorApp, 'fisrtFontColor');
-                background-color: map-get($ColorApp, 'backgroudColor');
+                background-color: map-get($ColorApp, 'modalBackgroudColor');
                 border:0px solid transparent;
               }
             }
@@ -29,7 +27,6 @@
         }
     }
 }
-
 
 body.active-modal {
   overflow-y: hidden;
@@ -43,14 +40,20 @@ body.active-modal {
 
 .modal{
   position: absolute;
- 
   height: 100%;
   width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
+  position: fixed;
+  z-index: 20;
 
   .overlay {
+    position: absolute;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -58,16 +61,19 @@ body.active-modal {
     position: fixed;
   }
   .modal-content {
+    
     position: relative;
     padding-top: 10px;
     padding-bottom: 10px;
+   
     left: 50%;
     top:50%;
     width: 90%;
     height: 90%;
     transform: translateX(-50%) translateY(-50%);
     line-height: 1.4;
-    overflow: scroll;
+   
+    overflow-y: scroll;
     .close-modal {
       position: absolute;
       top: 1px;
@@ -83,9 +89,6 @@ body.active-modal {
 
 
 
-.overlay {
-  background: rgba(49, 49, 49, 0.8);
-}
 
 
 
