@@ -75,8 +75,45 @@ const PasswordChangeForm = ({}) => {
 
   const handleSubmit  = (e) => {
     e.preventDefault()
-    console.log(formData)
+    const errorstemp = {
+      password:'',
+      newPassword:'',
+      confirmPassword:'',
+      }
+    let haveError= false;
+  
+
+  
+  if (constFormulaire.passwordSize > formData.newPassword.length
+  || !constFormulaire.majRegex.test(formData.newPassword)
+  || !constFormulaire.minRegex.test(formData.newPassword) 
+  || !constFormulaire.digitRegex.test(formData.newPassword)
+  || !constFormulaire.specialCharRegex.test(formData.newPassword)
+  ) {
+      haveError = true
+      errorstemp['newPassword'] = messageErrors.password
+    }
+
+  if (formData.confirmPassword != formData.password ) {
+      haveError = true
+      errorstemp['confirmPassword'] = messageErrors.confirmPassword
+ 
   }
+
+  Object.keys(errors).map((key,index) => {
+      if( !isNaN(formData[key])){
+        haveError = true
+        errorstemp[key] = "Champs obligatoire.";
+      }
+    })
+    console.log(errorstemp)
+    if (haveError){
+      setError(errorstemp)
+      return false
+    }
+
+    constFormulaire.log('Faire la requete')
+}
   const dataInput = [
 
     {htmlFor:"password",title:"Mot de passe *",type:"password",id:"password",name:"password",value:formData.password, onChange:handleChange,error:errors.password,onBlur:handleBlur},

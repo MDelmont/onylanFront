@@ -132,7 +132,7 @@ const RegisterPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit')
+  
     const errorstemp = {
       email: '',
       name: '',

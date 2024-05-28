@@ -13,8 +13,6 @@ const ProfilForm = ({}) => {
     name: '',
     firstName: '',
     pseudo: '',
-    password:'',
-    confirmPassword: '',
     file: null,
     budget:'80-100',
   });
@@ -24,8 +22,6 @@ const ProfilForm = ({}) => {
     name: '',
     firstName: '',
     pseudo: '',
-    password:'',
-    confirmPassword: '',
     file: '',
     budget:'',
     }
@@ -95,6 +91,38 @@ const ProfilForm = ({}) => {
 
   const handleSubmit  = (e) => {
     e.preventDefault()
+
+    const errorstemp = {
+      email: '',
+      name: '',
+      firstName: '',
+      pseudo: '',
+      file: '',
+      budget:'',
+      };
+    let haveError= false;
+    if (!constFormulaire.regexEmail.test( formData.email) && formData.email) {
+      haveError = true
+      errorstemp['email'] = messageErrors.regexEmail
+    
+  }
+
+  
+ 
+
+  Object.keys(errors).map((key,index) => {
+    if(!['token','file'].includes(key) & !isNaN(formData[key])){
+      haveError = true
+      errorstemp[key] = "Champs obligatoire.";
+    }
+  })
+  console.log(errorstemp)
+  if (haveError){
+    setError(errorstemp)
+    return false
+  }
+
+  console.log('faire la requete')
   }
   const dataInput = [
 
