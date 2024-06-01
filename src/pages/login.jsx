@@ -37,6 +37,9 @@ const LoginPage = () => {
       [name]: value,
     });
   };
+  const handleFrogetPassword = (e) => {
+    navigate('/forgetPassword')
+  }
 
   const handleSubmit = (e) => {
     console.log('handleSubmit')
@@ -87,10 +90,13 @@ const LoginPage = () => {
         }/> 
       })}
      
-        
+     <p className="forget-password-text" onClick={handleFrogetPassword}>Mot de passe oublié</p>
       </div>
       <BtnPrimary title={'Se connecter'} type={'submit'} onClick={handleSubmit} disabled={formData.email==="" || formData.password===""}/>
       </form>
+
+     
+
     </div>
   );
 };

@@ -4,14 +4,8 @@ import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
 import InputLabel from '../components/formulaire/inputLabel/inputLabel';
 import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
 import { constFormulaire, messageErrors,rulesMessage ,messageErrorsReturnApi} from "../config/config";
-
-
-import VerifForm from "../components/formulaire/verifForm";
 import Checkbox from "../components/basic/checkBox/checkBox";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import utilsFunction from '../utils/utilsFunction'
 import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
 import { invitationByToken } from "../service/api/user/initationApi";
 import { registerApi } from "../service/api/auth/registerApi";

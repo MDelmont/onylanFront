@@ -22,7 +22,13 @@
     align-items: center;
     gap:30px;
     max-width: 500px;
-
+    text-align: center;
+    .forget-password-text{
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
     .cont-input{
         display: flex;
         flex-direction: column;
