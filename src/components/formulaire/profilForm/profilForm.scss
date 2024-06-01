@@ -16,6 +16,7 @@
                     display: flex;
                    
                     .cont-img-input{
+                        background-color: map-get($ColorApp, 'modalBackgroudColor');
                         .img-del{
                             img{
 
@@ -55,7 +56,14 @@
        
         gap: 20px;
         .cont-img-input{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+           
             .img-del{
+                
                 img{
                     width: 60%;
                     border-radius: 10px;
@@ -102,7 +110,12 @@
             .cont-img-input{
                 width: 70%;
                 max-width: 450px;
+                height: 100%;
+          
+                aspect-ratio: 1/1;
+              
                 .img-del{
+              
                     img{
                         width: 100%;
                         

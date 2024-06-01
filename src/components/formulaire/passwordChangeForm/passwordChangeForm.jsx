@@ -5,7 +5,8 @@ import BtnPrimary from "../../basic/btnPrimary/btnPrimary";
 import Checkbox from "../../basic/checkBox/checkBox";
 import { useEffect, useState } from "react";
 import { userAuth } from '../../../service/api/user/userApi';
-import { constFormulaire, messageErrors, rulesMessage } from '../../../config/config';
+import { constFormulaire, messageErrors, messageErrorsReturnApi, rulesMessage } from '../../../config/config';
+import { resetPassword } from '../../../service/api/auth/resetPasswordApi';
 const PasswordChangeForm = ({}) => {
 
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ const PasswordChangeForm = ({}) => {
     confirmPassword:'',
     }
   )
-  const [globalError , setGlobalError] = useState('')
+  const [globalMessage , setGlobalMessage] = useState('')
 
 
 
@@ -28,7 +29,7 @@ const PasswordChangeForm = ({}) => {
     const { name, value, files } = e.target;
 
       const newValue = value;
-      setGlobalError("");
+      setGlobalMessage("");
       setError((prevErrors) => ({
         ...prevErrors,
         [name]: '',
@@ -75,7 +76,7 @@ const PasswordChangeForm = ({}) => {
 
   const handleSubmit  = (e) => {
     e.preventDefault()
-    const errorstemp = {
+    let errorsTemp = {
       password:'',
       newPassword:'',
       confirmPassword:'',
@@ -91,28 +92,54 @@ const PasswordChangeForm = ({}) => {
   || !constFormulaire.specialCharRegex.test(formData.newPassword)
   ) {
       haveError = true
-      errorstemp['newPassword'] = messageErrors.password
+      errorsTemp['newPassword'] = messageErrors.password
     }
 
-  if (formData.confirmPassword != formData.password ) {
+  if (formData.confirmPassword != formData.newPassword ) {
       haveError = true
-      errorstemp['confirmPassword'] = messageErrors.confirmPassword
+      errorsTemp['confirmPassword'] = messageErrors.confirmPassword
  
   }
 
-  Object.keys(errors).map((key,index) => {
+  Object.keys(errors).map((key) => {
       if( !isNaN(formData[key])){
         haveError = true
-        errorstemp[key] = "Champs obligatoire.";
+        errorsTemp[key] = "Champs obligatoire.";
       }
     })
-    console.log(errorstemp)
+    console.log(errorsTemp)
     if (haveError){
-      setError(errorstemp)
+      setError(errorsTemp)
       return false
     }
 
-    constFormulaire.log('Faire la requete')
+    resetPassword(formData).then(response => {
+
+      console.log(response.data)
+      setGlobalMessage('Le mot de passe à bien été changé.')
+
+    }).catch(error => {
+      console.log(error)
+
+      const {message,data} = error.response.data
+      console.log(message,data)
+      if (message == "Invalid password"){
+        const errorsApi = data.errors
+        errorsTemp = {...errors}
+        errorsApi.forEach(error => {
+          if(Object.keys(messageErrorsReturnApi).includes(error)){
+            const {target,message} =messageErrorsReturnApi[error]
+            errorsTemp[target] = message
+          }
+        })
+        setError(errorsTemp)
+      } else if  (message == "Passwords do not match"){
+        errorsTemp.confirmPassword = messageErrors.confirmPassword
+        setError(errorsTemp)
+      } else {
+        setGlobalMessage('Une erreur est survenu.')
+      }
+    })
 }
   const dataInput = [
 
@@ -139,7 +166,7 @@ const PasswordChangeForm = ({}) => {
    
  
       </div>
-      
+        {globalMessage && <p>{globalMessage}</p>}
       <BtnPrimary title={'Modifier'} type={'submit'} onClick={handleSubmit} />
     </form>
 

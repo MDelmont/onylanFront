@@ -45,22 +45,23 @@ const  ProfilPage = ()  => {
    
     }).catch(error =>{
       console.log(error)
-      setGlobalError("Un erreur c'est produite")
+
     })
   },[])
   
   return (
   <div className="profil-page">
       {userIdAuth && <Profil userId={userIdAuth}/>}
-      <Modal btnUse={<BtnPrimary title={'Modifier mes informations'} />} children={
-      <div className="form-content">
+      <Modal btnUse={<BtnPrimary title={'Modifier mes informations'} />}>
+        <div className="form-content">
 
-        {activeForm=="profil-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('password-form')}}>Changer de mot de passe</span>}
-        {activeForm=="password-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('profil-form')}}>Information de base</span>}
-          
-        {activeForm=="profil-form" && <ProfilForm  />}
-        {activeForm=="password-form" && <PasswordChangeForm  />}
-        </div>} />
+          {activeForm=="profil-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('password-form')}}>Changer de mot de passe</span>}
+          {activeForm=="password-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('profil-form')}}>Information de base</span>}
+            
+          {activeForm=="profil-form" && <ProfilForm  />}
+          {activeForm=="password-form" && <PasswordChangeForm  />}
+        </div>
+      </Modal>
   </div>
   );
 }
