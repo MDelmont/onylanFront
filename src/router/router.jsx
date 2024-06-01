@@ -12,6 +12,10 @@ import ForgetPassword from "../pages/forgetPassword";
 import InviteListPage from "../pages/inviteList";
 import NavBar from "../components/navBar/navBar";
 import GamePage from "../pages/game";
+import GamesPage from "../pages/games";
+import GameCreatePage from "../pages/gameCreate";
+import ModePage from "../pages/mode";
+import ModeCreatePage from "../pages/modeCreate";
 import EventPage from "../pages/event";
 import Background from "../components/background/background";
 import '../styles/root.scss'
@@ -79,7 +83,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "games",
+        element: <GamesPage />,
+      },
+      {
+        path: "game/:idGame",
         element: <GamePage />,
+      },
+      {
+        path: "game/create",
+        element: <GameCreatePage />,
+      },
+      {
+        path: "mode/:idMode",
+        element: <ModePage />,
+      },
+      {
+        path: "mode/create",
+        element: <ModeCreatePage />,
       },
       {
         path: "events",

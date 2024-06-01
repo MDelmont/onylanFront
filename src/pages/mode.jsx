@@ -4,15 +4,14 @@ import InputLabel from '../components/formulaire/inputLabel/inputLabel';
 import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
 import BtnPrimary from '../components/basic/btnPrimary/btnPrimary';
 import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { messageErrorsReturnApi } from "../config/config";
 import { createGame } from "../service/api/game/gameApi";
 
 
-const GamePage = () => {
+const ModePage = () => {
     IsAuth();
     const navigate = useNavigate();
-    const location = useLocation();
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -111,13 +110,13 @@ const GamePage = () => {
 
     const handleNavigateMode = (e) => {
         e.preventDefault();
-        navigate('/mode/create', { state: { idGame: location.state.idGame } });
+        navigate('/mode/create');
     };
 
     return (
         <div className="game-Page">
             <h1>
-                Présentation du Jeux:{location.state.idGame}
+                Présentation d'un Jeux
             </h1>
             <form className='register-form' onSubmit={handleNavigateUpdate}>
                 <div className="cont-input">
@@ -162,11 +161,11 @@ const GamePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Modifier le jeu'} type={'submit'} onClick={handleNavigateUpdate} />
+                <BtnPrimary title={'Modifier le jeu'} type={'submit'} onClick={handleNavigateUpdate} /> 
                 <BtnPrimary title={'Créer un mode'} type={'submit'} onClick={handleNavigateMode} />
             </form>
         </div>
     );
 }
 
-export default GamePage;
+export default ModePage;

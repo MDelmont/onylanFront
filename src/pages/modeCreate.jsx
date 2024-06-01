@@ -4,40 +4,30 @@ import InputLabel from '../components/formulaire/inputLabel/inputLabel';
 import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
 import BtnPrimary from '../components/basic/btnPrimary/btnPrimary';
 import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { messageErrorsReturnApi } from "../config/config";
-import { createGame } from "../service/api/game/gameApi";
+import { createMode } from "../service/api/game/modeApi";
 
 
-const GamePage = () => {
+const ModeCreatePage = () => {
     IsAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const idGame = location.state.idGame;
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        categorie: '',
-        downloadDescription: '',
-        file: null,
+        installationGuide: '',
+        scoreRules: '',
     });
 
     const [errors, setError] = useState({
         name: '',
         description: '',
-        categorie: '',
-        downloadDescription: '',
-        file: '',
+        installationGuide: '',
+        scoreRules: '',
     });
     const [globalError, setGlobalError] = useState('');
-
-    const resetPhoto = () => {
-        document.getElementById('file').value = '';
-        setFormData({
-            ...formData,
-            file: null,
-        });
-    }
-
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -53,15 +43,14 @@ const GamePage = () => {
         });
     };
 
-    const handleNavigateUpdate = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log('submit')
         const errorstemp = {
             name: '',
             description: '',
-            categorie: '',
-            downloadDescription: '',
-            file: '',
+            installationGuide: '',
+            scoreRules: '',
         };
         let haveError = false;
 
@@ -75,8 +64,9 @@ const GamePage = () => {
             setError(errorstemp)
             return false
         }
-        createGame(formData).then(() => {
-            navigate("/games")
+        formData.idGame = idGame;
+        createMode(formData).then(() => {
+            navigate(`/game/${idGame}`, { state: { idGame } });
         })
             .catch((error) => {
                 // Erreur de connexion
@@ -105,54 +95,17 @@ const GamePage = () => {
     const dataInput = [
         { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, onChange: handleChange, error: errors.name },
         { htmlFor: "description", title: "Description *", type: "text", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
-        { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
-        { htmlFor: "categorie", title: "Catégorie *", type: "text", id: "categorie", name: "categorie", value: formData.categorie, onChange: handleChange, error: errors.categorie },
+        { htmlFor: "installationGuide", title: "Description pour l'installation *", type: "text", id: "installationGuide", name: "installationGuide", value: formData.installationGuide, onChange: handleChange, error: errors.installationGuide },
+        { htmlFor: "scoreRules", title: "Règles des scores *", type: "text", id: "scoreRules", name: "scoreRules", value: formData.scoreRules, onChange: handleChange, error: errors.scoreRules },
     ]
 
-    const handleNavigateMode = (e) => {
-        e.preventDefault();
-        navigate('/mode/create', { state: { idGame: location.state.idGame } });
-    };
-
     return (
-        <div className="game-Page">
+        <div className="mode-Page">
             <h1>
-                Présentation du Jeux:{location.state.idGame}
+                Création d'un Mode
             </h1>
-            <form className='register-form' onSubmit={handleNavigateUpdate}>
+            <form className='register-form' onSubmit={handleSubmit}>
                 <div className="cont-input">
-
-                    <InputLabel htmlFor={"photo"} title={"Photo"} input={
-                        <div className='cont-img-input'>
-                            <input
-                                type="file"
-                                id="file"
-                                name="file"
-                                accept="image/*"
-                                style={{ display: 'none' }}
-                                onChange={handleChange}
-
-                            />
-
-                            {!formData.file && <BtnSecondary type={"button"} title={"Choisir un fichier"} onClick={() => {
-                                resetPhoto()
-                                document.getElementById('file').click()
-                            }} />}
-                            {formData.file && (
-                                <div className='img-del'>
-
-                                    <img
-                                        src={URL.createObjectURL(formData.file)}
-                                        alt="Uploaded"
-                                        style={{ maxWidth: "100px", maxHeight: "100px" }}
-                                    />
-                                    {formData.file && <BtnSecondary title={"Supprimer la photo"} onClick={resetPhoto} />}
-
-                                </div>
-
-                            )}
-                        </div>
-                    } />
 
                     {dataInput.map(({ htmlFor, title, type, id, name, value, onChange, error }, index) => {
                         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
@@ -162,11 +115,10 @@ const GamePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Modifier le jeu'} type={'submit'} onClick={handleNavigateUpdate} />
-                <BtnPrimary title={'Créer un mode'} type={'submit'} onClick={handleNavigateMode} />
+                <BtnPrimary title={'Créer un mode'} type={'submit'} onClick={handleSubmit} />
             </form>
         </div>
     );
 }
 
-export default GamePage;
+export default ModeCreatePage;

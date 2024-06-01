@@ -4,15 +4,14 @@ import InputLabel from '../components/formulaire/inputLabel/inputLabel';
 import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
 import BtnPrimary from '../components/basic/btnPrimary/btnPrimary';
 import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { messageErrorsReturnApi } from "../config/config";
 import { createGame } from "../service/api/game/gameApi";
 
 
-const GamePage = () => {
+const GameCreatePage = () => {
     IsAuth();
     const navigate = useNavigate();
-    const location = useLocation();
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -53,7 +52,7 @@ const GamePage = () => {
         });
     };
 
-    const handleNavigateUpdate = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log('submit')
         const errorstemp = {
@@ -109,17 +108,12 @@ const GamePage = () => {
         { htmlFor: "categorie", title: "Catégorie *", type: "text", id: "categorie", name: "categorie", value: formData.categorie, onChange: handleChange, error: errors.categorie },
     ]
 
-    const handleNavigateMode = (e) => {
-        e.preventDefault();
-        navigate('/mode/create', { state: { idGame: location.state.idGame } });
-    };
-
     return (
         <div className="game-Page">
             <h1>
-                Présentation du Jeux:{location.state.idGame}
+                Création d'un Jeux
             </h1>
-            <form className='register-form' onSubmit={handleNavigateUpdate}>
+            <form className='register-form' onSubmit={handleSubmit}>
                 <div className="cont-input">
 
                     <InputLabel htmlFor={"photo"} title={"Photo"} input={
@@ -162,11 +156,10 @@ const GamePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Modifier le jeu'} type={'submit'} onClick={handleNavigateUpdate} />
-                <BtnPrimary title={'Créer un mode'} type={'submit'} onClick={handleNavigateMode} />
+                <BtnPrimary title={'Créer un jeu'} type={'submit'} onClick={handleSubmit} />
             </form>
         </div>
     );
 }
 
-export default GamePage;
+export default GameCreatePage;
