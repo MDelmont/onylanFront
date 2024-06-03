@@ -8,7 +8,8 @@ import ProfilPage from "../pages/profil";
 import DashbordPage from "../pages/dashboard";
 import EquipePage from "../pages/equipe";
 import InvitePage from "../pages/invite";
-import ForgetPassword from "../pages/forgetPassword";
+import ForgetPasswordPage from "../pages/forgetPassword";
+import ResetPasswordPage from "../pages/resetPassword";
 import InviteListPage from "../pages/inviteList";
 import NavBar from "../components/navBar/navBar";
 import GamePage from "../pages/game";
@@ -71,7 +72,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "forgetPassword",
-        element: <ForgetPassword />,
+        element: <ForgetPasswordPage />,
+      },
+      {
+        path: "resetPassword/:idToken",
+        element: <ResetPasswordPage />,
       },
       {
         path: "teams",

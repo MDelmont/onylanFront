@@ -10,7 +10,7 @@ export const resetPassword = async (formData) => {
     return response
 }
 
-export const getResetPasswordToken = async (token) => {
+export const getResetPassword = async (token) => {
 
     const response = await axios.get(`${BASE_URL}/auth/reset-password/${token}`, {
         withCredentials: true,
@@ -23,9 +23,6 @@ export const postResetPasswordToken = async (token, formData) => {
 
     const response = await axios.post(`${BASE_URL}/auth/reset-password/${token}`, formData, {
         withCredentials: true,
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        }
     });
     return response
 

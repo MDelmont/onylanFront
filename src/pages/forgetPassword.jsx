@@ -4,8 +4,9 @@ import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
 import InputLabel from "../components/formulaire/inputLabel/inputLabel";
 import InputPrimary from "../components/basic/inputPrimary/inputPrimary";
 import { constFormulaire, messageErrors } from "../config/config";
+import { forgetPassword } from "../service/api/auth/forgetPassword";
 
-const ForgetPassword = () => {
+const ForgetPasswordPage = () => {
   const [formData, setFormData] = useState({
     email: "",
   });
@@ -16,6 +17,7 @@ const ForgetPassword = () => {
   const [globalMessage, setGlobalMessage] = useState('')
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+    setGlobalMessage("")
     setError({
       ...errors,
       [name]: '',
@@ -46,10 +48,15 @@ const ForgetPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (true){
-        console.log("todashboard")
-    }
 
+    forgetPassword(formData).then(response => {
+      setGlobalMessage("Un email vous à été envoyé si l'email existe")
+    }).catch(error =>{
+      setGlobalMessage("Une erreur est survenu")
+    })
+
+      
+  
   };
 
   const dataInput = [
@@ -66,8 +73,6 @@ const ForgetPassword = () => {
                 
 
         {dataInput.map(({htmlFor,title,type,id,name,value,onChange,error,onBlur},index) => {
-        console.log("name",name)
-        console.log(['name','firstname'].includes(name))
         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
           <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} />
         }/> 
@@ -81,4 +86,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default ForgetPasswordPage;
