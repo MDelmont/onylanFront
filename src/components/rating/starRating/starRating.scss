@@ -1,0 +1,81 @@
+
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+      
+            .star{
+                #stroke-grad{
+           
+                        > :first-child{
+                            stop-color: map-get($ColorApp, 'firtGradrienColor');
+                            stop-opacity: 1;
+                        }
+                        > :nth-child(2) {
+                            stop-color: map-get($ColorApp, 'secondeGradienColor');
+                            stop-opacity: 1;
+                        }
+                        > :nth-child(3) {
+                            stop-color:map-get($ColorApp, 'thirdGradienColor');
+                            stop-opacity: 1;
+                        }
+                    
+
+                }
+                linearGradient {
+                    > :first-child{
+                        stop-color: transparent;
+                        stop-opacity: 1;
+                    }
+                    > :nth-child(2) {
+                        stop-color: transparent;
+                        stop-opacity: 1;
+                    }
+                    > :nth-child(3) {
+                        stop-color:transparent;
+                        stop-opacity: 1;
+                    }
+                }
+                &.active{
+                
+                    linearGradient {
+                        > :first-child{
+                            stop-color: map-get($ColorApp, 'firtGradrienColor');
+                            stop-opacity: 1;
+                        }
+                        > :nth-child(2) {
+                            stop-color: map-get($ColorApp, 'secondeGradienColor');
+                            stop-opacity: 1;
+                        }
+                        > :nth-child(3) {
+                            stop-color: map-get($ColorApp, 'thirdGradienColor');
+                            stop-opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.star{
+    
+    input{
+        position: absolute;
+        appearance: none;
+    }
+    .star-solid{
+        cursor: pointer;
+        stroke-width: 25;
+        &:hover{
+            stroke-width: 50;
+        }
+    }
+    
+}
+  
