@@ -1,18 +1,20 @@
-import { useState } from "react";
-import { IsAuth } from "../components/auth/isAuth"
-import InputLabel from '../components/formulaire/inputLabel/inputLabel';
-import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
-import BtnPrimary from '../components/basic/btnPrimary/btnPrimary';
-import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
-import { useLocation, useNavigate } from "react-router-dom";
-import { messageErrorsReturnApi } from "../config/config";
-import { createGame } from "../service/api/game/gameApi";
+import { useEffect, useState } from "react";
+import { IsAuth } from "../../components/auth/isAuth"
+import { IsAdmin } from "../../components/auth/isAdmin"
+import InputLabel from '../../components/formulaire/inputLabel/inputLabel';
+import BtnSecondary from '../../components/basic/btnSecondary/btnSecondary';
+import BtnPrimary from '../../components/basic/btnPrimary/btnPrimary';
+import InputPrimary from '../../components/basic/inputPrimary/inputPrimary';
+import { useNavigate, useParams } from "react-router-dom";
+import { messageErrorsReturnApi } from "../../config/config";
+import {  getGamesId, updateGame, deleteGame } from "../../service/api/game/gameApi";
+import "../../styles/game/gameCreate.scss"
+import utilsFunction from "../../utils/utilsFunction";
 
-
-const GamePage = () => {
-    IsAuth();
+const GameUpdatePage = () => {
+    IsAdmin();
     const navigate = useNavigate();
-    const location = useLocation();
+    const {idGame} = useParams()
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -20,6 +22,7 @@ const GamePage = () => {
         downloadDescription: '',
         file: null,
     });
+
 
     const [errors, setError] = useState({
         name: '',
@@ -30,6 +33,25 @@ const GamePage = () => {
     });
     const [globalError, setGlobalError] = useState('');
 
+    useEffect(() => {
+        getGamesId(idGame).then(response => {
+            console.log(response)
+
+            const base64img = response.data.data.pictureUrl
+            console.log(base64img)
+            let file;
+            if (base64img){
+                file = utilsFunction.dataURLtoFile(base64img,"temp.jpg")
+            }
+        
+            setFormData({ ...formData, ...response.data.data, file:file })
+ 
+        }).catch(error => {
+            console.log(error)
+            setGlobalError('Une erreur est survenu')
+        })
+
+    },[])
     const resetPhoto = () => {
         document.getElementById('file').value = '';
         setFormData({
@@ -53,9 +75,10 @@ const GamePage = () => {
         });
     };
 
-    const handleNavigateUpdate = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log('submit')
+        console.log('formData',formData)
         const errorstemp = {
             name: '',
             description: '',
@@ -75,15 +98,18 @@ const GamePage = () => {
             setError(errorstemp)
             return false
         }
-        createGame(formData).then(() => {
+
+
+        updateGame(formData,idGame).then((response) => {
+            console.log(response)
             navigate("/games")
         })
             .catch((error) => {
                 // Erreur de connexion
                 const { message, data } = error.response.data
                 console.log(message, data)
-                if (message == "Invalid data for register") {
-                    console.log('is invalid data register')
+                if (message == "Invalid data for create game") {
+                    console.log('is invalid data create game')
                     const errorsApi = data.errors
                     const errorsTemp = { ...errors }
                     errorsApi.forEach(error => {
@@ -96,30 +122,37 @@ const GamePage = () => {
                     setError(errorsTemp)
                 } else {
                     setGlobalError("Une erreur c'est produite")
+
+
                 }
                 console.log(error.response.data.data.errors)
 
             });
     };
+    const handleDelete = (e) => {
+        e.preventDefault()
+        deleteGame(idGame).then(response => {
+            console.log(response)
+            navigate("/games")
+        }).catch(error => {
+            console.log(error)
+   
+        })
+    }
 
     const dataInput = [
         { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, onChange: handleChange, error: errors.name },
-        { htmlFor: "description", title: "Description *", type: "text", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
-        { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
+        { htmlFor: "description", title: "Description *", type: "text-area", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
+        { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text-area", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
         { htmlFor: "categorie", title: "Catégorie *", type: "text", id: "categorie", name: "categorie", value: formData.categorie, onChange: handleChange, error: errors.categorie },
     ]
 
-    const handleNavigateMode = (e) => {
-        e.preventDefault();
-        navigate('/mode/create', { state: { idGame: location.state.idGame } });
-    };
-
     return (
-        <div className="game-Page">
+        <div className="create-game-page">
             <h1>
-                Présentation du Jeux:{location.state.idGame}
+                Modification d'un Jeux
             </h1>
-            <form className='register-form' onSubmit={handleNavigateUpdate}>
+            <form className='create-page-form' >
                 <div className="cont-input">
 
                     <InputLabel htmlFor={"photo"} title={"Photo"} input={
@@ -162,11 +195,13 @@ const GamePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Modifier le jeu'} type={'submit'} onClick={handleNavigateUpdate} />
-                <BtnPrimary title={'Créer un mode'} type={'submit'} onClick={handleNavigateMode} />
+                <BtnPrimary title={'Modifier le jeux'} type={'submit'} onClick={handleSubmit} />
+                <BtnPrimary title={'Supprimer le jeux'}  onClick={handleDelete} />
+                
             </form>
+            
         </div>
     );
 }
 
-export default GamePage;
+export default GameUpdatePage;

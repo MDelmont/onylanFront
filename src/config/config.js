@@ -25,6 +25,7 @@ export const messageErrorsReturnApi = {
     errorPseudoAlreadyExists: { target:'pseudo',message:"Ce pseudo n'est pas disponible."},
     badEmailError:{target:'email',message:"Email invalide."},
     badPasswordError:{target:'password',message:"Password invalide."},
+    errorGameAlreadyExists:{ target:'name',message:"Ce nom n'est pas disponible."},
 };
 
 export const rulesMessage = {

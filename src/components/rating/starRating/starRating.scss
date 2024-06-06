@@ -10,7 +10,7 @@
         &.#{$themeName} {
       
             .star{
-                #stroke-grad{
+                [id^="stroke-grad"]{
            
                         > :first-child{
                             stop-color: map-get($ColorApp, 'firtGradrienColor');
@@ -27,7 +27,7 @@
                     
 
                 }
-                linearGradient {
+                [id^="grad"]{
                     > :first-child{
                         stop-color: transparent;
                         stop-opacity: 1;
@@ -43,7 +43,7 @@
                 }
                 &.active{
                 
-                    linearGradient {
+                    [id^="grad"]{
                         > :first-child{
                             stop-color: map-get($ColorApp, 'firtGradrienColor');
                             stop-opacity: 1;
@@ -64,6 +64,13 @@
 }
 
 .star{
+    height:100%;
+    label{
+        height:100%;
+        svg{
+            height:100%;
+        }
+    }
     
     input{
         position: absolute;

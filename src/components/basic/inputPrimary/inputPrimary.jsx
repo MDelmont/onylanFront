@@ -8,7 +8,8 @@ const InputPrimary = ({onClick,onChange,disabled,type,id,messageError,infoInput,
                 </path></svg>
               <div className="info-text">{infoInput}</div>
         </div>}
-        <input onBlur={onBlur} id={id} type={type} className={`input-primary ${infoInput ? "svgLogo":""}`} onClick={onClick} disabled={disabled}  onChange={onChange} value={value} name={name} />
+        {type == "text-area" && <textarea onBlur={onBlur} id={id} type="text" className={`input-primary ${infoInput ? "svgLogo":""}`} onClick={onClick} disabled={disabled}  onChange={onChange} value={value} name={name} />}
+        {type != "text-area" && <input onBlur={onBlur} id={id} type={type} className={`input-primary ${infoInput ? "svgLogo":""}`} onClick={onClick} disabled={disabled}  onChange={onChange} value={value} name={name} />}
         
         {messageError && <p className="input-primary-error">{messageError}</p>}
     </div>

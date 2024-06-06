@@ -1,0 +1,26 @@
+@import "../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+    #root {
+        &.#{$themeName} {
+            .game-card {
+                background: linear-gradient(to right, 
+                        map-get($ColorApp, 'firtGradrienColor'), 
+                        map-get($ColorApp, 'secondeGradienColor'), 
+                        map-get($ColorApp, 'thirdGradienColor')
+                    );
+                    .cont-img{
+                        background-color: map-get($ColorApp, 'backgroudColor');
+                    }
+            }
+        }
+    }
+}
+
+.mode-card {
+    position: relative;
+    border-radius: 10px;
+}

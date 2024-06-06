@@ -1,9 +1,9 @@
 
 
+import GameCard from '../components/gameCard/gameCard';
 import '../styles/testPage.scss'
 
-import Rating from '../components/rating/rating';
-import StarRating from '../components/rating/starRating/starRating';
+
 
 
 
@@ -14,7 +14,7 @@ const TestPage = () => {
 
   return (
     <div className="test-Page">
-      <Rating nbNote={1000}/>
+      <GameCard name={"DOFUS TOUCH"} imgSrc={'/dofus.webp'} note={5} actualNote={3} maxNote={5} />
  
     </div>
   );

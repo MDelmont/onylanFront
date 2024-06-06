@@ -12,14 +12,15 @@ import ForgetPasswordPage from "../pages/forgetPassword";
 import ResetPasswordPage from "../pages/resetPassword";
 import InviteListPage from "../pages/inviteList";
 import NavBar from "../components/navBar/navBar";
-import GamePage from "../pages/game";
-import GamesPage from "../pages/games";
-import GameCreatePage from "../pages/gameCreate";
-import ModePage from "../pages/mode";
-import ModeCreatePage from "../pages/modeCreate";
+import GamePage from "../pages/game/game";
+import GamesPage from "../pages/game/games";
+import GameCreatePage from "../pages/game/gameCreate";
+import ModePage from "../pages/mode/mode";
+import ModeCreatePage from "../pages/mode/modeCreate";
 import EventPage from "../pages/event";
 import Background from "../components/background/background";
 import '../styles/root.scss'
+import GameUpdatePage from "../pages/game/gameUpdate";
 /**
  * creat template of page with nav and content
  * @returns Template of page
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: "game/:idGame",
         element: <GamePage />,
+      },
+      {
+        path: "game/update/:idGame",
+        element: <GameUpdatePage />,
       },
       {
         path: "game/create",

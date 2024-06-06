@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { IsAuth } from "../components/auth/isAuth"
-import InputLabel from '../components/formulaire/inputLabel/inputLabel';
-import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
-import BtnPrimary from '../components/basic/btnPrimary/btnPrimary';
-import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
+import { IsAuth } from "../../components/auth/isAuth"
+import InputLabel from '../../components/formulaire/inputLabel/inputLabel';
+import BtnSecondary from '../../components/basic/btnSecondary/btnSecondary';
+import BtnPrimary from '../../components/basic/btnPrimary/btnPrimary';
+import InputPrimary from '../../components/basic/inputPrimary/inputPrimary';
 import { useNavigate, useLocation } from "react-router-dom";
-import { messageErrorsReturnApi } from "../config/config";
-import { createMode } from "../service/api/game/modeApi";
+import { messageErrorsReturnApi } from "../../config/config";
+import { createMode } from "../../service/api/game/modeApi";
 
 
 const ModeCreatePage = () => {

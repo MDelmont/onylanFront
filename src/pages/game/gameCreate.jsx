@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { IsAuth } from "../components/auth/isAuth"
-import InputLabel from '../components/formulaire/inputLabel/inputLabel';
-import BtnSecondary from '../components/basic/btnSecondary/btnSecondary';
-import BtnPrimary from '../components/basic/btnPrimary/btnPrimary';
-import InputPrimary from '../components/basic/inputPrimary/inputPrimary';
+import { IsAuth } from "../../components/auth/isAuth"
+import InputLabel from '../../components/formulaire/inputLabel/inputLabel';
+import BtnSecondary from '../../components/basic/btnSecondary/btnSecondary';
+import BtnPrimary from '../../components/basic/btnPrimary/btnPrimary';
+import InputPrimary from '../../components/basic/inputPrimary/inputPrimary';
 import { useNavigate } from "react-router-dom";
-import { messageErrorsReturnApi } from "../config/config";
-import { createGame } from "../service/api/game/gameApi";
-
+import { messageErrorsReturnApi } from "../../config/config";
+import { createGame } from "../../service/api/game/gameApi";
+import "../../styles/game/gameCreate.scss"
 
 const GameCreatePage = () => {
     IsAuth();
@@ -55,6 +55,7 @@ const GameCreatePage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('submit')
+        console.log('formData',formData)
         const errorstemp = {
             name: '',
             description: '',
@@ -74,7 +75,11 @@ const GameCreatePage = () => {
             setError(errorstemp)
             return false
         }
-        createGame(formData).then(() => {
+
+
+        
+        createGame(formData).then((response) => {
+            console.log(response)
             navigate("/games")
         })
             .catch((error) => {
@@ -103,17 +108,17 @@ const GameCreatePage = () => {
 
     const dataInput = [
         { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, onChange: handleChange, error: errors.name },
-        { htmlFor: "description", title: "Description *", type: "text", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
-        { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
+        { htmlFor: "description", title: "Description *", type: "text-area", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
+        { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text-area", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
         { htmlFor: "categorie", title: "Catégorie *", type: "text", id: "categorie", name: "categorie", value: formData.categorie, onChange: handleChange, error: errors.categorie },
     ]
 
     return (
-        <div className="game-Page">
+        <div className="create-game-page">
             <h1>
                 Création d'un Jeux
             </h1>
-            <form className='register-form' onSubmit={handleSubmit}>
+            <form className='create-page-form' onSubmit={handleSubmit}>
                 <div className="cont-input">
 
                     <InputLabel htmlFor={"photo"} title={"Photo"} input={
