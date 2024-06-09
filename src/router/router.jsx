@@ -21,6 +21,8 @@ import EventPage from "../pages/event";
 import Background from "../components/background/background";
 import '../styles/root.scss'
 import GameUpdatePage from "../pages/game/gameUpdate";
+import KeyPassPage from "../pages/keypass";
+import PlayerPage from "../pages/players";
 /**
  * creat template of page with nav and content
  * @returns Template of page
@@ -62,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "invite/list", 
         element: <InviteListPage />,
+      },
+      {
+        path: "players",
+        element: <PlayerPage />,
       },
       {
         path: "profile",
@@ -110,6 +116,10 @@ export const router = createBrowserRouter([
       {
         path: "mode/create",
         element: <ModeCreatePage />,
+      },
+      {
+        path: "keypass",
+        element: <KeyPassPage />,
       },
       {
         path: "events",

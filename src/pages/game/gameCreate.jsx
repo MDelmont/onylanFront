@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IsAuth } from "../../components/auth/isAuth"
 import InputLabel from '../../components/formulaire/inputLabel/inputLabel';
 import BtnSecondary from '../../components/basic/btnSecondary/btnSecondary';
@@ -6,8 +6,9 @@ import BtnPrimary from '../../components/basic/btnPrimary/btnPrimary';
 import InputPrimary from '../../components/basic/inputPrimary/inputPrimary';
 import { useNavigate } from "react-router-dom";
 import { messageErrorsReturnApi } from "../../config/config";
-import { createGame } from "../../service/api/game/gameApi";
+import { createGame,getConfigGameApi } from "../../service/api/game/gameApi";
 import "../../styles/game/gameCreate.scss"
+import InputPrimaryDropdown from "../../components/basic/inputPrimaryDropdown/inputPrimaryDropdown";
 
 const GameCreatePage = () => {
     IsAuth();
@@ -19,6 +20,7 @@ const GameCreatePage = () => {
         downloadDescription: '',
         file: null,
     });
+    const [listCategoryGame,setListCategoryGame] = useState('')
 
     const [errors, setError] = useState({
         name: '',
@@ -29,6 +31,18 @@ const GameCreatePage = () => {
     });
     const [globalError, setGlobalError] = useState('');
 
+
+    useEffect( () => {
+        getConfigGameApi().then(response => {
+            console.log(response)
+            response.data.data.game.categorie.unshift('')
+            setListCategoryGame( response.data.data.game.categorie)
+        }).catch(error => {
+            console.log(error)
+
+            setListCategoryGame(['','RTS', 'FPS/TPS', 'MOBA', 'RPG', 'Course', 'Autres'])
+        })
+    },[])
     const resetPhoto = () => {
         document.getElementById('file').value = '';
         setFormData({
@@ -40,6 +54,7 @@ const GameCreatePage = () => {
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
+        console.log(name, value, files)
         const newValue = name === "file" ? files[0] ? files[0] : formData.file : value;
         setGlobalError("");
         setError({
@@ -86,8 +101,7 @@ const GameCreatePage = () => {
                 // Erreur de connexion
                 const { message, data } = error.response.data
                 console.log(message, data)
-                if (message == "Invalid data for register") {
-                    console.log('is invalid data register')
+                if (message == "Invalid data for create game") {
                     const errorsApi = data.errors
                     const errorsTemp = { ...errors }
                     errorsApi.forEach(error => {
@@ -110,7 +124,6 @@ const GameCreatePage = () => {
         { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, onChange: handleChange, error: errors.name },
         { htmlFor: "description", title: "Description *", type: "text-area", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
         { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text-area", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
-        { htmlFor: "categorie", title: "Catégorie *", type: "text", id: "categorie", name: "categorie", value: formData.categorie, onChange: handleChange, error: errors.categorie },
     ]
 
     return (
@@ -158,6 +171,10 @@ const GameCreatePage = () => {
                             <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} />
                         } />
                     })}
+                    <InputLabel htmlFor="categorie" title="Categorie*" input={
+                        <InputPrimaryDropdown name={"categorie"} id={"categorie"}  onChange={handleChange} options={listCategoryGame} messageError={errors.categorie} value={formData.categorie}/>
+                
+                    } />
 
                     {globalError && <p>{globalError}</p>}
                 </div>

@@ -44,3 +44,10 @@ export const updateUser = async (formData) => {
     return response
 
 };
+
+export const allGames = async () => {
+    const response = await axios.get(`${BASE_URL}/user/`, {
+        withCredentials: true,
+    });
+    return response
+}

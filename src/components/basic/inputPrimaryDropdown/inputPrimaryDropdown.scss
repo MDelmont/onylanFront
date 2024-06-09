@@ -1,0 +1,102 @@
+@import "../../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+ 
+    #root {
+        &.#{$themeName} {
+
+
+
+            .cont-input-primary{
+     
+                .input-primary-error{
+                    color:  map-get($ColorApp, 'fisrtFontColor'); 
+                }
+
+                .input-primary-dropdown{
+                    background-color :map-get($ColorApp, 'backgroundBtnSecondary');
+                    border: 1px solid  map-get($ColorApp, 'fisrtFontColor');
+                    color:  map-get($ColorApp, 'fisrtFontColor');
+                    &:focus{
+                        outline:0;
+                        border: 2px solid  map-get($ColorApp, 'fisrtFontColor');
+                    }
+                    &:disabled{
+                        background-color :map-get($ColorApp, 'backgroundBtnSecondaryDesabled');
+                        border: 1px solid  map-get($ColorApp, 'fisrtFontColorDesabled');
+                        color:  map-get($ColorApp, 'fisrtFontColorDesabled');
+
+                    }
+                }
+                &.invalid{
+                    .input-primary-error{
+                        color:  map-get($ColorApp, 'errorInputColor'); 
+                    }
+
+                    .input-primary-dropdown {
+                        border: 1px solid  map-get($ColorApp, 'errorInputColor');
+                        color:  map-get($ColorApp, 'errorInputColor');
+                        &:focus{
+                            outline:0;
+                            border: 2px solid  map-get($ColorApp, 'errorInputColor');
+                        }
+                    } 
+                }
+            }
+            
+            
+        }
+    }
+}
+.cont-input-primary{
+    position: relative;
+    
+    .input-info{
+        position: absolute;
+        height: 100%;
+       
+        z-index: 10;
+        right: 2%;
+        
+
+        .info-text{
+            display: none;
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            font-size: 0.8em;
+            background-color: black;
+            right: 20px;
+            top:85%;
+            width: 1150%;
+            z-index: 11;
+            text-align: left;
+        }
+        &:hover{
+            .info-text{
+                display: block;
+            }
+        }
+    }
+    .input-primary-error{
+        margin: 0;
+        font-size: 0.8em;
+        width: 100%;
+        text-align: end;
+        
+    }
+    .input-primary-dropdown {
+        position: relative;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 1em;
+        padding-left: 5%;
+        padding-right: 5%;
+        width: 100%;
+
+    }
+}
+

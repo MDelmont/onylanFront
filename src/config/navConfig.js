@@ -7,25 +7,36 @@ export const headerChoice = [
         isAdmin : false,
     },
     {
-        name : 'Évenement',
-        path:'/events',
+        name : 'Joueurs',
+        path:'/players',
         isAdmin : false,
         
     },
+    // {
+    //     name : 'Évenement',
+    //     path:'/events',
+    //     isAdmin : false,
+        
+    // },
     {
         name : 'Jeux',
         path:'/games',
         isAdmin : false,
         
     },
+    // {
+    //     name : 'Equipes',
+    //     path :'/teams',
+    //     isAdmin : false,
+    // },
+    // {
+    //     name : 'Tableau de bord',
+    //     path :'/dashboard',
+    //     isAdmin : false,
+    // },
     {
-        name : 'Equipes',
-        path :'/teams',
-        isAdmin : false,
-    },
-    {
-        name : 'Tableau de bord',
-        path :'/dashboard',
+        name : 'Indices',
+        path :'/keypass',
         isAdmin : false,
     },
     // {

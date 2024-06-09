@@ -1,0 +1,75 @@
+@import "../../styles/themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+    
+    #root {
+        &.#{$themeName} {
+            .user-card {
+                background: linear-gradient(to right, 
+                        map-get($ColorApp, 'firtGradrienColor'), 
+                        map-get($ColorApp, 'secondeGradienColor'), 
+                        map-get($ColorApp, 'thirdGradienColor')
+                    );
+                    .cont-img{
+                        background-color: map-get($ColorApp, 'backgroudColor');
+                    }
+            }
+        }
+    }
+}
+
+.user-card {
+    margin-top: 20px;
+    position: relative;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.719);
+    max-width: 300px;
+    max-height: 300px;
+    width: 300px;
+    height: 300px;
+    overflow: hidden; /* Important pour couper les coins arrondis du pseudo-élément */
+  .cont-img{
+    position: absolute;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    left: 0%;
+    top:0%;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+    width: 99%;
+    height: 85%;
+
+    
+    overflow: hidden;
+    .img-card{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+   
+
+  }
+  .title-cont{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0px;
+    height: 14.5%;
+    .title{
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        font-size: 1em;
+        color: white;
+      }
+  }
+
+}

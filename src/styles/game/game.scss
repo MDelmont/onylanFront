@@ -1,9 +1,42 @@
+
+@import "../themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+
+    #root {
+      &.#{$themeName} {
+
+        .game-Page{
+         
+           
+            .cont-mode{
+             
+         
+          
+                .cont-item-mode{
+     
+                    border:  1px solid  map-get($ColorApp, 'fisrtFontColor');
+                    background-color: map-get($ColorApp, 'backgroudColor');
+                }
+              
+            }
+        }
+        
+      
+        }
+  }
+}
+
+
 .game-Page{
     display: flex;
     flex-direction: column;
     gap:30px;
     width: 100%;
     align-items: center;
+    margin-bottom: 30px;
     
     .cont-info{
         display: flex;
@@ -24,6 +57,54 @@
             width: 100%;
             word-wrap: break-word; /* Pour les navigateurs qui supportent word-wrap */
              overflow-wrap: break-word;
+             display: flex;
+             flex-direction: column;
+             flex-wrap: wrap;
         }
     }
+   
+    .cont-mode{
+        display: flex;
+        flex-direction: column;
+
+        width: 90%;
+        h2{
+            width: 100%;
+            text-align: center;
+        }
+        .cont-item-mode{
+            height: 150px;
+            width: 100%;
+            border-radius: 10px;
+  
+        }
+      
+    }
+}
+
+@media (min-width: 768px) {
+    .game-Page{
+        gap:30px;
+        width: 100%;
+        
+        .cont-info{
+            flex-direction: row;
+           
+            width: 90%;
+            .cont-image-game-page{
+                width: 50%;
+                .img-game{
+                    
+                    width: 80%;
+                }
+            }
+            .cont-description{
+                width: 50%;
+            }
+        }
+       
+    }
+    
+
+
 }

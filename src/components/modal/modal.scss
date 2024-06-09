@@ -48,7 +48,7 @@ body.active-modal {
   bottom: 0;
   overflow: hidden;
   position: fixed;
-  z-index: 20;
+  z-index: 999;
 
   .overlay {
     position: absolute;

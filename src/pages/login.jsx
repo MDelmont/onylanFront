@@ -44,7 +44,7 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     console.log('handleSubmit')
     e.preventDefault();
-    const pathRedirect = '/dashboard'
+    const pathRedirect = '/profile'
     try{  
      
 

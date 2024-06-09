@@ -63,3 +63,11 @@ export const deleteGame = async (id) => {
     });
     return response
 }
+
+export const getConfigGameApi = async () => {
+
+    const response = await axios.get(`${BASE_URL}/game/config`,{
+        withCredentials: true,
+    });
+    return response
+}

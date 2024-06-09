@@ -54,14 +54,17 @@ const GamePage = () => {
                     
                 </div>
             </div>
-            <h2>mode</h2>
-            <div className="cont-mode">
+            
+            {/* <div className="cont-mode">
+            <h2>Mode de jeux</h2>
+                <div className="cont-item-mode">
                 { gameData.modes && gameData.modes.maps(mode =>{
                     return <p>{mode.name}</p>
                 })
 
                 }
-            </div>
+                </div>
+            </div> */}
             
             </>
 

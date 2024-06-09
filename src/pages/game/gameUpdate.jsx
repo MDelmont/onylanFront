@@ -7,9 +7,10 @@ import BtnPrimary from '../../components/basic/btnPrimary/btnPrimary';
 import InputPrimary from '../../components/basic/inputPrimary/inputPrimary';
 import { useNavigate, useParams } from "react-router-dom";
 import { messageErrorsReturnApi } from "../../config/config";
-import {  getGamesId, updateGame, deleteGame } from "../../service/api/game/gameApi";
+import {  getGamesId, updateGame, deleteGame, getConfigGameApi } from "../../service/api/game/gameApi";
 import "../../styles/game/gameCreate.scss"
 import utilsFunction from "../../utils/utilsFunction";
+import InputPrimaryDropdown from "../../components/basic/inputPrimaryDropdown/inputPrimaryDropdown";
 
 const GameUpdatePage = () => {
     IsAdmin();
@@ -32,7 +33,18 @@ const GameUpdatePage = () => {
         file: '',
     });
     const [globalError, setGlobalError] = useState('');
+    const [listCategoryGame,setListCategoryGame] = useState('')
+    useEffect( () => {
+        getConfigGameApi().then(response => {
+            console.log(response)
+            response.data.data.game.categorie.unshift('')
+            setListCategoryGame( response.data.data.game.categorie)
+        }).catch(error => {
+            console.log(error)
 
+            setListCategoryGame(['','RTS', 'FPS/TPS', 'MOBA', 'RPG', 'Course', 'Autres'])
+        })
+    },[])
     useEffect(() => {
         getGamesId(idGame).then(response => {
             console.log(response)
@@ -144,7 +156,6 @@ const GameUpdatePage = () => {
         { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, onChange: handleChange, error: errors.name },
         { htmlFor: "description", title: "Description *", type: "text-area", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
         { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text-area", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
-        { htmlFor: "categorie", title: "Catégorie *", type: "text", id: "categorie", name: "categorie", value: formData.categorie, onChange: handleChange, error: errors.categorie },
     ]
 
     return (
@@ -192,7 +203,10 @@ const GameUpdatePage = () => {
                             <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} />
                         } />
                     })}
-
+                     <InputLabel htmlFor="categorie" title="Categorie*" input={
+                        <InputPrimaryDropdown name={"categorie"} id={"categorie"}  onChange={handleChange} options={listCategoryGame} messageError={errors.categorie} value={formData.categorie}/>
+                
+                    } />
                     {globalError && <p>{globalError}</p>}
                 </div>
                 <BtnPrimary title={'Modifier le jeux'} type={'submit'} onClick={handleSubmit} />

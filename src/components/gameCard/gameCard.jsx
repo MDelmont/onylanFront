@@ -20,10 +20,6 @@ const GameCard = ({game,maxNote,isAdmin}) => {
 
         navigate(`/game/${game.id}`);
     }
-    
-    console.log(className)
-    console.log(e.target)
-    console.log("______________________________________")
   }
 
   const handleModifyGame =  (idGame) => {

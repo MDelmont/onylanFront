@@ -1,0 +1,15 @@
+.player-page{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .cont-players{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        gap: 10px;
+    }
+}

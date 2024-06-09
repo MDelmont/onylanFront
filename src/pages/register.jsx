@@ -51,7 +51,6 @@ const RegisterPage = () => {
 
       }
       if(resp.data.data.user){
-        console.log(resp.data.data.user)
         setFormData({...formData,...resp.data.data.user,token:idToken})
 
       }
@@ -126,7 +125,7 @@ const RegisterPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+    console.log(formData)
     const errorstemp = {
       email: '',
       name: '',
@@ -139,14 +138,14 @@ const RegisterPage = () => {
       token:'',
       };
     let haveError= false;
-    if (!constFormulaire.regexEmail.test( formData.password.email) && formData.password.email) {
+    if (!constFormulaire.regexEmail.test( formData.email) && formData.email) {
       haveError = true
       errorstemp['email'] = messageErrors.regexEmail
     
   }
 
   
-  if (!constFormulaire.passwordSize > formData.password.length
+  if (!constFormulaire.passwordSize > formData.password?.length
     || !constFormulaire.majRegex.test( formData.password)
     || !constFormulaire.minRegex.test( formData.password) 
     || !constFormulaire.digitRegex.test( formData.password)
@@ -178,7 +177,7 @@ const RegisterPage = () => {
       .catch((error) => {
         // Erreur de connexion
         const {message,data} = error.response.data
-        console.log(message,data)
+   
         if (message == "Invalid data for register"){
           console.log('is invalid data register')
           const errorsApi = data.errors
@@ -194,7 +193,7 @@ const RegisterPage = () => {
         } else {
           setGlobalError("Une erreur c'est produite")
         }
-        console.log(error.response.data.data.errors) 
+
 
       });
 
@@ -257,8 +256,6 @@ const RegisterPage = () => {
         } />
 
       {dataInput.map(({htmlFor,title,type,id,name,value,onChange,error,onBlur},index) => {
-        console.log("name",name)
-        console.log(['name','firstname'].includes(name))
         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
           <InputPrimary infoInput={name=="password" ? rulesMessage[name]:null} type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={['name','firstName'].includes(name)} />
         }/> 

@@ -4,7 +4,7 @@ import '../styles/homepage.scss'
 
 
 const HomePage = () => {
-    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 5, 8))
+    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 5, 23))
 
 
     return (
@@ -25,7 +25,7 @@ const HomePage = () => {
             </div>
 
             <div className="cont-timer">
-                <h2>Temps avant la fin des inscriptions</h2>
+                <h2>Temps avant la fin de proposition des jeux</h2>
                 <div className="timer">
 
                     <Timer numberDays={numberDays} numberHours={numberHours} numberMinutes={numberMinutes} numberSecondes={numberSecondes} />
