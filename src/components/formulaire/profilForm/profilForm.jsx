@@ -39,8 +39,11 @@ const ProfilForm = () => {
 
       if (resp.data.data) {
         const base64img = resp.data.data.file
-
-        const file = utilsFunction.dataURLtoFile(base64img,"temp.jpg")
+        let file = null;
+        if (base64img){
+           file = utilsFunction.dataURLtoFile(base64img,"temp.jpg")
+        }
+       
         setFormData({ ...formData, ...resp.data.data, file:file })
 
       }
