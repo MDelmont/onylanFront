@@ -12,6 +12,14 @@
                         map-get($ColorApp, 'secondeGradienColor'), 
                         map-get($ColorApp, 'thirdGradienColor')
                     );
+                    .stats-count,.stats-avg{
+                        background: linear-gradient(to right, 
+                        map-get($ColorApp, 'firtGradrienColor'), 
+                        map-get($ColorApp, 'secondeGradienColor'), 
+                        map-get($ColorApp, 'thirdGradienColor')
+                    );
+                    color: map-get($ColorApp, 'secondeFontColor');
+                    }
                     .cont-img{
                         background-color: map-get($ColorApp, 'backgroudColor');
                     }
@@ -30,6 +38,23 @@
     width: 300px;
     height: 300px;
     overflow: hidden; /* Important pour couper les coins arrondis du pseudo-élément */
+    .stats-count,.stats-avg{
+        position: absolute;
+        text-align: center;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        padding: 2px;
+        right: 0;
+        top: 15px;
+        height: 20px;
+        padding-right: 10px;
+        padding-left: 5px;
+        z-index: 3;
+       
+    }
+    .stats-count{
+        top: 45px;
+    }
     .cont-rating{
         position: absolute;
         display: flex;

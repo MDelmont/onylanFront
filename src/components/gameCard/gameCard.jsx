@@ -5,8 +5,6 @@ import "./gameCard.scss"
 import Rating from '../rating/rating';
 import { useNavigate } from "react-router-dom";
 import { updateGameNote } from "../../service/api/game/gameApi";
-import { useState } from "react";
-import BtnPrimary from "../basic/btnPrimary/btnPrimary";
 import BtnSecondary from "../basic/btnSecondary/btnSecondary";
 
 const GameCard = ({game,maxNote,isAdmin}) => {
@@ -33,6 +31,8 @@ const GameCard = ({game,maxNote,isAdmin}) => {
       <img className="img-card" src={game.pictureUrl ? game.pictureUrl:'/logo_onylan.png'}></img>
 
     </div>
+    { game.noteStat._avg.note && <div className="stats-avg">Moyenne : {parseFloat(game.noteStat._avg.note).toFixed(2)}</div>}
+    { game.noteStat._count.note && <div className="stats-count">Nombre : {parseInt(game.noteStat._count.note)}</div>}
     {!isAdmin  && <div className="cont-rating"><Rating actualNote={game.userGames[0] ? game.userGames[0].note:null} maxNote={maxNote} id={game.id} apiModifyNote={updateGameNote}/></div>}
     {isAdmin  && <div className="cont-modify"><BtnSecondary title={'Modifier'} onClick={(e) => {handleModifyGame(game.id)}} /></div>}
    

@@ -48,8 +48,8 @@ const GamePage = () => {
                     </div>
                     <div className="info">
                         <h2>Statistique</h2>
-                        {gameData?.noteStats?._avg?.note && <p>Moyenne de la note : {gameData?.noteStats?._avg?.note}</p>}
-                        {gameData?.noteStats?._count?.note && <p>Nombre de note : {gameData?.noteStats?._count?.note}</p>}
+                        {gameData?.noteStat?._avg?.note && <p>Moyenne de la note : {gameData?.noteStat?._avg?.note}</p>}
+                        {gameData?.noteStat?._count?.note && <p>Nombre de note : {gameData?.noteStat?._count?.note}</p>}
                     </div>
                     
                 </div>
