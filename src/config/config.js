@@ -26,7 +26,8 @@ export const messageErrorsReturnApi = {
     badEmailError:{target:'email',message:"Email invalide."},
     badPasswordError:{target:'password',message:"Password invalide."},
     errorGameAlreadyExists:{ target:'name',message:"Ce nom n'est pas disponible."},
-    errorCategorieGame:{target:'categorie',message:"Categorie invalide."}
+    errorCategorieGame:{target:'categorie',message:"Categorie invalide."},
+    errorPriceGame :{ target:'price',message:'Prix invalide'}
 };
 
 export const rulesMessage = {

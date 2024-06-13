@@ -15,6 +15,7 @@ const GameCreatePage = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
+        price:null,
         description: '',
         categorie: '',
         downloadDescription: '',
@@ -24,6 +25,7 @@ const GameCreatePage = () => {
 
     const [errors, setError] = useState({
         name: '',
+        price:'',
         description: '',
         categorie: '',
         downloadDescription: '',
@@ -43,6 +45,7 @@ const GameCreatePage = () => {
             setListCategoryGame(['','RTS', 'FPS/TPS', 'MOBA', 'RPG', 'Course', 'Autres'])
         })
     },[])
+
     const resetPhoto = () => {
         document.getElementById('file').value = '';
         setFormData({
@@ -53,9 +56,26 @@ const GameCreatePage = () => {
 
 
     const handleChange = (e) => {
+
         const { name, value, files } = e.target;
+
         console.log(name, value, files)
-        const newValue = name === "file" ? files[0] ? files[0] : formData.file : value;
+        console.log(value ==='')
+        let newValue = value;
+        if (name === "file"){
+            newValue =files[0] ? files[0] : formData.file ;
+
+        }
+        if (name ==="price"){
+    
+            if (value <0 ){
+                newValue = 0
+            }
+
+        }
+
+        
+   
         setGlobalError("");
         setError({
             ...errors,
@@ -66,13 +86,25 @@ const GameCreatePage = () => {
             [name]: newValue,
         });
     };
-
+    const handleBlur = (e) => {
+        e.preventDefault();
+        const { name, value, files } = e.target;
+        console.log(name, value, files )
+        if (value ===''){
+            setError({
+                ...errors,
+                [name]: messageErrorsReturnApi['errorPriceGame'].message
+            });
+        }
+       
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('submit')
         console.log('formData',formData)
         const errorstemp = {
             name: '',
+            price:'',
             description: '',
             categorie: '',
             downloadDescription: '',
@@ -81,11 +113,17 @@ const GameCreatePage = () => {
         let haveError = false;
 
         Object.keys(errors).map((key) => {
-            if (!['file'].includes(key) & !isNaN(formData[key])) {
+            if (!['file'].includes(key) & (formData[key] === '' ||  formData[key] == null ||  formData[key] == undefined)) {
+                
                 haveError = true
                 errorstemp[key] = "Champs obligatoire.";
             }
         })
+
+        if(formData.price ===""){
+            haveError=true
+            errorstemp['price'] = messageErrorsReturnApi['errorPriceGame'].message;
+        }
         if (haveError) {
             setError(errorstemp)
             return false
@@ -122,6 +160,7 @@ const GameCreatePage = () => {
 
     const dataInput = [
         { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, onChange: handleChange, error: errors.name },
+        { htmlFor: "price", title: "Prix *", type: "number", id: "price", name: "price", value: formData.price, onChange: handleChange, error: errors.price, onBlur:handleBlur },
         { htmlFor: "description", title: "Description *", type: "text-area", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
         { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text-area", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
     ]
@@ -166,9 +205,9 @@ const GameCreatePage = () => {
                         </div>
                     } />
 
-                    {dataInput.map(({ htmlFor, title, type, id, name, value, onChange, error }, index) => {
+                    {dataInput.map(({ htmlFor, title, type, id, name, value, onChange, error, onBlur }, index) => {
                         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
-                            <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} />
+                            <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur}/>
                         } />
                     })}
                     <InputLabel htmlFor="categorie" title="Categorie*" input={

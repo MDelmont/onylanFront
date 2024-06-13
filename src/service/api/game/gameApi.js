@@ -35,7 +35,7 @@ export const updateGame = async (formData,idGame) => {
 };
 
 export const allGames = async () => {
-    const response = await axios.get(`${BASE_URL}/game/`, {
+    const response = await axios.get(`${BASE_URL}/game`, {
         withCredentials: true,
     });
     return response

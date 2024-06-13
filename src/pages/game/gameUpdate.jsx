@@ -18,6 +18,7 @@ const GameUpdatePage = () => {
     const {idGame} = useParams()
     const [formData, setFormData] = useState({
         name: '',
+        price:'',
         description: '',
         categorie: '',
         downloadDescription: '',
@@ -27,6 +28,7 @@ const GameUpdatePage = () => {
 
     const [errors, setError] = useState({
         name: '',
+        price:null,
         description: '',
         categorie: '',
         downloadDescription: '',
@@ -56,7 +58,7 @@ const GameUpdatePage = () => {
                 file = utilsFunction.dataURLtoFile(base64img,"temp.jpg")
             }
         
-            setFormData({ ...formData, ...response.data.data, file:file })
+            setFormData({ ...formData, ...response.data.data, file:file, price:response.data.data.price.toString() })
  
         }).catch(error => {
             console.log(error)
@@ -72,7 +74,18 @@ const GameUpdatePage = () => {
         });
     }
 
-
+    const handleBlur = (e) => {
+        e.preventDefault();
+        const { name, value, files } = e.target;
+        console.log(name, value, files )
+        if (value ===''){
+            setError({
+                ...errors,
+                [name]: messageErrorsReturnApi['errorPriceGame'].message
+            });
+        }
+       
+    }
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         const newValue = name === "file" ? files[0] ? files[0] : formData.file : value;
@@ -97,11 +110,13 @@ const GameUpdatePage = () => {
             categorie: '',
             downloadDescription: '',
             file: '',
+            price:'',
         };
         let haveError = false;
 
         Object.keys(errors).map((key) => {
-            if (!['file'].includes(key) & !isNaN(formData[key])) {
+            if (!['file'].includes(key) & (formData[key] == '' ||  formData[key] == null ||  formData[key] == undefined)) {
+                
                 haveError = true
                 errorstemp[key] = "Champs obligatoire.";
             }
@@ -154,6 +169,7 @@ const GameUpdatePage = () => {
 
     const dataInput = [
         { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, onChange: handleChange, error: errors.name },
+        { htmlFor: "price", title: "Prix *", type: "number", id: "price", name: "price", value: formData.price, onChange: handleChange, error: errors.price, onBlur:handleBlur },
         { htmlFor: "description", title: "Description *", type: "text-area", id: "description", name: "description", value: formData.description, onChange: handleChange, error: errors.description },
         { htmlFor: "downloadDescription", title: "Description pour le téléchargement *", type: "text-area", id: "downloadDescription", name: "downloadDescription", value: formData.downloadDescription, onChange: handleChange, error: errors.downloadDescription },
     ]
@@ -198,9 +214,9 @@ const GameUpdatePage = () => {
                         </div>
                     } />
 
-                    {dataInput.map(({ htmlFor, title, type, id, name, value, onChange, error }, index) => {
+                    {dataInput.map(({ htmlFor, title, type, id, name, value, onChange, error ,onBlur}, index) => {
                         return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
-                            <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} />
+                            <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} />
                         } />
                     })}
                      <InputLabel htmlFor="categorie" title="Categorie*" input={

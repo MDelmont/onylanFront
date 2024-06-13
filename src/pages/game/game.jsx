@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
 import { IsAuth } from "../../components/auth/isAuth"
-import InputLabel from '../../components/formulaire/inputLabel/inputLabel';
-import BtnSecondary from '../../components/basic/btnSecondary/btnSecondary';
-import BtnPrimary from '../../components/basic/btnPrimary/btnPrimary';
-import InputPrimary from '../../components/basic/inputPrimary/inputPrimary';
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { messageErrorsReturnApi } from "../../config/config";
+import {  useParams } from "react-router-dom";
 import { getGamesId } from "../../service/api/game/gameApi";
 import "../../styles/game/game.scss"
 
 const GamePage = () => {
     IsAuth();
-    const navigate = useNavigate();
+
     const { idGame } = useParams();
     const [gameData, setGameData] = useState(null);
 
