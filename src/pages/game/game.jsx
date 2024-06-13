@@ -46,6 +46,11 @@ const GamePage = () => {
                         <h2>Téléchargement</h2>
                         <p>{gameData.downloadDescription}</p>
                     </div>
+                    <div className="info">
+                        <h2>Statistique</h2>
+                        {gameData?.noteStats?._avg?.note && <p>Moyenne de la note : {gameData?.noteStats?._avg?.note}</p>}
+                        {gameData?.noteStats?._count?.note && <p>Nombre de note : {gameData?.noteStats?._count?.note}</p>}
+                    </div>
                     
                 </div>
             </div>
