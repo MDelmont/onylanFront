@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { IsAuth } from "../../components/auth/isAuth"
-import {  useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { getGamesId } from "../../service/api/game/gameApi";
 import "../../styles/game/game.scss"
+import BtnPrimary from "../../components/basic/btnPrimary/btnPrimary";
 
 const GamePage = () => {
     IsAuth();
 
     const { idGame } = useParams();
     const [gameData, setGameData] = useState(null);
-
+    const navigate =  useNavigate()
     useEffect( () => {
         getGamesId(idGame).then( response => {
             console.log(response)
@@ -20,6 +21,10 @@ const GamePage = () => {
         })
 
     },[])
+   
+    const handleAddMode = (e) => {
+        navigate(`/game/create/${idGame}`);
+    }
     return (
         <div className="game-Page">
          
@@ -55,7 +60,7 @@ const GamePage = () => {
                 </div>
             </div>
             
-            {/* <div className="cont-mode">
+            <div className="cont-mode">
             <h2>Mode de jeux</h2>
                 <div className="cont-item-mode">
                 { gameData.modes && gameData.modes.maps(mode =>{
@@ -64,11 +69,13 @@ const GamePage = () => {
 
                 }
                 </div>
-            </div> */}
-            
+            </div>
+                <BtnPrimary title={'Ajouter un mode'} onClick={handleAddMode} />
             </>
-
-                }
+            
+            
+            
+            }
         
 
             

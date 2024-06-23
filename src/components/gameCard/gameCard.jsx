@@ -14,9 +14,15 @@ const GameCard = ({game,maxNote,isAdmin}) => {
   const handleClick = (e) =>{
     const {className} = e.target
     const classNameRedirect = ['game-card','cont-img','title-cont']
+    console.log(e.button)
+    
     if (classNameRedirect.includes(className)){
-
+      if(e.button == 1) {
+        window.open(`/game/${game.id}`,'_blank')
+      } else {
         navigate(`/game/${game.id}`);
+      }
+        
     }
   }
 
@@ -24,7 +30,7 @@ const GameCard = ({game,maxNote,isAdmin}) => {
     console.log(idGame)
     navigate(`/game/update/${game.id}`)
   }
-  return <div className="game-card" onClick={handleClick}>
+  return <div className="game-card" onMouseDown={handleClick}>
     
     <div className="cont-img">
 
