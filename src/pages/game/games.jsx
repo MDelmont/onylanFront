@@ -22,7 +22,7 @@ const GamesPage = () => {
     useEffect(() => {
         isAdminApi()
     .then(response => {
-        console.log(response.data.data)
+
       setIsAdmin(response.data.data)
     })
     .catch(error => {
@@ -33,7 +33,6 @@ const GamesPage = () => {
         allGames()
             .then(response => {
                 setGames(response.data.data)
-                console.log(response.data.data)
             })
             .catch(error => {
                 console.log(error)
@@ -48,7 +47,6 @@ const GamesPage = () => {
   const handleChangeSort = (e) => {
     let gamesToSort = [...games]
     const {value} = e.target
-    console.log(value)
     if ("Date d'ajout" == value) {
         gamesToSort.sort((a, b) => a.id - b.id);
     } else if ("Note" == value) {
@@ -60,7 +58,6 @@ const GamesPage = () => {
     } else if ("Catégorie" == value) {
         gamesToSort.sort((a, b) => a.categorie.localeCompare(b.categorie));
     }
-    console.log(gamesToSort)
     setGames(gamesToSort)
   }
     return (
