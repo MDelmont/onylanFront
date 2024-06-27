@@ -19,6 +19,12 @@
      
                     border:  1px solid  map-get($ColorApp, 'fisrtFontColor');
                     background-color: map-get($ColorApp, 'backgroudColor');
+                    .mode-card{
+             
+                        aspect-ratio: 1 / 1 ;
+                        border:  1px solid  map-get($ColorApp, 'fisrtFontColor');
+                   
+                    }
                 }
               
             }
@@ -66,16 +72,43 @@
     .cont-mode{
         display: flex;
         flex-direction: column;
+        align-items: center;
+        gap: 10px;
 
         width: 90%;
         h2{
             width: 100%;
             text-align: center;
         }
+        .btn-Primary{
+            width: 50%;
+            max-width: 200px;
+        }
         .cont-item-mode{
-            height: 150px;
-            width: 100%;
+            cursor: pointer;
+            max-width: 800px;
+            max-height: 400px;
+            overflow-y:scroll;
+            width: 90%;
             border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap:20px;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 10px;
+            
+            .mode-card{
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+     
+                aspect-ratio: 1 / 1 ;
+                border-radius: 10px;
+            }
   
         }
       

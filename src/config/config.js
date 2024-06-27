@@ -27,7 +27,8 @@ export const messageErrorsReturnApi = {
     badPasswordError:{target:'password',message:"Password invalide."},
     errorGameAlreadyExists:{ target:'name',message:"Ce nom n'est pas disponible."},
     errorCategorieGame:{target:'categorie',message:"Categorie invalide."},
-    errorPriceGame :{ target:'price',message:'Prix invalide'}
+    errorPriceGame :{ target:'price',message:'Prix invalide'},
+    errorModeAlreadyExists:{target:'name',message:'Nom indisponible'},
 };
 
 export const rulesMessage = {

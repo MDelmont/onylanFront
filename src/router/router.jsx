@@ -23,6 +23,7 @@ import '../styles/root.scss'
 import GameUpdatePage from "../pages/game/gameUpdate";
 import KeyPassPage from "../pages/keypass";
 import PlayerPage from "../pages/players";
+import ModeUpdatePage from "../pages/mode/modeUpdate";
 /**
  * creat template of page with nav and content
  * @returns Template of page
@@ -114,8 +115,12 @@ export const router = createBrowserRouter([
         element: <ModePage />,
       },
       {
-        path: "mode/create",
+        path: "mode/create/:idGame",
         element: <ModeCreatePage />,
+      },
+      {
+        path: "mode/update/:idMode",
+        element: <ModeUpdatePage />,
       },
       {
         path: "keypass",

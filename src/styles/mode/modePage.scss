@@ -1,0 +1,12 @@
+.mode-Page{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 30px;
+    .cont-info{
+        width: 90%;
+        max-width: 800px;
+    }
+}

@@ -4,6 +4,7 @@ import {  useNavigate, useParams } from "react-router-dom";
 import { getGamesId } from "../../service/api/game/gameApi";
 import "../../styles/game/game.scss"
 import BtnPrimary from "../../components/basic/btnPrimary/btnPrimary";
+import { getModesByGame } from "../../service/api/game/modeApi";
 
 const GamePage = () => {
     IsAuth();
@@ -19,12 +20,21 @@ const GamePage = () => {
 
             console.log(error)
         })
-
     },[])
    
     const handleAddMode = (e) => {
-        navigate(`/game/create/${idGame}`);
+        navigate(`/mode/create/${idGame}`);
     }
+    const handleClickMode = (e) => {
+        const modeId = e.currentTarget.getAttribute('data')
+        if(e.button == 1) {
+            window.open(`/mode/${modeId}`,'_blank')
+          } else {
+            navigate(`/mode/${modeId}`);
+          }
+
+    }
+    gameData &&console.log(Object.keys(gameData),gameData.modes)
     return (
         <div className="game-Page">
          
@@ -59,28 +69,23 @@ const GamePage = () => {
                     
                 </div>
             </div>
-            
             <div className="cont-mode">
+                
             <h2>Mode de jeux</h2>
-                <div className="cont-item-mode">
-                { gameData.modes && gameData.modes.maps(mode =>{
-                    return <p>{mode.name}</p>
+            <BtnPrimary title={'Ajouter un mode'} onClick={handleAddMode} />
+            {gameData && gameData.modes.length >0 && <div className="cont-item-mode">
+                { gameData && gameData.modes && gameData.modes.map(mode =>{
+                    return <div className='mode-card' key={mode.id} data={mode.id} onMouseDown={handleClickMode} >
+                                <p  >{mode.name}</p>
+                            </div>
                 })
-
                 }
                 </div>
+                 }
             </div>
-                <BtnPrimary title={'Ajouter un mode'} onClick={handleAddMode} />
+               
             </>
-            
-            
-            
             }
-        
-
-            
-            
-           
         </div>
     );
 }

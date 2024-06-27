@@ -5,14 +5,16 @@ import BtnPrimary from '../../components/basic/btnPrimary/btnPrimary';
 import InputPrimary from '../../components/basic/inputPrimary/inputPrimary';
 import { useNavigate, useParams } from "react-router-dom";
 import { messageErrorsReturnApi } from "../../config/config";
-import { createMode } from "../../service/api/game/modeApi";
+import { createMode, getModesById, updateMode } from "../../service/api/game/modeApi";
 import { getGamesId } from "../../service/api/game/gameApi";
 import '../../styles/mode/modeCreate.scss'
+import { IsAdmin } from "../../components/auth/isAdmin";
 
-const ModeCreatePage = () => {
+const ModeUpdatePage = () => {
     IsAuth();
+    IsAdmin();
     const navigate = useNavigate();
-    const {idGame} = useParams();
+    const {idMode} = useParams();
     const [gameData, setGameData] = useState(null);
     const [formData, setFormData] = useState({
         name: '',
@@ -29,8 +31,18 @@ const ModeCreatePage = () => {
     const [globalError, setGlobalError] = useState('');
 
     useEffect( () =>{
-        getGamesId(idGame).then( response => {
-            setGameData(response.data.data)
+       
+
+            getModesById(idMode)
+            .then(reponse => {
+                setFormData(reponse.data.data)
+                getGamesId(reponse.data.data.game.id).then( responseGame => {
+                    console.log(responseGame)
+                    setGameData(responseGame.data.data)
+                .catch(error => {
+                    console.log(error)
+                })
+            })
         }).catch(error => {
 
             console.log(error)
@@ -73,9 +85,8 @@ const ModeCreatePage = () => {
             setError(errorstemp)
             return false
         }
-        formData.idGame = idGame;
-        createMode(formData).then(() => {
-            navigate(`/game/${idGame}`);
+        updateMode(formData,idMode).then(() => {
+            navigate(`/mode/${idMode}`);
         }).catch((error) => {
                 // Erreur de connexion
                 const { message, data } = error.response.data
@@ -109,7 +120,7 @@ const ModeCreatePage = () => {
                 {gameData && gameData.name} 
                 
             </h1>
-            <h2>Création d'un mode de jeux </h2>
+            <h2>Mise à jours du mode de jeux </h2>
             <form className='create-mode-form' onSubmit={handleSubmit}>
                 <div className="cont-input">
 
@@ -121,10 +132,10 @@ const ModeCreatePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Créer un mode'} type={'submit'} onClick={handleSubmit} />
+                <BtnPrimary title={'Mettre à jours le mode'} type={'submit'} onClick={handleSubmit} />
             </form>
         </div>
     );
 }
 
-export default ModeCreatePage;
+export default ModeUpdatePage;
