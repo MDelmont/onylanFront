@@ -16,7 +16,7 @@ const HomePage = () => {
                 z:310,
             }
         },
-        axeHelper:true,
+        axeHelper:false,
         isRotate:true,
         urlFile: "trophe2024.glb",
         glbFile:null,
