@@ -1,6 +1,7 @@
 
 
 import GameCard from '../components/gameCard/gameCard';
+import Import3dModel from '../components/import3dModel';
 import '../styles/testPage.scss'
 
 
@@ -14,7 +15,7 @@ const TestPage = () => {
 
   return (
     <div className="test-Page">
-      <GameCard name={"DOFUS TOUCH"} imgSrc={'/dofus.webp'} note={5} actualNote={3} maxNote={5} />
+      <Import3dModel />
  
     </div>
   );

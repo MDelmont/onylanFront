@@ -3,7 +3,12 @@ import TrophieModel from "./trophieModel";
 import  utilsFunction  from '../utils/utilsFunction'
 const Import3dModel = () => {
   const initalValueData =  {
-    camera:{fov:75},
+    camera:{
+      fov:75,
+      position:{
+          z:6,
+      }
+  },
     axeHelper:true,
     isRotate:false,
     glbFile:null,
@@ -112,7 +117,7 @@ const Import3dModel = () => {
         {trophieModelData.glbFile && (
             <div>
             <p>Fichier sélectionné : {trophieModelData.glbFile.name}</p>
-            {trophieModelData.glbFile && <TrophieModel trophieModelData={trophieModelData} modifyPosition={false}/>}
+            {trophieModelData.glbFile && <TrophieModel trophieModelData={trophieModelData} modifyPosition={true}/>}
             <button onClick={resetGlbFile}>Supprimer le fichier</button>
             </div>
         )}

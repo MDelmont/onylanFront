@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./timer.scss";
 import NumberTimer from "./numberTimer/numberTimer";
+import useCustomTimer from "../../hook/useCustomTimer";
 
 
 
-function Timer( {numberDays, numberHours, numberMinutes, numberSecondes}) {
+function Timer( ) {
   
-
+    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 6, 20))
     function digitsToArray(number) {
         
         if(number || number ==0){

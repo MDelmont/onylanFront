@@ -1,38 +1,73 @@
+import { useMemo, useState } from "react";
 import Timer from "../components/timer/timer";
+import TrophieModel from "../components/trophieModel";
 import useCustomTimer from "../hook/useCustomTimer";
 import '../styles/homepage.scss'
+import ContTimer from "../components/timer/contTimer";
 
 
 const HomePage = () => {
-    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 5, 23))
+    
 
-
+    const trophieModelData = {
+        camera:{
+            fov:10,
+            position:{
+                z:310,
+            }
+        },
+        axeHelper:false,
+        isRotate:true,
+        urlFile: "trophe2024.glb",
+        glbFile:null,
+        color:"#ff843d",
+        rotation : {
+            axes : {
+              x:1.8,
+              y:0,
+              z:0.7,
+            },
+            piece :{
+              x:0,
+              y:0,
+              z:0,
+            },
+            speed:0.01,
+           
+          },
+        translation : {
+          x:-8.3,
+          y:7.8,
+          z:25,
+        },
+    }
     return (
         <div className="home-Page">
             <div className="content-grid">
-            <h1 className="cont-title">
-                <span className="title">Onylan Erebus</span><span className="date">(2024)</span>
-            </h1>
-            <iframe className="teaser" src="https://www.youtube.com/embed/H4Obf4nDKpk" frameBorder="0" allowFullScreen />
+                <h1 className="cont-title">
+                    <span className="title">Onylan Erebus</span><span className="date">(2024)</span>
+                </h1>
+                <iframe className="teaser" src="https://www.youtube.com/embed/H4Obf4nDKpk" frameBorder="0" allowFullScreen />
 
-            <div className="info-cont">
-                <p>
-                    Bienvenue sur le site officiel de la Onylan. <br /> Organisez-vous et préparez-vous pour des événements mémorables. <br />Inscrivez-vous dès maintenant pour la Onylan Erebus (Onylan 2024).
-                
-                   
-                </p>
-                <div className="orange-barre"></div>
-            </div>
+                <div className="info-cont">
+                    <p>
+                        Bienvenue sur le site officiel de la Onylan. <br /> Organisez-vous et préparez-vous pour des événements mémorables. <br />Inscrivez-vous dès maintenant pour la Onylan Erebus (Onylan 2024).
+                    
+                    
+                    </p>
+                    <div className="orange-barre"></div>
+                </div>
 
-            <div className="cont-timer">
-                <h2>Temps avant la fin de proposition des jeux</h2>
-                <div className="timer">
-
-                    <Timer numberDays={numberDays} numberHours={numberHours} numberMinutes={numberMinutes} numberSecondes={numberSecondes} />
+                <div className="cont-timer">
+                    <h2>Temps avant le début de la lan</h2>
+                    <ContTimer />
                 </div>
             </div>
-            </div>
             <div className="description">
+                <div className="trophe">
+                <h2>Trophé à gagner</h2>
+                <TrophieModel trophieModelData={trophieModelData}  modifyPosition={false} screenSize={{x:300,y:500}}/>
+                </div>
             <div className="start-text">
                         <h3>Prémices</h3>
                         <p>

@@ -1,9 +1,9 @@
-import  { useRef, useEffect,useState } from 'react';
+import  { React,useRef, useEffect,useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-function TrophieModel({trophieModelData,modifyPosition}) {
+const TrophieModel = ({trophieModelData,modifyPosition,screenSize}) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -14,52 +14,75 @@ function TrophieModel({trophieModelData,modifyPosition}) {
     const camera = new THREE.PerspectiveCamera(trophieModelData.camera.fov, 1, 1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor( 0x000000, 0 );
-    renderer.setSize(200, 200);
+    if (screenSize){
+      renderer.setSize(screenSize.x, screenSize.y);
+    } else {
+      renderer.setSize(200, 200);
+    }
+    
     containerRef.current.appendChild(renderer.domElement);
-    if (trophieModelData.glbFile){
-
-      const url = URL.createObjectURL(trophieModelData.glbFile);
-    // Charger le modèle GLTF
-    const loader = new GLTFLoader();
-    loader.load(
-      url,
-      (gltf) => {
-        model = gltf.scene;
-        model.scale.set(0.2, 0.2, 0.2);
-        model.position.set(0.5, 0.5, 0.5);
 
 
-        model.traverse((child) => {
-          if (child instanceof THREE.Mesh && child.material) {
-            child.material.color.set(trophieModelData.color); // Par exemple, rouge
-          }
-        });
+    let url;
+    
+    if(trophieModelData && trophieModelData.glbFile){
 
-        // Repèrez le centre actuel de la pièce
-        const currentPosition = new THREE.Vector3();
+      url=URL.createObjectURL(trophieModelData.glbFile);
 
-        model.getWorldPosition(currentPosition);
-        // Déterminez la nouvelle position souhaitée du centre des axes de la pièce
-        const desiredPosition = new THREE.Vector3(trophieModelData.translation.x, trophieModelData.translation.y, trophieModelData.translation.z); // Par exemple, (0, 0, 0) pour le centre de la scène
+    } else if ( trophieModelData && trophieModelData.urlFile) {
 
-        // Appliquez la différence à la position de la pièce pour la déplacer sans changer sa direction
-        model.position.add(desiredPosition);
-        model.rotation.set(trophieModelData.rotation.piece.x, trophieModelData.rotation.piece.y, trophieModelData.rotation.piece.z);
-            scene.add(model);
-          },
-      undefined,
-      (error) => {
-        console.error('Erreur lors du chargement du modèle GLTF', error);
-      }
-    );
+      url= trophieModelData.urlFile
+
+    } 
+    if (url){
+      // Charger le modèle GLTF
+      const loader = new GLTFLoader();
+      loader.load(
+        url,
+        (gltf) => {
+          model = gltf.scene;
+          model.scale.set(0.2, 0.2, 0.2);
+          model.position.set(0.5, 0.5, 0.5);
+
+
+          model.traverse((child) => {
+            if (child instanceof THREE.Mesh && child.material) {
+              child.material.color.set(trophieModelData.color); // Par exemple, rouge
+            }
+          });
+
+          // Repèrez le centre actuel de la pièce
+          const currentPosition = new THREE.Vector3();
+
+          model.getWorldPosition(currentPosition);
+          // Déterminez la nouvelle position souhaitée du centre des axes de la pièce
+          const desiredPosition = new THREE.Vector3(trophieModelData.translation.x, trophieModelData.translation.y, trophieModelData.translation.z); // Par exemple, (0, 0, 0) pour le centre de la scène
+
+          // Appliquez la différence à la position de la pièce pour la déplacer sans changer sa direction
+          model.position.add(desiredPosition);
+          model.rotation.set(trophieModelData.rotation.piece.x, trophieModelData.rotation.piece.y, trophieModelData.rotation.piece.z);
+              scene.add(model);
+            },
+        undefined,
+        (error) => {
+          console.error('Erreur lors du chargement du modèle GLTF', error);
+        }
+      );
     
     }
     
         // Ajouter une lumière directionnelle pour créer des ombres
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(20, 10, 0); // Position de la lumière
     directionalLight.castShadow = true; // Activer les ombres
     scene.add(directionalLight);
+
+    const directionalLightTwo = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLightTwo.position.set(-10, -5, 0); // Position de la lumière
+    directionalLightTwo.castShadow = true; // Activer les ombres
+    scene.add(directionalLightTwo);
+
+    
 
     // Configurer les ombres de la lumière directionnelle
     directionalLight.shadow.mapSize.width = 1024; // Largeur de la carte d'ombre
@@ -79,7 +102,7 @@ function TrophieModel({trophieModelData,modifyPosition}) {
 
 
     // Positionner et orienter la caméra
-    camera.position.z = 6;
+    camera.position.z = trophieModelData.camera.position.z;
     if (trophieModelData.axeHelper){
       // Ajouter les axes XYZ
       const axesHelper = new THREE.AxesHelper(5); // Définissez la longueur des axes selon vos besoins
@@ -120,6 +143,6 @@ function TrophieModel({trophieModelData,modifyPosition}) {
   }, [trophieModelData,modifyPosition]);
 
   return <div ref={containerRef} />;
-}
+};
 
 export default TrophieModel;
