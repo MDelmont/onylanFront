@@ -13,7 +13,7 @@ const HomePage = () => {
         camera:{
             fov:10,
             position:{
-                z:310,
+                z:315,
             }
         },
         axeHelper:false,
