@@ -16,7 +16,7 @@ const HomePage = () => {
                 z:310,
             }
         },
-        axeHelper:false,
+        axeHelper:true,
         isRotate:true,
         urlFile: "trophe2024.glb",
         glbFile:null,
@@ -32,12 +32,12 @@ const HomePage = () => {
               y:0,
               z:0,
             },
-            speed:0.01,
+            speed:0.005,
            
           },
         translation : {
-          x:-8.3,
-          y:7.8,
+          x:-7.5,
+          y:-7.5,
           z:25,
         },
     }
@@ -66,7 +66,7 @@ const HomePage = () => {
             <div className="description">
                 <div className="trophe">
                 <h2>Trophé à gagner</h2>
-                <TrophieModel trophieModelData={trophieModelData}  modifyPosition={false} screenSize={{x:300,y:500}}/>
+                <TrophieModel trophieModelData={trophieModelData}  modifyPosition={true} screenSize={{x:300,y:500}}/>
                 </div>
             <div className="start-text">
                         <h3>Prémices</h3>
