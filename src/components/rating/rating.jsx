@@ -4,6 +4,15 @@ import "./rating.scss"
 import StarRating from "./starRating/starRating";
 
 
+/**
+ * @function Rating
+ * @description component for rating
+ * @param {number} actualNote - actual note of the game
+ * @param {number} maxNote - max note for the game
+ * @param {function} apiModifyNote - function to update note of the game
+ * @param {string} id - id of the game
+ * @returns {ReactElement} - react element of rating
+ */
 const Rating = ({actualNote,maxNote, apiModifyNote,id}) => {
 
     const [note, setNote] = useState('0')

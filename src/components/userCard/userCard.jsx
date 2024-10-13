@@ -2,6 +2,12 @@
 import "./userCard.scss"
 
 
+/**
+ * @function UserCard
+ * @description component for user card
+ * @param {Object} user - user object to display
+ * @returns {ReactElement} - react element of user card
+ */
 const UserCard = ({user}) => {
   
   // const navigate = useNavigate()

@@ -8,6 +8,14 @@ import { updateUser, userAuth } from '../../../service/api/user/userApi';
 import { constFormulaire, messageErrors, messageErrorsReturnApi } from '../../../config/config';
 import utilsFunction from '../../../utils/utilsFunction';
 import BtnSecondary from '../../basic/btnSecondary/btnSecondary';
+
+/**
+ * @function ProfilForm
+ * @description Form to edit user profile
+ * @returns {JSX.Element}  {JSX.Element} A form to edit user profile
+ * @example
+ * <ProfilForm />
+ */
 const ProfilForm = () => {
 
   const [formData, setFormData] = useState({

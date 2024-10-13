@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "./modal.scss";
 
+
+
 /**
- * Permet de géré la création de modal personnalisé dans l'application
- * @param {*} param0 { btnName, children } btnName : Nom du bouton, children : enfant
- * @returns JSX
+ * Modal component
+ * @param {boolean} btnUse - if true, the button that triggers the modal will be rendered
+ * @param {ReactNode} children - the content of the modal
+ * @returns {ReactElement} a modal component
  */
 const Modal = ({ btnUse, children }) => {
+
   const [modal, setModal] = useState(false);
 
 

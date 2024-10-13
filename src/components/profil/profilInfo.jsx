@@ -5,6 +5,14 @@ import { introductionProfil } from "../../config/config";
 
 import "./profilInfo.scss"
 
+/**
+ * @function Profil
+ * @description Component to display user's profil information.
+ * @param {Number} userId The user's id.
+ * @returns {JSX.Element} A div containing the user's profile information.
+ * @example
+ * <Profil userId={1}/>
+ */
 function Profil( {userId}) {
   
     console.log("Profil INFO",userId)

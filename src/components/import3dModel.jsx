@@ -1,6 +1,26 @@
 import { useState } from "react";
 import TrophieModel from "./trophieModel";
 import  utilsFunction  from '../utils/utilsFunction'
+
+
+/**
+ * Import3dModel is a React component that allow user to import a 3d model glb file and to modify some properties of the model.
+ * It display a form with different input type (file, checkbox, number, color) to interact with the model.
+ * The component also display the 3d model with the current properties.
+ * 
+ * When the user click on the "Valider" button, the component will validate the data and send it to the server.
+ * When the user click on the "Reset" button, the component will reset the data to the inital state.
+ * When the user click on the "Supprimer le fichier" button, the component will remove the file and reset the data to the inital state.
+ * 
+ * The component receive no props.
+ * 
+ * The component use the TrophieModel component to display the 3d model.
+ * The component use the useState hook to store the data of the model.
+ * The component use the utilsFunction to modify the data of the model.
+ * The component use the useEffect hook to reset the data when the component is mounted.
+ * The component use the onChange event to update the data when the user interact with the form.
+ * The component use the onClick event to validate or reset the data.
+ */
 const Import3dModel = () => {
   const initalValueData =  {
     camera:{

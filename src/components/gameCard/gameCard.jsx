@@ -7,8 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { updateGameNote } from "../../service/api/game/gameApi";
 import BtnSecondary from "../basic/btnSecondary/btnSecondary";
 
+/**
+ * @function GameCard
+ * @description component for game card
+ * @param {Object} game - game object to display
+ * @param {number} maxNote - max note for rating
+ * @param {boolean} isAdmin - boolean to know if user is admin
+ * @returns {ReactElement} - react element of game card
+ */
 const GameCard = ({game,maxNote,isAdmin}) => {
-  
+
   const navigate = useNavigate()
   
   const handleClick = (e) =>{

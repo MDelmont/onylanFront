@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 
+/**
+ * Custom React hook to calculate the remaining time until a specified date.
+ *
+ * @param {Date} [date=Date().setDate(currentDate.getDate() + 5)] - The target date.
+ * @returns {Array<number>} An array containing the remaining days, hours, minutes, and seconds.
+ */
 const useCustomTimer = (
   date=Date().setDate(currentDate.getDate() + 5)
 ) => {

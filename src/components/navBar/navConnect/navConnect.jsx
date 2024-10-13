@@ -8,6 +8,19 @@ import { useNavigate } from 'react-router-dom';
 import {headerChoice} from '../../../config/navConfig'
 import { logoutUser} from '../../../store/userSlice'; 
 import {  getIsAuthUser} from '../../../store/userSlice';
+
+
+/**
+ * NavConnect component
+ * 
+ * This component displays a login button if the user is not connected, 
+ * otherwise it displays a logout button and a burger menu with links to 
+ * different pages of the application.
+ * 
+ * @param {function} setIsAdmin - A function to set the isAdmin state.
+ * @param {boolean} isAdmin - A boolean indicating if the user is an administrator.
+ * @returns {ReactElement} The NavConnect component.
+ */
 const NavConnect = ({setIsAdmin,isAdmin}) => {
     
   const userInfo = useSelector((state) => state.userSliceReducer); 

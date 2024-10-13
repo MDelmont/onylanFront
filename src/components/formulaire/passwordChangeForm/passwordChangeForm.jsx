@@ -7,6 +7,13 @@ import { useEffect, useState } from "react";
 import { userAuth } from '../../../service/api/user/userApi';
 import { constFormulaire, messageErrors, messageErrorsReturnApi, rulesMessage } from '../../../config/config';
 import { resetPassword } from '../../../service/api/auth/resetPasswordApi';
+
+/**
+ * Component Form to change password
+ * 
+ * @param {Object} props - Properties component
+ * @returns {ReactElement} - Component Form
+ */
 const PasswordChangeForm = ({}) => {
 
   const [formData, setFormData] = useState({
