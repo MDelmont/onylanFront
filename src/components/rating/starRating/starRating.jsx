@@ -1,6 +1,17 @@
 import React from 'react';
 import "./starRating.scss";
 
+/**
+ * A StarRating component that displays a star rating with a gradient effect.
+ * This component is used in the Rating component to display the rating of a game.
+ * @param {Object} props
+ * @param {Number} props.id - The id of the star rating.
+ * @param {Number} props.value - The value of the star rating.
+ * @param {String} props.htmlFor - The htmlFor attribute of the input element.
+ * @param {Boolean} props.isActive - Whether the star rating is active or not.
+ * @param {Function} props.onClick - The function to call when the star rating is clicked.
+ * @returns {JSX.Element} A JSX element representing the star rating.
+ */
 const StarRating = ({ id,value,htmlFor ,isActive, onClick}) => {
   return (
     <div className={`star ${isActive ? "active":""}`}>

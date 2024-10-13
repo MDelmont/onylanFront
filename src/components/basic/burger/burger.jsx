@@ -3,7 +3,18 @@ import { useState } from "react";
 import "./burger.scss"
 import BtnNavTwo from "../btnNavTwo/btnNavTwo";
 
+
+/**
+ * A responsive burger menu for the navigation bar.
+ * @param {object} props The component props.
+ * @param {array} props.listMenu The list of menu items to display.
+ * @param {function} props.handledisconnect A function to disconnect the user.
+ * @param {string} props.activePage The current active page.
+ * @param {boolean} props.isAdmin A boolean indicating if the user is an administrator.
+ * @returns {ReactElement} The burger menu component.
+ */
 const Burger = ({listMenu,handledisconnect,activePage,isAdmin}) => {
+  
   const [isActive, setIsActive] = useState(false)
   const handleClickActive = (e) => {
     setIsActive((isActive) => !isActive)

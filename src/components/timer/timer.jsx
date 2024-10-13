@@ -5,6 +5,12 @@ import useCustomTimer from "../../hook/useCustomTimer";
 
 
 
+/**
+ * Timer est un composant React qui affiche un compteur de temps
+ * qui compte le temps restant avant le 20 Juillet 2024.
+ * Il utilise le hook useCustomTimer pour calculer le temps restant
+ * et le composant NumberTimer pour l'afficher.
+ */
 function Timer( ) {
   
     const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 6, 20))

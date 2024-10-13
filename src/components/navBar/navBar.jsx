@@ -8,6 +8,17 @@ import { isAdminApi } from '../../service/api/user/userApi';
 import { updateActivePage} from '../../store/navStatusSlice'; 
 import {headerChoice} from '../../config/navConfig'
 import { getIsAuthUser } from '../../store/userSlice';
+
+
+
+/**
+ * NavBar component
+ * 
+ * This component displays the navigation bar of the application.
+ * It uses the NavLogo, NavMenu and NavConnect components.
+ * 
+ * @returns {ReactElement} The NavBar component.
+ */
 const NavBar = () => {
   
 

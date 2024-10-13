@@ -1,5 +1,19 @@
 import '../../styles/formulaire//verifForm.scss'
+
+/**
+ * A component that displays a form with conditions to check
+ * 
+ * @param {Object} conditions - an object containing the conditions to check
+ * @param {string} conditions.key - the key of the condition
+ * @param {Object} conditions.message - an object containing the messages to display
+ * @param {string} conditions.message.invalid - the message to display if the condition is invalid
+ * @param {string} conditions.message.valid - the message to display if the condition is valid
+ * @param {boolean} conditions.condition - the result of the condition
+ * 
+ * @returns {JSX} a JSX element
+ */
 const VerifForm = ({ conditions }) => {
+
   return (
       <div className="verif-form">
           <p>Vérification</p>
