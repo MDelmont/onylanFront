@@ -1,4 +1,5 @@
 import {IsAuth} from "../components/auth/isAuth"
+
 const  TeamPage = ()  => {
   IsAuth()
   return (

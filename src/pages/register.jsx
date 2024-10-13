@@ -10,6 +10,43 @@ import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
 import { invitationByToken } from "../service/api/user/initationApi";
 import { registerApi } from "../service/api/auth/registerApi";
 
+
+/**
+ * RegisterPage is a component that allows users to register on the website.
+ *
+ * The component takes care of the entire registration process, from the initial
+ * form submission to the final redirect to the login page.
+ *
+ * The component uses the following state variables:
+ *
+ * - formData: an object containing the user's input data
+ * - errors: an object containing any errors encountered during the registration
+ *          process
+ * - globalError: a string containing any global errors encountered during the
+ *                registration process
+ *
+ * The component uses the following functions:
+ *
+ * - handleChange: a function that updates the formData state variable when the
+ *                 user inputs data into the form
+ * - handleBlur: a function that checks for errors when the user leaves a form
+ *               field
+ * - handleSubmit: a function that handles the form submission
+ * - resetPhoto: a function that resets the file input field
+ *
+ * The component renders a form with the following fields:
+ *
+ * - email
+ * - name
+ * - first name
+ * - pseudo
+ * - password
+ * - confirm password
+ * - photo
+ * - budget
+ *
+ * The component also renders a button to submit the form.
+ */
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

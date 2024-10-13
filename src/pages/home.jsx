@@ -5,9 +5,11 @@ import useCustomTimer from "../hook/useCustomTimer";
 import '../styles/homepage.scss'
 import ContTimer from "../components/timer/contTimer";
 
-
+/**
+ * HomePage is the main page of the website. It contains a model of the trophy to win, a countdown timer to the start of the event, and some information about the event.
+ * @returns {JSX.Element} The main page of the website.
+ */
 const HomePage = () => {
-    
 
     const trophieModelData = {
         camera:{

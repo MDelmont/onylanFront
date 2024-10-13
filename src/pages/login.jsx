@@ -12,6 +12,11 @@ import {updateActivePage} from "../store/navStatusSlice"
 import {headerChoice} from "../config/navConfig"
 import BtnPrimary from '../components/basic/btnPrimary/btnPrimary';
 
+
+/**
+ * login page
+ * @returns {JSX.Element}
+ */
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -6,6 +6,11 @@ import {IsAuth} from "../components/auth/isAuth"
 import { allGames } from "../service/api/user/userApi";
 import UserCard from "../components/userCard/userCard";
 
+/**
+ * page for displaying the list of players
+ * 
+ * @returns {JSX.Element} Component for displaying the list of players
+ */
 const  PlayerPage = ()  => {
   IsAuth()
   const [users, setUsers] = useState([]);

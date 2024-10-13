@@ -6,7 +6,17 @@ import axios from 'axios';
 import { IsAdmin } from "../components/auth/isAdmin";
 import { useNavigate } from "react-router-dom";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
+
+
+/**
+ * Page for sending an invitation
+ * 
+ * @returns {ReactElement} form for sending an invitation
+ */
 const InvitePage = () => {
+
   IsAdmin()
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

@@ -7,6 +7,11 @@ import { constFormulaire, messageErrors, messageErrorsReturnApi } from "../confi
 import { postResetPasswordToken, getResetPassword } from "../service/api/auth/resetPasswordApi";
 import { useNavigate, useParams } from "react-router-dom";
 
+
+/**
+ * Page for reset password
+ * @returns {React.ReactElement} page for reset password
+ */
 const ResetPasswordPage = () => {
  
   const [formData, setFormData] = useState({
