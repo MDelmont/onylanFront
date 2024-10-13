@@ -3,6 +3,18 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+
+/**
+ * TrophieModel is a React component that loads a GLTF model into a Three.js scene.
+ * It receives the following properties:
+ * - `trophieModelData`: an object containing information about the GLTF model, such as its file, color, position, rotation, etc.
+ * - `modifyPosition`: a boolean indicating whether the component should add OrbitControls to the camera to allow the user to modify the camera position.
+ * - `screenSize`: an object containing the screen size, to adapt the scene size.
+ * 
+ * The component uses the Three.js and OrbitControls libraries to create the scene and camera. It loads the GLTF model, positions and orients the camera, adds lights and shadows, and animates the scene.
+ * 
+ * When the component is unmounted, it cleans up the scene by removing the created elements.
+ */
 const TrophieModel = ({trophieModelData,modifyPosition,screenSize}) => {
   const containerRef = useRef(null);
 
