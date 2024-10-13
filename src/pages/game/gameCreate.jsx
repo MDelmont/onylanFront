@@ -10,7 +10,16 @@ import { createGame,getConfigGameApi } from "../../service/api/game/gameApi";
 import "../../styles/game/gameCreate.scss"
 import InputPrimaryDropdown from "../../components/basic/inputPrimaryDropdown/inputPrimaryDropdown";
 
+// generate js doc in english
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Page de création d'un jeu.
+ *
+ * @returns {JSX.Element} La page de création d'un jeu.
+ */
+/******  b46f4f29-2e8d-4ff1-80a8-a0d766f21921  *******/
 const GameCreatePage = () => {
+    
     IsAuth();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({

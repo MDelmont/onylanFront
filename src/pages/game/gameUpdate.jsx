@@ -12,6 +12,11 @@ import "../../styles/game/gameCreate.scss"
 import utilsFunction from "../../utils/utilsFunction";
 import InputPrimaryDropdown from "../../components/basic/inputPrimaryDropdown/inputPrimaryDropdown";
 
+/**
+ * Game edit page
+ * 
+ * @returns Game edit page
+ */
 const GameUpdatePage = () => {
     IsAdmin();
     const navigate = useNavigate();

@@ -1,6 +1,13 @@
 import Checkbox from "../components/basic/checkBox";
 
 
+
+
+/**
+ * This component display a list of basic html components.
+ * It's useful to see how the different components are displayed.
+ * @returns {JSX.Element}
+ */
 const  ComponentPage = ()  => {
 
 

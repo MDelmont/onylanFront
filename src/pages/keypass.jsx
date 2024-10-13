@@ -8,7 +8,14 @@ import "../styles/game/gameCreate.scss"
 import { IsAuth } from "../components/auth/isAuth";
 import { askKeyPass } from "../service/api/keypass/keypassApi";
 
+
+/**
+ * Page for requesting an indice.
+ * @function
+ * @returns {Object} jsx component
+ */
 const KeyPassPage = () => {
+
     IsAuth();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({

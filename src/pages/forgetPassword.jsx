@@ -6,7 +6,14 @@ import InputPrimary from "../components/basic/inputPrimary/inputPrimary";
 import { constFormulaire, messageErrors } from "../config/config";
 import { forgetPassword } from "../service/api/auth/forgetPassword";
 
+
+
+/**
+ * Page for forget password
+ * @returns {React.ReactElement} page for forget password
+ */
 const ForgetPasswordPage = () => {
+
   const [formData, setFormData] = useState({
     email: "",
   });

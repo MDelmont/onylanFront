@@ -10,6 +10,11 @@ import { getGamesId } from "../../service/api/game/gameApi";
 import '../../styles/mode/modeCreate.scss'
 import { IsAdmin } from "../../components/auth/isAdmin";
 
+
+/**
+ * Page of update mode
+ * @returns {JSX.Element}
+ */
 const ModeUpdatePage = () => {
     IsAuth();
     IsAdmin();

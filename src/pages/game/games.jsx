@@ -12,6 +12,13 @@ import InputPrimary from "../../components/basic/inputPrimary/inputPrimary";
 import InputPrimaryDropdown from "../../components/basic/inputPrimaryDropdown/inputPrimaryDropdown";
 const BASE_URL = import.meta.env.VITE_FRONT_URL;
 
+/**
+ * Page that displays the list of games with game cards. There is a button to create a game,
+ * - a search field to filter games and a sort field to sort games.
+ * - If the user is an administrator, there are "View" and "Delete" buttons on each game card.
+ * 
+ * @returns {JSX.Element}
+ */
 const GamesPage = () => {
     IsAuth();
     const [games, setGames] = useState(null)

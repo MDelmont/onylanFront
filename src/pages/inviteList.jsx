@@ -5,7 +5,16 @@ import { useNavigate } from "react-router-dom";
 import {appConfig} from "../config/config"
 import { deleteInvitation,allInvitation } from "../service/api/user/initationApi";
 const BASE_URL = import.meta.env.VITE_FRONT_URL;
+
+  /**
+   * Page for managing invitations
+   * 
+   * this page is used to manage invitations
+   * 
+   * @returns {ReactElement} the component InviteListPage
+   */
 const InviteListPage = () => {
+
   IsAdmin()
   const [invitations, setInviations] = useState(null)
   const navigate = useNavigate();

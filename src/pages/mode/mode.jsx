@@ -12,6 +12,10 @@ import { deleteMode, getModesById } from "../../service/api/game/modeApi";
 import { isAdminApi } from "../../service/api/user/userApi";
 
 
+/**
+ * Page of a mode, display the mode information and the game of the mode
+ * @returns {JSX.Element}
+ */
 const ModePage = () => {
     IsAuth();
     const navigate = useNavigate();
@@ -38,11 +42,19 @@ const ModePage = () => {
     },[])
 
 
+    /**
+     * Navigate to the modify mode page of the current mode
+     */
     const handleModifyGame = () => {
 
         navigate(`/mode/update/${idMode}`)
 
     }
+    
+    /**
+     * Delete the current mode and navigate to the game page of the game of the mode
+     * @param {React.MouseEvent<HTMLButtonElement>} e - The event of the button click
+     */
     const handleDeleteGame = (e) => {
 
         deleteMode(idMode).then(response => {

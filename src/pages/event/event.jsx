@@ -6,6 +6,10 @@ import "../../styles/game/game.scss"
 import BtnPrimary from "../../components/basic/btnPrimary/btnPrimary";
 import { getModesByGame } from "../../service/api/game/modeApi";
 
+/**
+ * Page of a game, display the game information and the mode of the game
+ * @returns {JSX.Element}
+ */
 const EventPage = () => {
     IsAuth();
 
@@ -22,9 +26,20 @@ const EventPage = () => {
         })
     },[])
    
+
+    /**
+     * Navigate to the create mode page of the current game
+     * @param {React.MouseEvent<HTMLButtonElement>} e
+     */
     const handleAddMode = (e) => {
         navigate(`/mode/create/${idGame}`);
     }
+
+    /**
+     * Handle click on a mode button. If the button is right-clicked, open the mode page in a new tab.
+     * If the button is left-clicked, navigate to the mode page.
+     * @param {React.MouseEvent<HTMLButtonElement>} e - The event of the button click
+     */
     const handleClickMode = (e) => {
         const modeId = e.currentTarget.getAttribute('data')
         if(e.button == 1) {
@@ -34,7 +49,7 @@ const EventPage = () => {
           }
 
     }
-    gameData &&console.log(Object.keys(gameData),gameData.modes)
+
     return (
         <div className="game-Page">
          

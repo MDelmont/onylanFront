@@ -11,24 +11,21 @@ import PasswordChangeForm from "../components/formulaire/passwordChangeForm/pass
 import Modal from "../components/modal/modal";
 import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
 import { userAuth } from "../service/api/user/userApi";
-import { introductionProfil } from "../config/config";
 import Profil from "../components/profil/profilInfo";
+
+
+/**
+ * @function ProfilPage
+ * @description Page to manage user profile
+ * @returns {JSX.Element} A div containing the profile information and a modal to edit user profile
+ * @example
+ * <ProfilPage />
+ */
 const  ProfilPage = ()  => {
   IsAuth()
 
   const [activeForm , setActiveForm] = useState('profil-form')
   const [userIdAuth,setUserIdAuth] = useState(undefined)
-
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    firstName: '',
-    pseudo: '',
-    file: null,
-    budget:'',
-  });
-
-
   
   useEffect(() => {
 
