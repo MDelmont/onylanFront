@@ -49,7 +49,7 @@ const HomePage = () => {
                 <h1 className="cont-title">
                     <span className="title">Onylan Erebus</span><span className="date">(2024)</span>
                 </h1>
-                <iframe className="teaser" src="https://www.youtube.com/embed/H4Obf4nDKpk" frameBorder="0" allowFullScreen />
+                <iframe title="vidéo youtube de la Onylan" className="teaser" src="https://www.youtube-nocookie.com/embed/H4Obf4nDKpk" frameBorder="0" allowFullScreen />
 
                 <div className="info-cont">
                     <p>

@@ -41,6 +41,15 @@ function dataURLtoFile(dataurl, filename) {
     return new File([u8arr], filename, {type:mime});
 }
 
+async function getCookieValue(name){
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null; 
+}
 
-
-export default {modifyValueInObjectWhithPath,createErrorMessage,dataURLtoFile}
+export default {
+    modifyValueInObjectWhithPath,
+    createErrorMessage,
+    dataURLtoFile,
+    getCookieValue}

@@ -2,8 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {isAuthApi,userAuth} from '../service/api/user/userApi'
 import {login} from '../service/api/auth/loginApi'
 import {logout} from '../service/api/auth/logoutApi'
-import axios from 'axios';
-
+import  utilsFunction  from '../utils/utilsFunction'
 // Fonction asynchrone pour se connecter à l'API
 export const loginUser = createAsyncThunk(
   'user/loginUser',
@@ -35,8 +34,11 @@ export const getUserAuth = createAsyncThunk(
 export const getIsAuthUser = createAsyncThunk(
   'user/getIsAuthUser',
   async () => {
-    const response = await isAuthApi()
-    return response.data;
+    if (await utilsFunction.getCookieValue('token')) {
+      const response = await isAuthApi()
+      return response.data;
+    }
+    
   }
 );
 
