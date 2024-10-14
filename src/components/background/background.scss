@@ -33,7 +33,7 @@
     
         .img{
             position: absolute;
-            background-image: url("/logo_onylan.png");
+            background-image: url("/logo_onylan_minimize.png");
             background-size: cover;
             transform: translateX(-45%) translateY(-50%);
             height: 120vw;
@@ -55,11 +55,16 @@
             }
             
         }
+        
     }
    
 }
 
-
+@media (prefers-reduced-motion: reduce) {
+    .img {
+        animation: none;
+    }
+}
 @media (min-width: 768px) {
     .background{
     

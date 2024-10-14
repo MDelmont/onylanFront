@@ -9,12 +9,7 @@ import { createMode } from "../../service/api/game/modeApi";
 import { getGamesId } from "../../service/api/game/gameApi";
 import '../../styles/mode/modeCreate.scss'
 
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * page create mode
- * @return {JSX.Element}
- */
-/******  7995e520-e930-4b5a-9ed4-9836d17a74c2  *******/
+
 const ModeCreatePage = () => {
     IsAuth();
     const navigate = useNavigate();
