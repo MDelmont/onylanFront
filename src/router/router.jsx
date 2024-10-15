@@ -3,7 +3,7 @@ import HomePage from "../pages/home";
 import LoginPage from "../pages/login";
 import RegisterPage from "../pages/register";
 import TestPage from "../pages/test";
-import Footer from "../components/footer";
+import Footer from "../components/footer/footer";
 import ProfilPage from "../pages/profil";
 import DashbordPage from "../pages/dashboard";
 import EquipePage from "../pages/equipe";
@@ -24,6 +24,10 @@ import GameUpdatePage from "../pages/game/gameUpdate";
 import KeyPassPage from "../pages/keypass";
 import PlayerPage from "../pages/players";
 import ModeUpdatePage from "../pages/mode/modeUpdate";
+import LegalNoticesPage from "../pages/legalNotices";
+import CharterofRespectforPrivacyPage from "../pages/charterofRespectforPrivacy";
+import ConditionsOfUsePage from "../pages/conditionsOfUse";
+import CookieBanner from "../components/cookieBanner/cookieBanner";
 /**
  * creat template of page with nav and content
  * @returns Template of page
@@ -31,8 +35,8 @@ import ModeUpdatePage from "../pages/mode/modeUpdate";
 const Root = () => {
   return (
     <div id="root" className="dark">
-      
-      
+      <CookieBanner />
+      <Footer />
       <main >
         
         <Outlet />
@@ -138,6 +142,18 @@ export const router = createBrowserRouter([
         path: "test",
         element: <TestPage />,
       },
+      {
+        path: "legalNotices",
+        element: <LegalNoticesPage />,
+      },
+      {
+        path: "charterofRespectforPrivacy",
+        element: <CharterofRespectforPrivacyPage />,
+      },
+      {
+        path:"conditionsOfUse",
+        element: <ConditionsOfUsePage />
+      }
     ],
   },
   {
