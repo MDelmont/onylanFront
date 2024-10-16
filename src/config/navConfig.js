@@ -5,11 +5,13 @@ export const headerChoice = [
         name : 'Profil',
         path:'/profile',
         isAdmin : false,
+        forAdmin : false,
     },
     {
         name : 'Joueurs',
         path:'/players',
         isAdmin : false,
+        forAdmin : true,
         
     },
     // {
@@ -22,6 +24,7 @@ export const headerChoice = [
         name : 'Jeux',
         path:'/games',
         isAdmin : false,
+        forAdmin : true,
         
     },
     // {
@@ -38,6 +41,7 @@ export const headerChoice = [
         name : 'Indices',
         path :'/keypass',
         isAdmin : false,
+        forAdmin : true,
     },
     // {
     //     name : 'test',
@@ -48,5 +52,6 @@ export const headerChoice = [
         name : 'Invitations',
         path :'/invite/list',
         isAdmin : true,
+        forAdmin : true,
     },
 ]

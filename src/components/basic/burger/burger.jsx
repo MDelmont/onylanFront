@@ -31,7 +31,7 @@ const Burger = ({listMenu,handledisconnect,activePage,isAdmin}) => {
           <div className="menu">
             
             {listMenu.map((navItem,index) => {
-              if(navItem.isAdmin && isAdmin || !navItem.isAdmin){
+              if((navItem.isAdmin && isAdmin || !navItem.isAdmin) && (isAdmin  && navItem.forAdmin !== false)){
                 return <div key={index} className={`nav-item ${activePage ==navItem.name ? 'active' : ''}` } ><BtnNavTwo path={navItem.path} title={navItem.name} />  <div className="barre" /> </div>
               }
 

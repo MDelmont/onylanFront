@@ -37,7 +37,12 @@ const NavConnect = ({setIsAdmin,isAdmin}) => {
     dispatch(logoutUser())
     .unwrap()
     .then((response) => {
-      navigate(`/home`)
+      if(isAdmin){
+        navigate(`/games`)
+      } else {
+        navigate(`/home`)
+      }
+      
       
     })
     .catch((error) => {
