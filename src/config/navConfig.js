@@ -11,7 +11,7 @@ export const headerChoice = [
         name : 'Joueurs',
         path:'/players',
         isAdmin : false,
-        forAdmin : true,
+        forAdmin : false,
         
     },
     // {
@@ -24,7 +24,7 @@ export const headerChoice = [
         name : 'Jeux',
         path:'/games',
         isAdmin : false,
-        forAdmin : true,
+        forAdmin : false,
         
     },
     // {
@@ -32,26 +32,26 @@ export const headerChoice = [
     //     path :'/teams',
     //     isAdmin : false,
     // },
-    // {
-    //     name : 'Tableau de bord',
-    //     path :'/dashboard',
-    //     isAdmin : false,
-    // },
+    {
+        name : 'Tableau de bord',
+        path :'/dashboard',
+        isAdmin : false,
+    },
     {
         name : 'Indices',
         path :'/keypass',
         isAdmin : false,
-        forAdmin : true,
+        forAdmin : false,
     },
     // {
     //     name : 'test',
     //     path :'/test',
     //     isAdmin : false,
     // },
-    {
-        name : 'Invitations',
-        path :'/invite/list',
-        isAdmin : true,
-        forAdmin : true,
-    },
+    // {
+    //     name : 'Invitations',
+    //     path :'/invite/list',
+    //     isAdmin : true,
+    //     forAdmin : true,
+    // },
 ]

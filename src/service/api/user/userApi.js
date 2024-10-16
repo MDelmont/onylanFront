@@ -45,7 +45,7 @@ export const updateUser = async (formData) => {
 
 };
 
-export const allGames = async () => {
+export const allUsers = async () => {
     const response = await axios.get(`${BASE_URL}/user/`, {
         withCredentials: true,
     });

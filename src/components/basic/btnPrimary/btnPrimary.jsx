@@ -10,9 +10,9 @@ import "./btnPrimary.scss"
  * @param {string} type - The type of button (e.g. "submit", "button", etc.)
  * @returns A button element with the given properties
  */
-const BtnPrimary = ({title,onClick,disabled,type}) => {
+const BtnPrimary = ({title,onClick,disabled,type, id}) => {
   return (
-    <button type={type} className={`btn-Primary`} onClick={onClick} disabled={disabled}>{title}</button>
+    <button id={id}type={type} className={`btn-Primary`} onClick={onClick} disabled={disabled}>{title}</button>
   );
 };
 export default BtnPrimary;

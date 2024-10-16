@@ -134,7 +134,7 @@ const GameUpdatePage = () => {
 
         updateGame(formData,idGame).then((response) => {
             console.log(response)
-            navigate("/games")
+            navigate("/dashboard")
         })
             .catch((error) => {
                 // Erreur de connexion
@@ -165,7 +165,7 @@ const GameUpdatePage = () => {
         e.preventDefault()
         deleteGame(idGame).then(response => {
             console.log(response)
-            navigate("/games")
+            navigate("/dashboard")
         }).catch(error => {
             console.log(error)
    

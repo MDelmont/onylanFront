@@ -1,0 +1,69 @@
+@import "./font/lato.scss";
+
+
+@import "./themesTwo/themes.scss";
+
+@each $theme in $allThemes {
+    $themeName: map-get($theme, 'themeName'); 
+    $ColorApp: map-get($theme, 'ColorApp');  
+
+    #root {
+      &.#{$themeName} {
+            color:map-get($ColorApp, 'fisrtFontColor');
+            .admin-table {
+                th, td {
+
+                  border: 1px solid map-get($ColorApp, 'fisrtFontColor'); // Add borders between cells
+                }
+              
+      
+              }
+        }
+  }
+}
+
+
+
+.dashboard-page{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    font-size: 15px;
+    gap: 30px;
+    text-align: center;
+   .title{
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+   }
+   .dash-part-cont{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+   }
+   .admin-table {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    border-collapse: collapse; // Merge borders between cells
+    font-size: 1.2em; // Increase text size slightly
+    .action-td{
+        display: flex;
+        gap:3px;
+ 
+    }
+    th, td {
+      padding: 12px 20px; // Add spacing inside cells
+    }
+  
+
+  }
+
+
+}

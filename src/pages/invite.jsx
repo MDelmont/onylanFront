@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../styles/invitepage.scss";
-import {  messageErrors } from "../config/config"; 
-import VerifForm from "../components/formulaire/verifForm";
+import {  messageErrors,constFormulaire } from "../config/config"; 
 import axios from 'axios';
 import { IsAdmin } from "../components/auth/isAdmin";
 import { useNavigate } from "react-router-dom";
+import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
+import InputPrimary from "../components/basic/inputPrimary/inputPrimary";
+import InputLabel from "../components/formulaire/inputLabel/inputLabel";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
@@ -20,16 +22,19 @@ const InvitePage = () => {
   IsAdmin()
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    firstName: '',
+    name: null,
+    firstName: null,
   });
 
-  const requireField = ['name','firstName']
-  const conditions =  [
-   
-    { key: 'allFieldFilled', message: messageErrors.allFieldFilled, condition:  !requireField.every(field => {const value = formData[field]; return value !== null && value !== undefined && value.trim() !== ''})},
+  const [errors, setError] = useState({
+    name: '',
+    firstName: ''
+    }
+  )
 
-];
+  const requireField = ['name','firstName']
+
+
   const handleChange = (e) => {
     const { name, value, files } = e.currentTarget;
     console.log(formData)
@@ -40,25 +45,55 @@ const InvitePage = () => {
       [name]: newValue,
     });
   };
+  const handleBlur = (e) => {
+    const { name, value, files } = e.target;
+
+    if(requireField.includes(name) & !isNaN(formData[name])){
+      setError({
+        ...errors,
+        [name]: "Champs obligatoire.",
+      });
+    } else {
+      setError({
+        ...errors,
+        [name]: '',
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let haveError = false;
+    let errorstemp = {...errors}
+    Object.keys(errors).map((key,index) => {
+      if(!isNaN(formData[key])){
+        haveError = true
+        errorstemp[key] = "Champs obligatoire.";
+      }
+    })
+    if (haveError){
+    
+      setError(errorstemp)
+    } else {
+        axios.post(`${BASE_URL}/user/invit`,formData,{withCredentials:true})
+      .then(response => {
 
-    axios.post(`${BASE_URL}/user/invit`,formData,{withCredentials:true})
-    .then(response => {
-
-      navigate('/invite/list')
+        navigate('/dashboard')
+      
     })
     .catch(error => {
       // Gestion des erreurs
       console.error('Une erreur s\'est produite:', error);
     });
+  }
+    
 
   };
 
   const dataInput = [
 
-    {htmlFor:"name",title:"Nom *",type:"text",id:"name",name:"name",value:formData.name, onChange:handleChange},
-    {htmlFor:"firstName",title:"Prénom *",type:"text",id:"firstName",name:"firstName",value:formData.firstName, onChange:handleChange},
+    {htmlFor:"name",title:"Nom *",type:"text",id:"name",name:"name",value:formData.name, onChange:handleChange,error : errors.name,onBlur:handleBlur},
+    {htmlFor:"firstName",title:"Prénom *",type:"text",id:"firstName",name:"firstName",value:formData.firstName, onChange:handleChange,error : errors.firstName,onBlur:handleBlur},
   ]
 
 
@@ -69,30 +104,28 @@ const InvitePage = () => {
        <form onSubmit={handleSubmit}>
 
       <div className="cont-input">
+      {dataInput && dataInput.map((input, index) => (
+        <InputLabel
+          key={input.id}
+          htmlFor={input.htmlFor}
+          title={input.title}
+          input={
+            <InputPrimary
+              type={input.type}
+              id={input.id}
+              onChange={input.onChange}
+              onBlur={input.onBlur}
+              value={input.value}
+              name={input.name}
+              messageError={input.error}
+            />
+          }
+        />
+      ))}
+      </div>
 
-       {
-          dataInput.map(({htmlFor,title,type,id,name,value,onChange,placeholder},index) => {
-            return  <label key={index} htmlFor={htmlFor}>
-                <span>{title}</span>
-                <input
-                  type={type}
-                  id={id}
-                  name={name}
-                  value={value}
-                  onChange={onChange}
-                  placeholder={id =="budget" ? placeholder:title}
-                />
-        
-          </label>
-          })
-        }
-   
-    
-       </div>
-
-        
-       
-        <button type="submit" className="btn-submit" disabled={!conditions.every(item => !item.condition)}>Invitation</button>
+       <BtnPrimary title="Envoyer" disabled={  Object.values(errors).some(error => error !== '')} onClick={handleSubmit} type="submit" />
+  
       </form>
 
     

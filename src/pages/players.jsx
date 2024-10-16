@@ -3,7 +3,7 @@ import {  useEffect, useState } from "react";
 
 import '../styles/playerPage.scss'
 import {IsAuth} from "../components/auth/isAuth"
-import { allGames } from "../service/api/user/userApi";
+import { allUsers } from "../service/api/user/userApi";
 import UserCard from "../components/userCard/userCard";
 
 /**
@@ -17,7 +17,7 @@ const  PlayerPage = ()  => {
 
   useEffect(() => {
     
-    allGames().then( resp => {
+    allUsers().then( resp => {
 
 
         setUsers(resp.data.data)

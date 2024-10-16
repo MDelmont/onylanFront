@@ -70,6 +70,7 @@ const LoginPage = () => {
        
       });
     }catch (errors) {
+      console.log(errors)
     }
   
   };
