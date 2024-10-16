@@ -34,11 +34,8 @@ export const getUserAuth = createAsyncThunk(
 export const getIsAuthUser = createAsyncThunk(
   'user/getIsAuthUser',
   async () => {
-    if (await utilsFunction.getCookieValue('token')) {
       const response = await isAuthApi()
-      return response.data;
-    }
-    
+      return response.data; 
   }
 );
 
