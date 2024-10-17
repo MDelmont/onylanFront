@@ -4,10 +4,11 @@ import InputPrimary from "../../basic/inputPrimary/inputPrimary";
 import BtnPrimary from "../../basic/btnPrimary/btnPrimary";
 import Checkbox from "../../basic/checkBox/checkBox";
 import { useEffect, useState } from "react";
-import { updateUser, userAuth, getUserById } from '../../../service/api/user/userApi';
+import { updateUserById, userAuth, getUserById } from '../../../service/api/user/userApi';
 import { constFormulaire, messageErrors, messageErrorsReturnApi } from '../../../config/config';
 import utilsFunction from '../../../utils/utilsFunction';
 import BtnSecondary from '../../basic/btnSecondary/btnSecondary';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * @function ProfilForm
@@ -16,7 +17,7 @@ import BtnSecondary from '../../basic/btnSecondary/btnSecondary';
  * @example
  * <ProfilForm />
  */
-const ProfilForm = ({userIdid}) => {
+const ProfilForm = ({userId,isAdmin}) => {
 
   const [formData, setFormData] = useState({
     email: '',
@@ -39,11 +40,11 @@ const ProfilForm = ({userIdid}) => {
   const [globalMessage, setGlobalMessage] = useState('')
 
 
-
+  const navigate = useNavigate()
 
   useEffect(() => {
 
-    getUserById().then(resp => {
+    getUserById(userId).then(resp => {
 
       if (resp.data.data) {
         const base64img = resp.data.data.file
@@ -130,8 +131,11 @@ const ProfilForm = ({userIdid}) => {
       return false
     }
 
-    updateUser(formData).then(response => {
+    updateUserById(formData,userId).then(response => {
       console.log(response.data)
+      if (isAdmin) {
+        navigate('/dashboard')
+      }
       setGlobalMessage('Modification prise en compte')
     }).catch(error => {
       console.log(error)
@@ -159,11 +163,12 @@ const ProfilForm = ({userIdid}) => {
 
 
   }
+  let disabled =  isAdmin ? false : true
   const dataInput = [
 
     { htmlFor: "email", title: "Email *", type: "email", id: "email", name: "email", value: formData.email, onChange: handleChange, error: errors.email, onBlur: handleBlur },
-    { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, disabled: true, onChange: handleChange, error: errors.name, onBlur: handleBlur },
-    { htmlFor: "firstName", title: "Prénom *", type: "text", id: "firstName", name: "firstName", disabled: true, value: formData.firstName, onChange: handleChange, error: errors.firstName, onBlur: handleBlur },
+    { htmlFor: "name", title: "Nom *", type: "text", id: "name", name: "name", value: formData.name, disabled:disabled, onChange: handleChange, error: errors.name, onBlur: handleBlur },
+    { htmlFor: "firstName", title: "Prénom *", type: "text", id: "firstName", name: "firstName", disabled:disabled, value: formData.firstName, onChange: handleChange, error: errors.firstName, onBlur: handleBlur },
     { htmlFor: "pseudo", title: "Pseudo *", type: "text", id: "pseudo", name: "pseudo", value: formData.pseudo, onChange: handleChange, error: errors.pseudo, onBlur: handleBlur },
 
 
@@ -223,10 +228,10 @@ const ProfilForm = ({userIdid}) => {
         <div className="from-info">
 
 
-          {dataInput.map(({ htmlFor, title, type, id, name, value, onChange, error, onBlur }, index) => {
+          {dataInput.map(({ htmlFor, title, type, id, name, value, onChange, error, onBlur,disabled}, index) => {
 
             return <InputLabel htmlFor={htmlFor} key={index} title={title} input={
-              <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={['name', 'firstName'].includes(name)} />
+              <InputPrimary type={type} id={id} onChange={onChange} value={value} name={name} messageError={error} onBlur={onBlur} disabled={disabled} />
             } />
           })}
           <div className="budget-form" >

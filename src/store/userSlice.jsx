@@ -39,10 +39,6 @@ export const getIsAuthUser = createAsyncThunk(
   }
 );
 
-
-
-
-
 const initialState = {
   loading: false,
   error: null,

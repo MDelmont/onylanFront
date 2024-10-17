@@ -57,7 +57,6 @@ export const updateGameNote = async (id,note) => {
 }
 
 export const deleteGame = async (id) => {
-    console.log(id)
     const response = await axios.delete(`${BASE_URL}/game/${id}`,{
         withCredentials: true,
     });

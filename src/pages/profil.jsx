@@ -54,7 +54,7 @@ const  ProfilPage = ()  => {
           {activeForm=="profil-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('password-form')}}>Changer de mot de passe</span>}
           {activeForm=="password-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('profil-form')}}>Information de base</span>}
             
-          {activeForm=="profil-form" && <ProfilForm id={userIdAuth} />}
+          {activeForm=="profil-form" && <ProfilForm userId={userIdAuth} />}
           {activeForm=="password-form" && <PasswordChangeForm  />}
         </div>
       </Modal>

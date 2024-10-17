@@ -51,3 +51,10 @@ export const allUsers = async () => {
     });
     return response
 }
+
+export const deleteUserById = async (id) => {
+    const response = await axios.delete(`${BASE_URL}/user/${id}`,{
+        withCredentials: true,
+    });
+    return response
+}

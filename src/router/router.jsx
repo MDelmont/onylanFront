@@ -22,12 +22,13 @@ import Background from "../components/background/background";
 import '../styles/root.scss'
 import GameUpdatePage from "../pages/game/gameUpdate";
 import KeyPassPage from "../pages/keypass";
-import PlayerPage from "../pages/players";
+import PlayerPage from "../pages/players/players";
 import ModeUpdatePage from "../pages/mode/modeUpdate";
 import LegalNoticesPage from "../pages/legalNotices";
 import CharterofRespectforPrivacyPage from "../pages/charterofRespectforPrivacy";
 import ConditionsOfUsePage from "../pages/conditionsOfUse";
 import CookieBanner from "../components/cookieBanner/cookieBanner";
+import UpdatePlayerPage from "../pages/players/updateplayer";
 /**
  * creat template of page with nav and content
  * @returns Template of page
@@ -153,6 +154,10 @@ export const router = createBrowserRouter([
       {
         path:"conditionsOfUse",
         element: <ConditionsOfUsePage />
+      },
+      {
+        path: "player/update/:userId",
+        element: <UpdatePlayerPage />,
       }
     ],
   },

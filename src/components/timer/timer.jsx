@@ -13,7 +13,7 @@ import useCustomTimer from "../../hook/useCustomTimer";
  */
 function Timer( ) {
   
-    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 6, 20))
+    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 11, 20))
     function digitsToArray(number) {
         
         if(number || number ==0){

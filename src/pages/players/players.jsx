@@ -1,10 +1,10 @@
 
 import {  useEffect, useState } from "react";
 
-import '../styles/playerPage.scss'
-import {IsAuth} from "../components/auth/isAuth"
-import { allUsers } from "../service/api/user/userApi";
-import UserCard from "../components/userCard/userCard";
+import '../../styles/playerPage.scss'
+import {IsAuth} from "../../components/auth/isAuth"
+import { allUsers } from "../../service/api/user/userApi";
+import UserCard from "../../components/userCard/userCard";
 
 /**
  * page for displaying the list of players

@@ -13,7 +13,7 @@ import Timer from "./timer";
  */
 function ContTimer( ) {
   
-    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer(new Date(2024, 12, 20))
+    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer()
     
   return <div className="timer">
     

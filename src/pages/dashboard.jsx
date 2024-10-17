@@ -3,7 +3,7 @@ import '../styles/dashboardPage.scss';
 import {IsAdmin} from "../components/auth/isAdmin"
 import { deleteInvitation,allInvitation } from "../service/api/user/initationApi";
 import { allGames, deleteGame } from "../service/api/game/gameApi";
-import { allUsers } from "../service/api/user/userApi";
+import { allUsers,deleteUserById } from "../service/api/user/userApi";
 import BtnPrimary from "../components/basic/btnPrimary/btnPrimary";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/modal/modal";
@@ -86,11 +86,32 @@ const  DashbordPage = ()  => {
     navigate(`/game/update/${id}`)
   }
 
+  const handleUpdateUser = (e) => {
+    const id = e.currentTarget.id
+    navigate(`/player/update/${id}`)
+  }
+
+  const handleDeleteUser = (e) => {
+    const id = e.currentTarget.id
+    deleteUserById(id).then(response => {
+      allUsers().then( resp => {
+        console.log(resp.data.data)
+        setUsers(resp.data.data)
+      
+        }).catch(error =>{
+          console.log(error)
+        })
+
+    }).catch(error => {
+        console.log(error)
+
+    })
+}
 
   const handleDeleteGame = (e) => {
     const id = e.currentTarget.id
     deleteGame(id).then(response => {
-      allGames()
+      allUsers()
       .then(response => {
           setGames(response.data.data)
       })
@@ -152,13 +173,14 @@ const  DashbordPage = ()  => {
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Surnom</th>
-                <th>email</th>
+                <th>Email</th>
                 <th>Budget</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {users && users.map((user) => (
+      
                 <tr key={user.id}>
                   <td>{user.firstName}</td>
                   <td>{user.name}</td>
@@ -167,14 +189,14 @@ const  DashbordPage = ()  => {
                   <td>{user.budget}</td>
                   <td className="action-td">
                     <div className="icon-btn-cont">
-                  <svg className="icon-btn" onClick={handleUpdateGame}  id={user.id}  viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8536 1.14645C11.6583 0.951184 11.3417 0.951184 11.1465 1.14645L3.71455 8.57836C3.62459 8.66832 3.55263 8.77461 3.50251 8.89155L2.04044 12.303C1.9599 12.491 2.00189 12.709 2.14646 12.8536C2.29103 12.9981 2.50905 13.0401 2.69697 12.9596L6.10847 11.4975C6.2254 11.4474 6.3317 11.3754 6.42166 11.2855L13.8536 3.85355C14.0488 3.65829 14.0488 3.34171 13.8536 3.14645L11.8536 1.14645ZM4.42166 9.28547L11.5 2.20711L12.7929 3.5L5.71455 10.5784L4.21924 11.2192L3.78081 10.7808L4.42166 9.28547Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                  <svg className="icon-btn" onClick={handleUpdateUser}  id={user.id}  viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8536 1.14645C11.6583 0.951184 11.3417 0.951184 11.1465 1.14645L3.71455 8.57836C3.62459 8.66832 3.55263 8.77461 3.50251 8.89155L2.04044 12.303C1.9599 12.491 2.00189 12.709 2.14646 12.8536C2.29103 12.9981 2.50905 13.0401 2.69697 12.9596L6.10847 11.4975C6.2254 11.4474 6.3317 11.3754 6.42166 11.2855L13.8536 3.85355C14.0488 3.65829 14.0488 3.34171 13.8536 3.14645L11.8536 1.14645ZM4.42166 9.28547L11.5 2.20711L12.7929 3.5L5.71455 10.5784L4.21924 11.2192L3.78081 10.7808L4.42166 9.28547Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                   {/* <BtnPrimary onClick={handleUpdateGame} id={user.id} title="Modifier l'utilisateur"/> */}
                     <Modal btnUse={
                       <svg className="icon-btn"  viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                     }>
                       <div className="modal-cent-confirmation">
                         <h2>Etes vous sur de vouloir supprimer l'utilisateur {user.firstName} {user.name} ? </h2>
-                        <BtnPrimary onClick={handleDeleteGame} id={user.id} title="Confirmer la suppression"/>
+                        <BtnPrimary onClick={handleDeleteUser} id={user.id} title="Confirmer la suppression"/>
                       </div>
                     </Modal>
                     </div>
