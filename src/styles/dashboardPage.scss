@@ -55,11 +55,35 @@
     font-size: 1.2em; // Increase text size slightly
     .action-td{
         display: flex;
+        justify-content: center;
+        vertical-align: center;
         gap:3px;
+        .label{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .icon-btn-cont{
+          display: flex;
+          align-items: center;  /* Centrer verticalement */
+          justify-content: center;  /* Centrer horizontalement */
+          
+        }
+        .icon-btn{
+          position: relative;
+          cursor: pointer;
+          width: 2em;  /* Vous pouvez ajuster la taille ici */
+        height: 1em;
+      }
+        
  
     }
     th, td {
+      min-height: 50px;
       padding: 12px 20px; // Add spacing inside cells
+      vertical-align: middle;
+  text-align: center;
     }
   
 
