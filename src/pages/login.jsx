@@ -49,14 +49,15 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     console.log('handleSubmit')
     e.preventDefault();
-    const pathRedirect = '/profile'
+    let pathRedirect = '/profile'
     try{  
      
 
       dispatch(loginUser(formData))
       .unwrap()
       .then((response) => {
-        console.log(response)
+
+        if (response.data.isAdmin){pathRedirect = '/dashboard'}
          dispatch(updateActivePage(headerChoice.filter(page => page.path == pathRedirect )[0].name))
         navigate(pathRedirect)
       })
