@@ -33,8 +33,11 @@ body.active-modal {
 }
 
 .btn-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 4px;
-  display: block;
+  // display: block;
   font-size: 20px;
 }
 

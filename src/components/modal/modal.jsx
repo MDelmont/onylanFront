@@ -30,7 +30,7 @@ const Modal = ({ btnUse, children }) => {
 
   return (
     <>
-    <label onClick={toggleModal} htmlFor="">
+    <label className="btn-modal" onClick={toggleModal} htmlFor="">
     {btnUse}
     </label>
       
