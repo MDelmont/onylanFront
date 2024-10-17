@@ -33,9 +33,9 @@ export const getUserById = async (id) => {
 }
 
 
-export const updateUser = async (formData) => {
+export const updateUserById = async (formData,id) => {
 
-    const response = await axios.put(`${BASE_URL}/user`,formData, {
+    const response = await axios.put(`${BASE_URL}/user/${id}`,formData, {
         withCredentials: true,
         headers: {
             'Content-Type': 'multipart/form-data',

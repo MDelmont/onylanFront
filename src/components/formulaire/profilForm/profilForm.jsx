@@ -4,7 +4,7 @@ import InputPrimary from "../../basic/inputPrimary/inputPrimary";
 import BtnPrimary from "../../basic/btnPrimary/btnPrimary";
 import Checkbox from "../../basic/checkBox/checkBox";
 import { useEffect, useState } from "react";
-import { updateUser, userAuth } from '../../../service/api/user/userApi';
+import { updateUser, userAuth, getUserById } from '../../../service/api/user/userApi';
 import { constFormulaire, messageErrors, messageErrorsReturnApi } from '../../../config/config';
 import utilsFunction from '../../../utils/utilsFunction';
 import BtnSecondary from '../../basic/btnSecondary/btnSecondary';
@@ -16,7 +16,7 @@ import BtnSecondary from '../../basic/btnSecondary/btnSecondary';
  * @example
  * <ProfilForm />
  */
-const ProfilForm = () => {
+const ProfilForm = ({userIdid}) => {
 
   const [formData, setFormData] = useState({
     email: '',
@@ -43,7 +43,7 @@ const ProfilForm = () => {
 
   useEffect(() => {
 
-    userAuth().then(resp => {
+    getUserById().then(resp => {
 
       if (resp.data.data) {
         const base64img = resp.data.data.file

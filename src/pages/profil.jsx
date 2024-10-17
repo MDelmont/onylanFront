@@ -34,7 +34,6 @@ const  ProfilPage = ()  => {
       if(resp.data.data){
         
         setUserIdAuth(resp.data.data.id)
-        console.log(resp.data.data.id)
       }
 
       
@@ -55,7 +54,7 @@ const  ProfilPage = ()  => {
           {activeForm=="profil-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('password-form')}}>Changer de mot de passe</span>}
           {activeForm=="password-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('profil-form')}}>Information de base</span>}
             
-          {activeForm=="profil-form" && <ProfilForm  />}
+          {activeForm=="profil-form" && <ProfilForm id={userIdAuth} />}
           {activeForm=="password-form" && <PasswordChangeForm  />}
         </div>
       </Modal>
