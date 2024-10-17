@@ -142,7 +142,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
+        text-align: left;
         line-height:2;
         font-size: 0.30em;
 
@@ -153,6 +153,7 @@
         }
         h3{
             font-size: 1.3em; 
+            text-align: center;
         }
         ul {
             list-style: none;
@@ -165,18 +166,6 @@
         .desc-content {
             width: 90%;
          
-
-            .desc-left {
-                
-            }
-
-            .desc-middle {
-         
-            }
-
-            .desc-right {
-                
-            }
         }
     }
 }
@@ -298,10 +287,6 @@
     
         font-size: 65px;
 
-        .teaser {
-
-        }
-
         .cont-timer {
 
             h2{
@@ -309,36 +294,6 @@
             }
         }
 
-
-
-        .info-cont {
-
-        }
-
-        .cont-title {
-
-
-        }
-    }
-    .description {
-
-        ul {
- 
-        }
-        .desc-middle-large {
-      
-        }
-        .desc-content {
-
-            .desc-left {
-            }
-
-            .desc-middle {
-            }
-
-            .desc-right {
-            }
-        }
     }
     }
 
@@ -351,10 +306,6 @@
     
         font-size: 80px;
 
-        .teaser {
-
-        }
-
         .cont-timer {
 
             h2{
@@ -362,37 +313,8 @@
             }
         }
 
-
-
-        .info-cont {
-
-        }
-
-        .cont-title {
-
-
-        }
     }
-    .description {
 
-        ul {
- 
-        }
-        .desc-middle-large {
-      
-        }
-        .desc-content {
-
-            .desc-left {
-            }
-
-            .desc-middle {
-            }
-
-            .desc-right {
-            }
-        }
-    }
     }
 
 
@@ -404,47 +326,16 @@
     
         font-size: 90px;
 
-        .teaser {
-
-        }
-
         .cont-timer {
         
             h2{
                 font-size: 0.5em;
             }
         }
-
-
-
-        .info-cont {
-
-        }
-
-        .cont-title {
-
-
-        }
     }
     .description {
         font-size: 0.5em;
-        ul {
- 
-        }
-        .desc-middle-large {
-       
-        }
-        .desc-content {
 
-            .desc-left {
-            }
-
-            .desc-middle {
-            }
-
-            .desc-right {
-            }
-        }
     }
     }
 

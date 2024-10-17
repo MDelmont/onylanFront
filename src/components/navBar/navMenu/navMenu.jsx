@@ -17,7 +17,7 @@ const NavMenu = ({isAdmin}) => {
     <div className="nav-menu">
       {userInfo.isConnect && headerChoice.map((navItem,index)=> {
 
-        if (navItem.isAdmin && isAdmin || !navItem.isAdmin && (isAdmin  && navItem.forAdmin !== false)){
+        if (navItem.isAdmin && isAdmin || !navItem.isAdmin && ((navItem.forAdmin !== false && isAdmin) || ( navItem.forAdmin === false && !isAdmin))){
           return <BtnNav  key={index} title={navItem.name} isActive={navInfo.activePage == navItem.name} path={navItem.path} />
         }
        
