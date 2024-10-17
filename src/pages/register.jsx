@@ -324,7 +324,7 @@ const RegisterPage = () => {
      
         {globalError && <p>{globalError}</p>}
       </div>
-      <BtnPrimary title={'Se connecter'} type={'submit'} onClick={handleSubmit} />
+      <BtnPrimary title={"S'INSCRIRE"} type={'submit'} onClick={handleSubmit} />
       </form>
     </div>
   );
