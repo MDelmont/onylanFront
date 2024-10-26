@@ -262,7 +262,7 @@ const ProfilForm = ({userId,isAdmin}) => {
 
       </div>
       {globalMessage && <p>{globalMessage}</p>}
-      <BtnPrimary title={'Modifier'} type={'submit'} onClick={handleSubmit} />
+      <BtnPrimary labelText={"Modifier les informations du profil"} title={'Modifier'} type={'submit'} onClick={handleSubmit} />
     </form>
   );
 };

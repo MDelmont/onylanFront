@@ -68,8 +68,8 @@ const NavConnect = ({setIsAdmin,isAdmin}) => {
     <div className="nav-connect">
       
       {userInfo.isConnect && <Burger isAdmin={isAdmin} listMenu={headerChoice} handledisconnect={handledisconnect} activePage={navInfo.activePage}/>}
-      {!userInfo.isConnect && <BtnPrimary title={'CONNEXION'} onClick={handleConnect} disabled={false}/>}
-      {userInfo.isConnect &&  <p className='disconnect-btn' onClick={handledisconnect}>DÉCONNEXION</p>}
+      {!userInfo.isConnect && <BtnPrimary labelText={"connexion au site internet"} title={'CONNEXION'} onClick={handleConnect} disabled={false}/>}
+      {userInfo.isConnect &&  <p aria-label={"Déconnexion du site internet"}  className='disconnect-btn' onClick={handledisconnect}>DÉCONNEXION</p>}
   </div>
   );
 };

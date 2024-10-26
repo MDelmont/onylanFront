@@ -230,8 +230,8 @@ const GameUpdatePage = () => {
                     } />
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Modifier le jeux'} type={'submit'} onClick={handleSubmit} />
-                <BtnPrimary title={'Supprimer le jeux'}  onClick={handleDelete} />
+                <BtnPrimary labelText={"Modifier le jeux"} title={'Modifier le jeux'} type={'submit'} onClick={handleSubmit} />
+                <BtnPrimary labelText={"Supprimer le jeux"} title={'Supprimer le jeux'}  onClick={handleDelete} />
                 
             </form>
             

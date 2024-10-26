@@ -122,7 +122,7 @@ const ModeCreatePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Créer un mode'} type={'submit'} onClick={handleSubmit} />
+                <BtnPrimary labelText={"créer le jeux"} title={'Créer un mode'} type={'submit'} onClick={handleSubmit} />
             </form>
         </div>
     );

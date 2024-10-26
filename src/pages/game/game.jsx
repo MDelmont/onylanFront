@@ -87,7 +87,7 @@ const GamePage = () => {
             <div className="cont-mode">
                 
             <h2>Mode de jeux</h2>
-            <BtnPrimary title={'Ajouter un mode'} onClick={handleAddMode} />
+            <BtnPrimary labelText={"Acces à la creation de mode"} title={'Ajouter un mode'} onClick={handleAddMode} />
             {gameData && gameData.modes.length >0 && <div className="cont-item-mode">
                 { gameData && gameData.modes && gameData.modes.map(mode =>{
                     return <div className='mode-card' key={mode.id} data={mode.id} onMouseDown={handleClickMode} >

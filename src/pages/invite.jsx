@@ -124,7 +124,7 @@ const InvitePage = () => {
       ))}
       </div>
 
-       <BtnPrimary title="Envoyer" disabled={  Object.values(errors).some(error => error !== '')} onClick={handleSubmit} type="submit" />
+       <BtnPrimary labelText={"Creation de l'invitation"} title="Créer" disabled={  Object.values(errors).some(error => error !== '')} onClick={handleSubmit} type="submit" />
   
       </form>
 

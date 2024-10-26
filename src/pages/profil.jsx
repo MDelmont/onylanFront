@@ -48,7 +48,7 @@ const  ProfilPage = ()  => {
   return (
   <div className="profil-page">
       {userIdAuth && <Profil userId={userIdAuth}/>}
-      <Modal btnUse={<BtnPrimary title={'Modifier mes informations'} />}>
+      <Modal btnUse={<BtnPrimary labelText={"Acces au modal de modification des information profil"} title={'Modifier mes informations'} />}>
         <div className="form-content">
 
           {activeForm=="profil-form" &&  <span className="nav-in-page" onClick={() => {setActiveForm('password-form')}}>Changer de mot de passe</span>}

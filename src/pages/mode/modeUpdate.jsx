@@ -137,7 +137,7 @@ const ModeUpdatePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Mettre à jours le mode'} type={'submit'} onClick={handleSubmit} />
+                <BtnPrimary labelText={"Modifier le mode"} title={'Mettre à jours le mode'} type={'submit'} onClick={handleSubmit} />
             </form>
         </div>
     );

@@ -180,7 +180,7 @@ const dataInput = [
         </div>
         {globalMessage && <p>{globalMessage}</p>}
 
-        <BtnPrimary title={'Appliquer'} type={'submit'} onClick={handleSubmit} disabled={formData.email==="" || formData.password===""} />
+        <BtnPrimary labelText={"Réinitialiser le mot de passe"} title={'Appliquer'} type={'submit'} onClick={handleSubmit} disabled={formData.email==="" || formData.password===""} />
       </form>
     </div>
   );

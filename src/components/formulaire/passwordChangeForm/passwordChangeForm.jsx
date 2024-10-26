@@ -174,7 +174,7 @@ const PasswordChangeForm = ({}) => {
  
       </div>
         {globalMessage && <p>{globalMessage}</p>}
-      <BtnPrimary title={'Modifier'} type={'submit'} onClick={handleSubmit} />
+      <BtnPrimary labelText={"Modifier les mot de passe"} title={'Modifier'} type={'submit'} onClick={handleSubmit} />
     </form>
 
 

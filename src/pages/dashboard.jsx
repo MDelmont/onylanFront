@@ -130,7 +130,7 @@ const  DashbordPage = ()  => {
         </h1>
         <div className="dash-part-cont">
           <h2>Gestion des inviations</h2>
-          <BtnPrimary onClick={handleOpenNewInvitation} id={'new-invit-btn'} title="Nouvelle invitation" /> 
+          <BtnPrimary labelText={"Création d'une nouvelle invitation"} onClick={handleOpenNewInvitation} id={'new-invit-btn'} title="Nouvelle invitation" /> 
           {invitations && invitations.length >0 && <table className="admin-table">
             <thead>
               <tr>
@@ -154,7 +154,7 @@ const  DashbordPage = ()  => {
                   }>
                       <div className="modal-cent-confirmation">
                         <h2>Etes vous sur de vouloir supprimer l'invitation ? </h2>
-                        <BtnPrimary onClick={handleRemoveInvit} id={invitation.id} title="Confirmer la suppression"/>
+                        <BtnPrimary labelText={"Suppression de l'invitation"}  onClick={handleRemoveInvit} id={invitation.id} title="Confirmer la suppression"/>
                       </div>
                     </Modal>
                    
@@ -196,7 +196,7 @@ const  DashbordPage = ()  => {
                     }>
                       <div className="modal-cent-confirmation">
                         <h2>Etes vous sur de vouloir supprimer l'utilisateur {user.firstName} {user.name} ? </h2>
-                        <BtnPrimary onClick={handleDeleteUser} id={user.id} title="Confirmer la suppression"/>
+                        <BtnPrimary labelText={"Suppression d'un utilisateur"}  onClick={handleDeleteUser} id={user.id} title="Confirmer la suppression"/>
                       </div>
                     </Modal>
                     </div>
@@ -209,7 +209,7 @@ const  DashbordPage = ()  => {
 
         <div className="dash-part-cont">
           <h2>Gestion des jeux</h2>
-          <BtnPrimary onClick={handleOpenNewgame} id={'new-invit-btn'} title="Nouveau jeux" /> 
+          <BtnPrimary labelText={"Création d'un jeu"}  onClick={handleOpenNewgame} id={'new-game-btn'} title="Nouveau jeux" /> 
           {games && games.length >0 && <table className="admin-table">
             <thead>
               <tr>
@@ -236,7 +236,7 @@ const  DashbordPage = ()  => {
                     }>
                       <div className="modal-cent-confirmation">
                         <h2>Etes vous sur de vouloir supprimer le jeu {game.name} ? </h2>
-                        <BtnPrimary onClick={handleDeleteGame} id={game.id} title="Confirmer la suppression"/>
+                        <BtnPrimary labelText={"Suppression d'un jeu"}  onClick={handleDeleteGame} id={game.id} title="Confirmer la suppression"/>
                       </div>
                     </Modal>
                     </div>

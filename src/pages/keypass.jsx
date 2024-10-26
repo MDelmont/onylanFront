@@ -116,7 +116,7 @@ const KeyPassPage = () => {
                     })}
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Proposer'} type={'submit'} onClick={handleSubmit} />
+                <BtnPrimary labelText={"Proposser un clef secret"} title={'Proposer'} type={'submit'} onClick={handleSubmit} />
                 <div><p>{responseData}</p></div>
             </form>
         </div>

@@ -99,7 +99,7 @@ const LoginPage = () => {
      
      <p className="forget-password-text" onClick={handleFrogetPassword}>Mot de passe oublié</p>
       </div>
-      <BtnPrimary title={'Se connecter'} type={'submit'} onClick={handleSubmit} disabled={formData.email==="" || formData.password===""}/>
+      <BtnPrimary labelText={"Se connecter au site"}  title={'Se connecter'} type={'submit'} onClick={handleSubmit} disabled={formData.email==="" || formData.password===""}/>
       </form>
 
      

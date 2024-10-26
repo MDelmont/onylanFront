@@ -72,7 +72,7 @@ const GamesPage = () => {
             <h1>
                 Les jeux 
             </h1>
-            <BtnPrimary title={'Créer un jeu'} type={'submit'} onClick={handleSubmit} />
+            <BtnPrimary labelText={"acces à la page de creation de jeu"} title={'Créer un jeu'} type={'submit'} onClick={handleSubmit} />
             <div className="filter-games">
             <InputLabel htmlFor="sortBy" title="Trier par" input={
                         <InputPrimaryDropdown onChange={handleChangeSort} options={["Date d'ajout",'Note','Nom','Nombre de vote','Catégorie']}  />

@@ -217,7 +217,7 @@ const EventCreatePage = () => {
 
                     {globalError && <p>{globalError}</p>}
                 </div>
-                <BtnPrimary title={'Créer un jeu'} type={'submit'} onClick={handleSubmit} />
+                <BtnPrimary labelText={"créer un jeu"} title={'Créer un jeu'} type={'submit'} onClick={handleSubmit} />
             </form>
         </div>
     );

@@ -73,7 +73,7 @@ const ForgetPasswordPage = () => {
 
   return (
     <div className="forgetPassword-page">
-      <h1>Formulaire d'inscription</h1>
+      <h1>Formulaire de récupération</h1>
       <form >
 
         <div className="cont-input">
@@ -87,7 +87,7 @@ const ForgetPasswordPage = () => {
         </div>
         {globalMessage && <p>{globalMessage}</p>}
 
-        <BtnPrimary title={'Se connecter'} type={'submit'} onClick={handleSubmit} disabled={formData.email==="" || formData.password===""} />
+        <BtnPrimary labelText={"Récupération du mot de passe par email"}  title={'Envoyer'} type={'submit'} onClick={handleSubmit} disabled={formData.email==="" || formData.password===""} />
       </form>
     </div>
   );

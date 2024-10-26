@@ -91,8 +91,8 @@ const ModePage = () => {
                     </div>
                 </div>
             </div>
-            {isAdmin && <BtnPrimary title={'Modifier le mode'} type={'submit'} onClick={handleModifyGame} />}
-            {isAdmin && <BtnPrimary title={'Supprimer le mode'} type={'submit'} onClick={handleDeleteGame} />}
+            {isAdmin && <BtnPrimary labelText={"Modifier le mode"} title={'Modifier le mode'} type={'submit'} onClick={handleModifyGame} />}
+            {isAdmin && <BtnPrimary labelText={"Modifier le mode"} title={'Supprimer le mode'} type={'submit'} onClick={handleDeleteGame} />}
             </>
             }
         </div>

@@ -138,7 +138,7 @@ const Import3dModel = () => {
             <div>
             <p>Fichier sélectionné : {trophieModelData.glbFile.name}</p>
             {trophieModelData.glbFile && <TrophieModel trophieModelData={trophieModelData} modifyPosition={true}/>}
-            <button onClick={resetGlbFile}>Supprimer le fichier</button>
+            <button aria-label={"supprime le fichier 3d"} onClick={resetGlbFile}>Supprimer le fichier</button>
             </div>
         )}
         
