@@ -12,12 +12,10 @@ import Timer from "./timer";
  * et le composant Timer pour l'afficher.
  */
 function ContTimer( ) {
-  
-    const [numberDays, numberHours, numberMinutes, numberSecondes] = useCustomTimer()
     
   return <div className="timer">
     
-        <Timer numberDays={numberDays} numberHours={numberHours} numberMinutes={numberMinutes} numberSecondes={numberSecondes} />
+        <Timer  />
     </div>
 }
 

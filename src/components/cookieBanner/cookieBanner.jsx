@@ -38,10 +38,10 @@ const CookieBanner = () => {
             <p>
                 Ce site utilise des cookies pour améliorer votre expérience.
                 En utilisant notre site, vous consentez à notre politique sur les cookies.
-                Voir <a href="/conditions-of-use">conditions d'utilisation</a> du site.
+                Voir <a href="/conditionsOfUse">conditions d'utilisation</a> du site.
             </p>
-            <BtnPrimary title="Accepter" onClick={() => handleAcceptCookies(true)} />
-            <BtnPrimary title="Refuser" onClick={() => handleAcceptCookies(false)} />
+            <BtnPrimary labelText={"Accepte les cookies"} title="Accepter" onClick={() => handleAcceptCookies(true)} />
+            <BtnPrimary labelText={"Refuse les cookies"} title="Refuser" onClick={() => handleAcceptCookies(false)} />
         </div>
     );
 };

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { IsAuth } from "../../components/auth/isAuth"
 import { IsAdmin } from "../../components/auth/isAdmin"
 import InputLabel from '../../components/formulaire/inputLabel/inputLabel';
 import BtnSecondary from '../../components/basic/btnSecondary/btnSecondary';
